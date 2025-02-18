@@ -27,6 +27,8 @@
 		<acme:footer-option icon="fab fa-linkedin" code="master.footer.label.linked-in" action="${$linkedin$url}" newTab="true"/>
 		<acme:print var="$twitter$url" code="master.footer.url.twitter"/>
 		<acme:footer-option icon="fab fa-twitter" code="master.footer.label.twitter" action="${$twitter$url}" newTab="true"/>
+		<acme:print var="$github$url" code="master.footer.url.github"/>
+		<acme:footer-option icon="" code="master.footer.label.github" action="${$github$url}" newTab="true"/>
 	</acme:footer-subpanel>
 
 	<acme:footer-subpanel code="master.footer.title.languages">
