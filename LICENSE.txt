@@ -8,3 +8,5 @@ this software. It has been tested carefully, but it is not guaranteed for any pa
 purposes.  The copyright owner does not offer any warranties or representations, nor do
 they accept any liabilities with respect to them.
 
+This project is owned by C01.045 group, all the team members are co-owners.
+No using or sharing it without granted access.
