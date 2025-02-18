@@ -14,6 +14,7 @@ master.menu.anonymous.davgavser= 29510529B: Gavira Serrano, David
 master.menu.anonymous.ronmonalb= 30321256B: Montoya Albitres, Ronald
 master.menu.anonymous = Anonymous
 master.menu.anonymous.favourite-link = Favourite link
+master.menu.anonymous.favourite-link-juan = 78137010F: López Veiga, Juan Carlos
 
 # master.menu.administrator ###################################################
 
@@ -27,6 +28,7 @@ master.menu.administrator.shut-system-down = Shut system down
 
 master.menu.provider = Provider
 master.menu.provider.favourite-link = Favourite link
+
 
 # master.menu.consumer ##########################################################
 
