@@ -20,7 +20,13 @@
 	<acme:menu-left>
 		<acme:menu-option code="master.menu.anonymous" access="isAnonymous()">
 			<acme:menu-suboption code="master.menu.anonymous.favourite-link" action="http://www.example.com/"/>
+
+			<acme:menu-suboption code="master.menu.anonymous.favourite-link-juan" action="http://www.reddit.com/"/>
+			<acme:menu-suboption code="master.menu.anonymous.luigarpar1" action="https://ufcespanol.com" />
+			<acme:menu-suboption code="master.menu.anonymous.ronmonalb" action="https://poki.com/es/g/level-devil" />
 			<acme:menu-suboption code="master.menu.anonymous.davgavser" action="https://store.steampowered.com/app/813780/Age_of_Empires_II_Definitive_Edition/?l=spanish" />
+			<acme:menu-suboption code="master.menu.anonymous.mohabu2" action="https://www.youtube.com/c/midudev" />
+
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.administrator" access="hasRealm('Administrator')">
