@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>4</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>160</y>
+      <w>284</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+bg=green
+_Technician_
+--
++ license number:String {Mandatory,Column(unique=true),ValidString(pattern="^[A-Z]{2-3}\d{6}$"),Automapped)
++ Contact phone number:String {Mandatory,ValidString(pattern="^\+?\d{6,15}$"),Automapped}
++ specialisation:String {Mandatory,ValidString(max=50),Automapped}
++ annual health test:Boolean {Mandatory,Valid,Automapped}
++ years of experience:Integer {Mandatory,ValidNumber(min=0),Automapped)
++ certifications:String {Optional,ValidString(max=50),Automapped}
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>332</x>
+      <y>252</y>
+      <w>240</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+bg=green
+_MaintenanceRecord_
+--
++ moment:Date {Mandatory, ValidMoment,Temporal(TIMESTAMP),Automapped}
++ status:Status {Mandatory,Valid,Automapped}
++ inspection due date:Date {Mandatory, ValidMoment,Temporal(TIMESTAMP),Automapped}
++ estimated Cost:Money {Mandatory,ValidMoney,Automapped}
++ notes:String {Optional,ValidString(max=255),Automapped}
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>232</x>
+      <y>332</y>
+      <w>84</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>The Inspection Due Date must 
+be after moment</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>272</x>
+      <y>304</y>
+      <w>68</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;70.0;150.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>400</x>
+      <y>320</y>
+      <w>48</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Enumerator&gt;&gt;
+bg=yellow
+_Status_
+--
++PENDING
++IN PROGRESS
++COMPLETED
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>340</x>
+      <y>172</y>
+      <w>56</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Enumerator&gt;&gt;
+bg=yellow
+_Type_
+--
++MAINTENANCE
++INSPECTION
++REPAIR
++SYSTEM CHECK
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>256</y>
+      <w>284</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+bg=green
+_Task_
+--
++ type:Type {Mandatory,Valid,Automapped}
++ description:String {Mandatory,ValidString(max=255),Automapped}
++ priority:Integer {Mandatory,ValidNumber(min=0,max=10),Automapped)
++ estimated duration:Integer {Mandatory,ValidNumber(min=0),Automapped)
+
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>12</x>
+      <y>340</y>
+      <w>84</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>The Estimated Duration 
+is measured in hours</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>60</x>
+      <y>300</y>
+      <w>12</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>116</x>
+      <y>340</y>
+      <w>48</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+bg=green
+_Aircraft_
+--
++ ...
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>280</x>
+      <y>276</y>
+      <w>60</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>lt=x-&gt;
+m1= *
+m2=1
+Relies on &gt; </panel_attributes>
+    <additional_attributes>10.0;20.0;130.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>136</x>
+      <y>216</y>
+      <w>52</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=x-&gt;
+m1= *
+m2=1
+Carried out by ^</panel_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>136</x>
+      <y>300</y>
+      <w>32</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=x-&gt;
+m1= *
+m2=1
+Have ^</panel_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
+  </element>
+</diagram>
