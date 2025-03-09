@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="15.1">
-  <zoom_level>8</zoom_level>
+  <zoom_level>7</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>32</x>
-      <y>96</y>
-      <w>568</w>
-      <h>120</h>
+      <x>119</x>
+      <y>147</y>
+      <w>497</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 bg=green
@@ -27,18 +27,18 @@ _Technician_
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>696</x>
-      <y>280</y>
-      <w>480</w>
-      <h>112</h>
+      <x>700</x>
+      <y>308</y>
+      <w>420</w>
+      <h>98</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 bg=green
 _MaintenanceRecord_
 --
-+ moment:Date {Mandatory, ValidMoment,Temporal(TIMESTAMP),Automapped}
++ moment:Date {Mandatory, ValidMoment,Temporal(TIMESTAMP)}
 + status:Status {Mandatory,Valid,Automapped}
-+ inspection due date:Date {Mandatory, ValidMoment,Temporal(TIMESTAMP),Automapped}
++ inspection due date:Date {Mandatory, ValidMoment,Temporal(TIMESTAMP)}
 + estimated Cost:Money {Mandatory,ValidMoney,Automapped}
 + notes:String {Optional,ValidString(max=255),Automapped}
 </panel_attributes>
@@ -47,10 +47,10 @@ _MaintenanceRecord_
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>496</x>
-      <y>440</y>
-      <w>168</w>
-      <h>40</h>
+      <x>525</x>
+      <y>448</y>
+      <w>147</w>
+      <h>35</h>
     </coordinates>
     <panel_attributes>The Inspection Due Date must 
 be after moment</panel_attributes>
@@ -59,10 +59,10 @@ be after moment</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>576</x>
-      <y>384</y>
-      <w>136</w>
-      <h>72</h>
+      <x>595</x>
+      <y>399</y>
+      <w>119</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
     <additional_attributes>10.0;70.0;150.0;10.0</additional_attributes>
@@ -70,10 +70,10 @@ be after moment</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>832</x>
-      <y>416</y>
-      <w>96</w>
-      <h>80</h>
+      <x>819</x>
+      <y>427</y>
+      <w>84</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Enumerator&gt;&gt;
 bg=yellow
@@ -89,10 +89,10 @@ _Status_
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>712</x>
-      <y>120</y>
-      <w>112</w>
-      <h>96</h>
+      <x>714</x>
+      <y>168</y>
+      <w>98</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Enumerator&gt;&gt;
 bg=yellow
@@ -109,10 +109,10 @@ _Type_
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>32</x>
-      <y>288</y>
-      <w>568</w>
-      <h>96</h>
+      <x>119</x>
+      <y>315</y>
+      <w>497</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 bg=green
@@ -131,10 +131,10 @@ _Task_
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>56</x>
-      <y>456</y>
-      <w>168</w>
-      <h>40</h>
+      <x>140</x>
+      <y>462</y>
+      <w>147</w>
+      <h>35</h>
     </coordinates>
     <panel_attributes>The Estimated Duration 
 is measured in hours</panel_attributes>
@@ -143,10 +143,10 @@ is measured in hours</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>152</x>
-      <y>376</y>
-      <w>24</w>
-      <h>96</h>
+      <x>224</x>
+      <y>392</y>
+      <w>21</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
     <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
@@ -154,10 +154,10 @@ is measured in hours</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>264</x>
-      <y>456</y>
-      <w>96</w>
-      <h>56</h>
+      <x>322</x>
+      <y>462</y>
+      <w>84</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 bg=green
@@ -171,10 +171,10 @@ _Aircraft_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>592</x>
-      <y>328</y>
-      <w>120</w>
-      <h>40</h>
+      <x>609</x>
+      <y>350</y>
+      <w>105</w>
+      <h>35</h>
     </coordinates>
     <panel_attributes>lt=x-&gt;
 m1= *
@@ -185,10 +185,10 @@ Relies on &gt; </panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>304</x>
-      <y>208</y>
-      <w>104</w>
-      <h>96</h>
+      <x>357</x>
+      <y>245</y>
+      <w>91</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>lt=x-&gt;
 m1= *
@@ -199,10 +199,10 @@ Carried out by ^</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>304</x>
-      <y>376</y>
-      <w>80</w>
-      <h>96</h>
+      <x>357</x>
+      <y>392</y>
+      <w>70</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>lt=x-&gt;
 m1= *
