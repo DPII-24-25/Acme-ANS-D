@@ -32,7 +32,6 @@ public class MaintananceRecord extends AbstractEntity {
 	@Mandatory
 	@ValidMoment
 	@Temporal(TemporalType.TIMESTAMP)
-	@Automapped
 	private Date				moment;
 
 	@Mandatory
