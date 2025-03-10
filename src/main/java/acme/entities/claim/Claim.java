@@ -1,5 +1,5 @@
 
-package acme.entities;
+package acme.entities.claim;
 
 import java.util.Date;
 
