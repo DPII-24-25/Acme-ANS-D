@@ -23,21 +23,15 @@ public class CreditCardValidator extends AbstractValidator<ValidDigitsCreditCard
 	@Override
 	public boolean isValid(final String value, final ConstraintValidatorContext context) {
 		assert context != null;
-		boolean isNull;
-		boolean result;
 
-		isNull = this.booking == null || this.booking.getCreditCard() == null;
+		if (this.booking == null || this.booking.getCreditCard() == null)
+			return !super.hasErrors(context);
 
-		if (!isNull) {
-			String codeCC;
-			boolean lastDigits;
+		String codeCC = this.repository.findCreditCardByBookingId(this.booking.getId());
+		boolean isValidLastDigits = value.equals(codeCC) || codeCC.length() == 4;
 
-			codeCC = this.repository.findCreditCardByBookingId(this.booking.getId());
-			lastDigits = value.equals(codeCC) || codeCC.length() == 4;
-			super.state(context, lastDigits, "Cuatro digitos", "acme.validaton.booking.nibble.message");
-		}
-		result = !super.hasErrors(context);
+		super.state(context, isValidLastDigits, "Cuatro digitos", "acme.validaton.booking.nibble.message");
 
-		return result;
+		return !super.hasErrors(context);
 	}
 }
