@@ -50,4 +50,15 @@ public class Service extends AbstractEntity {
 	@Automapped
 	private Money				money;
 
+	// Relatrionships -----------------------------------------------------
+
+	/*
+	 * @Mandatory
+	 * 
+	 * @Valid
+	 * 
+	 * @ManyToOne(optional = false)
+	 * private Airport airport;
+	 */
+
 }
