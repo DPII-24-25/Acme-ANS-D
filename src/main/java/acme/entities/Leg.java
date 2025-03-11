@@ -73,7 +73,6 @@ public class Leg extends AbstractEntity {
 
 	@Valid
 	@Mandatory
-	@Automapped
 	@ManyToOne(optional = false)
 	private Flight	flight;
 }

@@ -8,13 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
 import acme.entities.Flight;
-import acme.entities.FligthRepository;
+import acme.entities.FlightRepository;
 
 @Validator
 public class FlightValidator extends AbstractValidator<ValidFlight, Flight> {
 
 	@Autowired
-	private FligthRepository repository;
+	private FlightRepository repository;
 
 
 	@Override

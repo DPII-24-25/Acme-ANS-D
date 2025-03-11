@@ -31,7 +31,7 @@ public class Manager extends AbstractRole {
 
 	@Column(unique = true)
 	@Mandatory
-	@ValidString(pattern = "^[A-Z]{2-3}\\d{6}$")
+	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$")
 	@Automapped
 	private String				code;
 
@@ -41,8 +41,8 @@ public class Manager extends AbstractRole {
 	private Integer				experience;
 
 	@Mandatory
-	@ValidMoment(past = true)
-	@Temporal(TemporalType.DATE)
+	@ValidMoment(past = true, min = "1900/01/01 00:00")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date				birthDate;
 
 	@ValidUrl
