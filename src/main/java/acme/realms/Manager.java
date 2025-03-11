@@ -5,6 +5,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import acme.client.components.basis.AbstractRole;
 import acme.client.components.mappings.Automapped;
@@ -20,7 +22,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class AirManager extends AbstractRole {
+public class Manager extends AbstractRole {
 
 	/**
 	 * 
@@ -30,16 +32,17 @@ public class AirManager extends AbstractRole {
 	@Column(unique = true)
 	@Mandatory
 	@ValidString(pattern = "^[A-Z]{2-3}\\d{6}$")
+	@Automapped
 	private String				code;
 
 	@Mandatory
-	@ValidNumber(max = 80)
+	@ValidNumber(max = 100)
 	@Automapped
 	private Integer				experience;
 
 	@Mandatory
-	@ValidMoment
-	@Automapped
+	@ValidMoment(past = true)
+	@Temporal(TemporalType.DATE)
 	private Date				birthDate;
 
 	@ValidUrl
