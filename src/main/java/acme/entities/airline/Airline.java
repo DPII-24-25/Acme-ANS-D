@@ -15,7 +15,6 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidEmail;
 import acme.client.components.validation.ValidMoment;
-import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
 import acme.client.components.validation.ValidUrl;
 import lombok.Getter;
@@ -51,7 +50,6 @@ public class Airline extends AbstractEntity {
 	@Mandatory
 	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
-	@Automapped
 	private Date				foundationMoment;
 
 	@Optional
@@ -60,8 +58,8 @@ public class Airline extends AbstractEntity {
 	private String				emailAdress;
 
 	@Optional
-	@ValidNumber(min = 9, max = 9)
+	@ValidString(pattern = "^\\+?\\d{6,15}$")
 	@Automapped
-	private Integer				phoneNumber;
+	private String				phoneNumber;
 
 }
