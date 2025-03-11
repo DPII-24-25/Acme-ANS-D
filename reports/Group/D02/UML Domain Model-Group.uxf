@@ -87,24 +87,6 @@ bg=green
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>231</x>
-      <y>371</y>
-      <w>427</w>
-      <h>63</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;DUDA&gt;&gt;
-_Sobre Aircraft_
-bg=pink
---
-1-¿El registration number es string or Int?
-2-Como modificar el regex para que IATA code tenga "where the last letter is *typically* an "X""?
-
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
       <x>7</x>
       <y>133</y>
       <w>147</w>
