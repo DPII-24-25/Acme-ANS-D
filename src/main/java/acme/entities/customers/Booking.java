@@ -30,14 +30,12 @@ public class Booking extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
 
-	@Automapped
 	@Mandatory
 	@ValidString(pattern = "^[A-Z0-9]{6,8}$")
 	@Column(unique = true)
 
 	private String				locatorCode;
 
-	@Automapped
 	@Mandatory
 	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
@@ -66,4 +64,6 @@ public class Booking extends AbstractEntity {
 	@ManyToOne(optional = false)
 
 	private Customers			customer;
+
+	//tiene una relacion con flights mandatory, manytoone
 }

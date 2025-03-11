@@ -20,8 +20,8 @@ public class Customers extends AbstractRealm {
 	private static final long	serialVersionUID	= 1L;
 
 	@Automapped
-	@Mandatory
-	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$")
+	@Mandatory   // Esto puede ser que sea custom pero hay que leerse el entregable 3
+	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$") //Hay que hacer una custom
 
 	private String				identifier;
 
@@ -50,7 +50,7 @@ public class Customers extends AbstractRealm {
 
 	@Automapped
 	@Optional
-	@ValidNumber(max = 500000)
+	@ValidNumber(max = 500000, min = 0)
 
 	private Integer				earnedPoints;
 
