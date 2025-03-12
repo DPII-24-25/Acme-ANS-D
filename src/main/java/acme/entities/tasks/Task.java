@@ -4,6 +4,9 @@ package acme.entities.tasks;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -14,6 +17,7 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
+import acme.realms.Technician;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -32,6 +36,7 @@ public class Task extends AbstractEntity {
 	@Mandatory
 	@Valid
 	@Automapped
+	@Enumerated(EnumType.STRING)
 	private Type				type;
 
 	@Mandatory
@@ -57,5 +62,10 @@ public class Task extends AbstractEntity {
 	// Derived attributes -----------------------------------------------------
 
 	// Relationships ----------------------------------------------------------
-	//Tiene relationships con Technician, Aircraft, y Maintenance Record
+
+	@Mandatory
+	@Valid
+	@ManyToOne
+	private Technician			technician;
+
 }

@@ -27,7 +27,7 @@ public class Technician extends AbstractRole {
 
 	@Mandatory
 	@Column(unique = true)
-	@ValidString(pattern = "^[A-Z]{2-3}\\d{6}$")
+	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$")
 	@Automapped
 	private String				licenseNum;
 
@@ -47,7 +47,7 @@ public class Technician extends AbstractRole {
 	private Boolean				annoHealthTest;
 
 	@Mandatory
-	@ValidNumber(min = 0)
+	@ValidNumber(min = 0, max = 70)
 	@Automapped
 	private Integer				yearsOfExp;
 
