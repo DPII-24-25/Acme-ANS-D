@@ -15,7 +15,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Customers extends AbstractRealm {
+public class Customer extends AbstractRealm {
 
 	private static final long	serialVersionUID	= 1L;
 

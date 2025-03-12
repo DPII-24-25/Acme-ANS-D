@@ -1,0 +1,5 @@
+key,fullName,email,passportNumber,dateBirth,specialNeeds,key:booking
+passenger-01,Ilia Topuria,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame,booking-01
+passenger-02,John Doe,john.doe@example.com,A1B2C3D,2001/07/12 14:30,Wheelchair,booking-02
+passenger-03,Jane Smith,jane.smith@example.com,E4F5G6H,2003/11/22 09:15,Vegetarian meal,booking-03
+passenger-04,Ana López,ana.lopez@example.com,I7J8K9L,2005/05/30 22:45,None,booking-04
