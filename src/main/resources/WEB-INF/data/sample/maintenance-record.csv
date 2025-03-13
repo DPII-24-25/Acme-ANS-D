@@ -1,0 +1,6 @@
+key,moment,status,inspectDueDate,estCost,moreInfo,key:technician
+maintanence-record-01,2000/01/01 0:01,COMPLETED,2002/01/22 0:01,EUR 1234.05,The Wheel of Time turns and Ages come and pass leaving memories that become legend. Legend fades to myth and even myth is lon,technician-01
+maintanence-record-02,2020/01/01 0:00,IN_PROGRESS,2020/02/01 16:00,USD 777.77,The Wheel,technician-02
+maintanence-record-03,2022/04/01 10:00,PENDING,2019/02/01 13:00,EUR 9999999.95,洛伦·伊普森,technician-01
+
+

@@ -1,0 +1,12 @@
+key,type,description,deadline,priority,estimatedDuration,key:technician
+task-01,MAINTENANCE, Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco,2000/01/01 0:01,6,0,technician-01
+task-02,MAINTENANCE,*,2011/04/16 0:00,8,125,technician-01
+task-03,INSPECTION,S5,2000/01/01 0:00,10,5,technician-01
+task-04,INSPECTION, Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore*,2022/07/29 23:59,4,32,technician-02
+task-05,REPAIR, Sed do: eiusmod temor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore e ,2022/07/30 0:00,10,10,technician-01
+task-06,REPAIR,nug,2022/09/01 10:00,6,22,technician-01
+task-07,REPAIR,as6285d,2022/08/04 0:00,6,17,technician-02
+task-08,SYSTEM_CHECK, 洛伦森 , 2022/08/04 0:01,1,3,technician-01
+task-09,MAINTENANCE,<marquee>Hacked</marquee>,2025/12/3 23:59,0,7,technician-02
+task-10,MAINTENANCE,<script>alert(‘Hacked!’);</script>,2027/01/01 0:00,0,34,technician-02
+task-11,MAINTENANCE,' or 'A' = 'A, 2022/08/04 0:00,5,3,technician-02

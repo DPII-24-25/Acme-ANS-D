@@ -1,23 +1,31 @@
 
-package acme.realms;
+package acme.entities.tasks;
 
-import javax.persistence.Column;
+import java.util.Date;
+
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.Valid;
 
-import acme.client.components.basis.AbstractRole;
+import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
-import acme.client.components.validation.Optional;
+import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
+import acme.realms.Technician;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class Technician extends AbstractRole {
+
+public class Task extends AbstractEntity {
 
 	// Serialisation version --------------------------------------------------
 
@@ -26,38 +34,38 @@ public class Technician extends AbstractRole {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
-	@Column(unique = true)
-	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$")
-	@Automapped
-	private String				licenseNum;
-
-	@Mandatory
-	@ValidString(pattern = "^\\+?\\d{6,15}$")
-	@Automapped
-	private String				contactPhoneNum;
-
-	@Mandatory
-	@ValidString(max = 50)
-	@Automapped
-	private String				specialisation;
-
-	@Mandatory
 	@Valid
 	@Automapped
-	private Boolean				annoHealthTest;
+	@Enumerated(EnumType.STRING)
+	private Type				type;
 
 	@Mandatory
-	@ValidNumber(min = 0, max = 70)
+	@ValidString(max = 255)
 	@Automapped
-	private Integer				yearsOfExp;
+	private String				description;
 
-	@Optional
-	@ValidString(max = 50)
+	@Mandatory
+	@ValidMoment
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date				deadline;
+
+	@Mandatory
+	@ValidNumber(min = 0, max = 10)
 	@Automapped
-	private String				certification;
+	private Integer				priority;
+
+	@Mandatory
+	@ValidNumber(min = 0)
+	@Automapped
+	private Integer				estimatedDuration;
 
 	// Derived attributes -----------------------------------------------------
 
 	// Relationships ----------------------------------------------------------
+
+	@Mandatory
+	@Valid
+	@ManyToOne
+	private Technician			technician;
 
 }
