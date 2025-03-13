@@ -1,5 +1,5 @@
 
-package acme.entities.Flight;
+package acme.entities.flight;
 
 import java.util.Date;
 

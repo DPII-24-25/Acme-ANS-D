@@ -5,7 +5,7 @@ import javax.validation.ConstraintValidatorContext;
 
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
-import acme.entities.Flight.Leg;
+import acme.entities.flight.Leg;
 
 @Validator
 public class LegValidator extends AbstractValidator<ValidLeg, Leg> {

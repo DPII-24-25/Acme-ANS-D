@@ -7,34 +7,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
-import acme.entities.flight.Flight;
-import acme.entities.flight.FlightRepository;
+import acme.entities.service.Service;
+import acme.entities.service.ServiceRepository;
 
 @Validator
-public class FlightValidator extends AbstractValidator<ValidFlight, Flight> {
+public class ServiceValidator extends AbstractValidator<ValidService, Service> {
 
 	@Autowired
-	private FlightRepository repository;
+	private ServiceRepository repository;
 
 
 	@Override
-	protected void initialise(final ValidFlight annotation) {
+	protected void initialise(final ValidService annotation) {
 		assert annotation != null;
 	}
 
 	@Override
-	public boolean isValid(final Flight flight, final ConstraintValidatorContext context) {
+	public boolean isValid(final Service service, final ConstraintValidatorContext context) {
 		assert context != null;
-		boolean result;
-		if (flight == null)
+
+		if (service == null)
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
 		else {
-
-			//Validaciones futuras
-
+			// Aquí irán las validaciones futuras.
 		}
-		result = !super.hasErrors(context);
-		return result;
+
+		return !super.hasErrors(context);
 	}
 
 }
