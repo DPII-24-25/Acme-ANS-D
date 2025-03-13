@@ -1,0 +1,5 @@
+key,locatorCode,purchaseMoment,travelClass,price,creditCard,key:customer
+booking-01,XYZ789,2003/05/10 14:30,ECONOMY,EUR 55.00,2222,customer-01
+booking-02,LMN6543,2010/06/30 21:45,BUSINESS,EUR 750.00,null,customer-02
+booking-03,OPQ98765,2008/09/12 10:15,ECONOMY,EUR 29.99,3333,customer-02
+booking-04,RST543,2005/08/05 19:20,BUSINESS,EUR 210.00,5555,customer-03
