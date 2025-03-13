@@ -53,10 +53,10 @@ public class Flight extends AbstractEntity {
 
 	@Transient
 	private Date getScheduleDeparture() {
-		FligthRepository repository;
+		FlightRepository repository;
 		Date wraper;
 
-		repository = SpringHelper.getBean(FligthRepository.class);
+		repository = SpringHelper.getBean(FlightRepository.class);
 		wraper = repository.getScheduleDeparture(this.getId());
 
 		return wraper;
@@ -64,10 +64,10 @@ public class Flight extends AbstractEntity {
 
 	@Transient
 	private Date getScheduleArrivals() {
-		FligthRepository repository;
+		FlightRepository repository;
 		Date wraper;
 
-		repository = SpringHelper.getBean(FligthRepository.class);
+		repository = SpringHelper.getBean(FlightRepository.class);
 		wraper = repository.getScheduleArrivals(this.getId());
 
 		return wraper;
@@ -76,10 +76,10 @@ public class Flight extends AbstractEntity {
 
 	@Transient
 	private String getDepartureCity() {
-		FligthRepository repository;
+		FlightRepository repository;
 		String wraper;
 
-		repository = SpringHelper.getBean(FligthRepository.class);
+		repository = SpringHelper.getBean(FlightRepository.class);
 		wraper = repository.getDepartureCity(this.getId());
 
 		return wraper;
@@ -88,10 +88,10 @@ public class Flight extends AbstractEntity {
 
 	@Transient
 	private String arrivalCity() {
-		FligthRepository repository;
+		FlightRepository repository;
 		String wraper;
 
-		repository = SpringHelper.getBean(FligthRepository.class);
+		repository = SpringHelper.getBean(FlightRepository.class);
 		wraper = repository.getArrivalCity(this.getId());
 
 		return wraper;
@@ -100,10 +100,10 @@ public class Flight extends AbstractEntity {
 
 	@Transient
 	private Integer getLayovers() {
-		FligthRepository repository;
+		FlightRepository repository;
 		Integer wraper;
 
-		repository = SpringHelper.getBean(FligthRepository.class);
+		repository = SpringHelper.getBean(FlightRepository.class);
 		wraper = repository.getLayovers(this.getId());
 
 		return wraper;
