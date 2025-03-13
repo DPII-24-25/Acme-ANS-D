@@ -6,8 +6,10 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.validation.Mandatory;
@@ -15,6 +17,8 @@ import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
 import acme.constraints.ValidFlightAssignment;
+import acme.entities.Leg;
+import acme.realms.FlightCrewMember;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -43,16 +47,13 @@ public class FlightAssignment extends AbstractEntity {
 	@Optional
 	private String					remarks;
 
-	/*
-	 * @ManyToOne(optional = false)
-	 * 
-	 * @Valid
-	 * private FlightCrewMember flightCrewMember;
-	 * 
-	 * @ManyToOne(optional = false)
-	 * 
-	 * @Valid
-	 * private FlightLeg flightLeg;
-	 * 
-	 */
+	@ManyToOne(optional = false)
+
+	@Valid
+	private FlightCrewMember		flightCrewMember;
+	@ManyToOne(optional = false)
+
+	@Valid
+	private Leg						flightLeg;
+
 }
