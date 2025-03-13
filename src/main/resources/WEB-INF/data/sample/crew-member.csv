@@ -1,6 +1,0 @@
-key,userAccount,employeeCode,phoneNumber,languageSkills,availabilityStatus,airline,salary,yearsOfExperience
-crew-01,user-account-member1,AB123456,+34123456789,"English, Español, Русский",AVAILABLE,airline-01,Money{amount=1800, currency=EUR},3
-crew-02,user-account-member2,XY123456,612345678,"Français, العربية, Ελληνικά",ON_VACATION,airline-02,Money{amount=2100, currency=EUR},5
-crew-03,user-account-member3,ZZ234567,+44222333444,"中文, 日本語",ON_LEAVE,airline-02,Money{amount=2500, currency=EUR},2
-crew-04,user-account-member4,CM512345,+9999999999999,"Italiano, Norsk, 한국어",AVAILABLE,airline-01,Money{amount=3000, currency=USD},10
-crew-05,user-account-member,FA000000,700000000,"Português, Polski, Türkçe",AVAILABLE,airline-03,Money{amount=1500, currency=EUR},null
