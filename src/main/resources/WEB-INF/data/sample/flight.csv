@@ -1,5 +1,5 @@
 key,tag,selfTransfer,cost,description,key:airline
-flight-01,CustomTag 1,true,EUR 500000.00,Flight details,airline-01
+flight-01,CustomTag 1,true,EUR 500000.00,Flight details,airline-02
 flight-02,A,false,EUR 500000.00,Flight details,airline-01
 flight-03,这是一个，长度正0字符,true,EUR 500000.00,Flight details,airline-01
 flight-04,CustomTag 4,true,EUR 0.00,Flight details,airline-01
