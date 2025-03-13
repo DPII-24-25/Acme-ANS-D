@@ -1,10 +1,12 @@
 
-package acme.entities;
+package acme.entities.flight;
 
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -17,6 +19,8 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
 import acme.constraints.ValidLeg;
+import acme.entities.aircraft.Aircraft;
+import acme.entities.airports.Airport;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -40,7 +44,7 @@ public class Leg extends AbstractEntity {
 	@Mandatory
 	@Column(unique = true)
 	@ValidString(pattern = "^[A-Z]{3}\\d{4}$")
-	private String	code;
+	private String	flightNumber;
 
 	@Mandatory
 	@ValidMoment
@@ -62,18 +66,26 @@ public class Leg extends AbstractEntity {
 	@Mandatory
 	@Automapped
 	@Valid
-	private Status	status;
+	@Enumerated(EnumType.STRING)
+	private Status		status;
 
-	//Ref Airport
-	private String	airportArrival;
-	private String	airportDeparture;
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	private Airport		departureAirport;
 
-	//Ref Aircraft
-	private String	aircraft;
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	private Airport		arrivalAirport;
+
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	private Aircraft	aircraft;
 
 	@Valid
 	@Mandatory
-	@Automapped
 	@ManyToOne(optional = false)
-	private Flight	flight;
+	private Flight		flight;
 }

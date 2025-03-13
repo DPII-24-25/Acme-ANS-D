@@ -1,0 +1,15 @@
+key,tag,selfTransfer,cost,description,key:airline
+flight-01,CustomTag 1,true,EUR 500000.00,Flight details,airline-01
+flight-02,A,false,EUR 500000.00,Flight details,airline-01
+flight-03,这是一个，长度正0字符,true,EUR 500000.00,Flight details,airline-01
+flight-04,CustomTag 4,true,EUR 0.00,Flight details,airline-01
+flight-05,CustomTag 5,true,EUR 0.01,Flight details,airline-01
+flight-06,CustomTag 6,true,EUR 999999.99,Flight details,airline-02
+flight-07,CustomTag 7,true,EUR 1000000.00,Flight details,airline-01
+flight-08,CustomTag 8,true,EUR 500000.00,这是一个很长的描述，包含中文字符和符号@#$%^&*,airline-01
+flight-09,CustomTag 9,true,EUR 12.00,نص عربي للاختبار,airline-01
+flight-10,CustomTag 10,true,EUR 35.00,ローレム・イプサム,airline-01
+flight-11,CustomTag 11,false,EUR 65445.00,Flight details,airline-01
+flight-12,CustomTag 12,true,EUR 510.00,"' OR '1'='1--",airline-01
+flight-13,CustomTag 13,true,EUR 3442.42,<blink>Compromised</blink>,airline-01
+flight-14,CustomTag 14,true,EUR 342.34,<script>alert('Warning');</script>,airline-01

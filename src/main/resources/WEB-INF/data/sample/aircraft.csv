@@ -1,0 +1,11 @@
+key,model,registrationNumber,capacity,cargoWeight,status,optionalDetails,key:airline
+aircraft-00,Lorem ipsum dolor sit amet,REG-001,128,26000,ACTIVE,"Lorem ipsum dolor sit amet, consectetur adipiscing",airline-01
+aircraft-01,L,REG-002,128,26000,ACTIVE,"Lorem ipsum dolor sit amet, consectetur adipiscing",airline-01
+aircraft-02,Lo,REG-003,128,26000,ACTIVE,"Lorem ipsum dolor sit amet, consectetur adipiscing",airline-01
+aircraft-03,"Lorem ipsum dolor sit amet, consectetur adipiscin",REG-004,128,26000,ACTIVE,"Lorem ipsum dolor sit amet, consectetur adipiscing",airline-01
+aircraft-04,"Lorem ipsum dolor sit amet, consectetur adipiscing",REG-005,128,26000,ACTIVE,"Lorem ipsum dolor sit amet, consectetur adipiscing",airline-01
+aircraft-05,โลเร็ม อิปซัม,REG-006,128,26000,ACTIVE,"Lorem ipsum dolor sit amet, consectetur adipiscing",airline-01
+aircraft-06,لوريم إيبسوم,REG-007,128,26000,ACTIVE,"Lorem ipsum dolor sit amet, consectetur adipiscing",airline-01
+aircraft-07,洛伦·伊普森,REG-008,128,26000,ACTIVE,"Lorem ipsum dolor sit amet, consectetur adipiscing",airline-01
+aircraft-08,<marquee>Hacked</marquee>,REG-009,128,26000,ACTIVE,"Lorem ipsum dolor sit amet, consectetur adipiscing",airline-01
+aircraft-09,<script>alert(‘Hacked!’);</script>,REG-010,128,26000,ACTIVE,"Lorem ipsum dolor sit amet, consectetur adipiscing",airline-01

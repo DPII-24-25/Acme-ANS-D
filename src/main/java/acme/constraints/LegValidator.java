@@ -3,19 +3,14 @@ package acme.constraints;
 
 import javax.validation.ConstraintValidatorContext;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
-import acme.entities.Leg;
-import acme.entities.LegRepository;
+import acme.client.helpers.SpringHelper;
+import acme.entities.flight.FlightRepository;
+import acme.entities.flight.Leg;
 
 @Validator
 public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
-
-	@Autowired
-	private LegRepository repository;
-
 
 	@Override
 	protected void initialise(final ValidLeg annotation) {
@@ -29,8 +24,11 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 		if (leg == null)
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
 		else {
-
-			//Validaciones futuras
+			FlightRepository repository = SpringHelper.getBean(FlightRepository.class);
+			String airlineCode = repository.getIataCodeFromLegId(leg.getId());
+			String legCode = leg.getFlightNumber().substring(0, 3);
+			if (!airlineCode.equals(legCode))
+				super.state(context, false, "flightNumber", "acme.validation.leg.flightNumber.message");
 
 		}
 		result = !super.hasErrors(context);
