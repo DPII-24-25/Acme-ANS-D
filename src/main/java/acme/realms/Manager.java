@@ -16,12 +16,14 @@ import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
 import acme.client.components.validation.ValidUrl;
+import acme.constraints.ValidIndentifier;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
+@ValidIndentifier
 public class Manager extends AbstractRole {
 
 	/**
@@ -33,15 +35,15 @@ public class Manager extends AbstractRole {
 	@Mandatory
 	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$")
 	@Automapped
-	private String				code;
+	private String				identifier;
 
 	@Mandatory
-	@ValidNumber(max = 100)
+	@ValidNumber(min = 0, max = 100)
 	@Automapped
 	private Integer				experience;
 
 	@Mandatory
-	@ValidMoment(past = true, min = "1900/01/01 00:00")
+	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				birthDate;
 

@@ -1,4 +1,4 @@
-key,key:userAccount,code,experience,birthDate,link
-manager-01,user-account-manager-01,AB000001,10,1955/11/25 00:00,ftp://a
-manager-02,user-account-manager-02,AB000002,25,1968/08/01 00:00,http://www.lorem-ipsum.org/dolor/sit.html
-manager-03,user-account-manager-03,AB000003,15,1989/01/14 00:00,http://example.org/a
+key,key:userAccount,identifier,experience,birthDate,link
+manager-01,user-account-manager-01,DM000001,10,2000/11/25 00:00,ftp://a
+manager-02,user-account-manager-02,LG000002,25,2002/08/01 00:00,http://www.lorem-ipsum.org/dolor/sit.html
+manager-03,user-account-manager-03,PM000003,15,2010/01/14 00:00,http://example.org/a

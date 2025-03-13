@@ -3,19 +3,12 @@ package acme.constraints;
 
 import javax.validation.ConstraintValidatorContext;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
-import acme.entities.Leg;
-import acme.entities.LegRepository;
+import acme.entities.Flight.Leg;
 
 @Validator
 public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
-
-	@Autowired
-	private LegRepository repository;
-
 
 	@Override
 	protected void initialise(final ValidLeg annotation) {

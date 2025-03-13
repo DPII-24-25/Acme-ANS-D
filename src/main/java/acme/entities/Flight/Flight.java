@@ -1,5 +1,5 @@
 
-package acme.entities;
+package acme.entities.Flight;
 
 import java.util.Date;
 
@@ -33,17 +33,17 @@ public class Flight extends AbstractEntity {
 	private static final long	serialVersionUID	= 1L;
 
 	@Mandatory
-	@ValidString(max = 50)
+	@ValidString(min = 1, max = 50)
 	@Automapped
 	private String				tag;
 
 	@Mandatory
 	@Automapped
-	private Boolean				selfTransfer;
+	private boolean				selfTransfer;
 
 	@Mandatory
 	@Automapped
-	@ValidMoney
+	@ValidMoney(min = 0, max = 1000000)
 	private Money				cost;
 
 	@Automapped
@@ -52,6 +52,11 @@ public class Flight extends AbstractEntity {
 	private String				description;
 
 	//	Legs attributes derivative
+
+	//	@Valid
+	//	@Mandatory
+	//	@ManyToOne(optional = false)
+	//	private Airline				airline;
 
 	@Valid
 	@Mandatory
