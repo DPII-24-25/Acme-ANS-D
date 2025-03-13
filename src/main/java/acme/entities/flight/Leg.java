@@ -19,6 +19,8 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
 import acme.constraints.ValidLeg;
+import acme.entities.aircraft.Aircraft;
+import acme.entities.airports.Airport;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -65,25 +67,25 @@ public class Leg extends AbstractEntity {
 	@Automapped
 	@Valid
 	@Enumerated(EnumType.STRING)
-	private Status	status;
+	private Status		status;
 
-	//	@Mandatory
-	//	@Valid
-	//	@ManyToOne(optional = false)
-	//	private Airport		departureAirport;
-	//
-	//	@Mandatory
-	//	@Valid
-	//	@ManyToOne(optional = false)
-	//	private Airport		arrivalAirport;
-	//
-	//	@Mandatory
-	//	@Valid
-	//	@ManyToOne(optional = false)
-	//	private Aircraft	aircraft;
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	private Airport		departureAirport;
+
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	private Airport		arrivalAirport;
+
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	private Aircraft	aircraft;
 
 	@Valid
 	@Mandatory
 	@ManyToOne(optional = false)
-	private Flight	flight;
+	private Flight		flight;
 }
