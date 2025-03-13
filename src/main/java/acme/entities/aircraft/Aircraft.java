@@ -5,6 +5,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.ManyToOne;
+import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
@@ -13,6 +15,7 @@ import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
 import acme.constraints.ValidAircraft;
+import acme.entities.airline.Airline;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -54,13 +57,9 @@ public class Aircraft extends AbstractEntity {
 	@Optional
 	protected String			optionalDetails;
 
-	/*
-	 * @ManyToOne(optional = false)
-	 * 
-	 * @Automapped
-	 * 
-	 * @Valid
-	 * protected Airline airline;
-	 */
+	@ManyToOne(optional = false)
+	@Automapped
+	@Valid
+	protected Airline			airline;
 
 }

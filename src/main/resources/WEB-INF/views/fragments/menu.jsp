@@ -19,8 +19,7 @@
 <acme:menu-bar>
 	<acme:menu-left>
 		<acme:menu-option code="master.menu.anonymous" access="isAnonymous()">
-			<acme:menu-suboption code="master.menu.anonymous.favourite-link" action="http://www.example.com/"/>
-
+		
 			<acme:menu-suboption code="master.menu.anonymous.favourite-link-juan" action="http://www.reddit.com/"/>
 			<acme:menu-suboption code="master.menu.anonymous.luigarpar1" action="https://ufcespanol.com" />
 			<acme:menu-suboption code="master.menu.anonymous.ronmonalb" action="https://poki.com/es/g/level-devil" />
