@@ -1,0 +1,9 @@
+key,key:airport,key:airline
+airport-has-airline-01.01,airport-01,airline-01
+airport-has-airline-02.01,airport-02,airline-01
+airport-has-airline-02.02,airport-02,airline-02
+airport-has-airline-02.03,airport-02,airline-03
+airport-has-airline-03.01,airport-03,airline-02
+airport-has-airline-04.01,airport-04,airline-03
+airport-has-airline-05.01,airport-05,airline-01
+airport-has-airline-05.02,airport-06,airline-01
