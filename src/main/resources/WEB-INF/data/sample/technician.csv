@@ -1,0 +1,4 @@
+key,licenseNum,contactPhoneNum,specialisation,annoHealthTest,yearsOfExp,certification,key:user-account
+technician-01,RAT023546,123456, Dragon,False,53,null,user-account-technician-01
+technician-02,MC777777,1177711,I love Gambling,True,7,escuela de picaresca,user-account-technician-01
+technician-03,PGA123456,7894562,Hammer or Axe what will it be,True,9,null,user-account-technician-01
