@@ -67,12 +67,20 @@ public class Leg extends AbstractEntity {
 	@Enumerated(EnumType.STRING)
 	private Status	status;
 
-	//Ref Airport
-	private String	airportArrival;
-	private String	airportDeparture;
-
-	//Ref Aircraft
-	private String	aircraft;
+	//	@Mandatory
+	//	@Valid
+	//	@ManyToOne(optional = false)
+	//	private Airport		departureAirport;
+	//
+	//	@Mandatory
+	//	@Valid
+	//	@ManyToOne(optional = false)
+	//	private Airport		arrivalAirport;
+	//
+	//	@Mandatory
+	//	@Valid
+	//	@ManyToOne(optional = false)
+	//	private Aircraft	aircraft;
 
 	@Valid
 	@Mandatory

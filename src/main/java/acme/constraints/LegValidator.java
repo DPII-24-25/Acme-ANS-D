@@ -22,8 +22,11 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 		if (leg == null)
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
 		else {
-
-			//Validaciones futuras
+			//			FlightRepository repository = SpringHelper.getBean(FlightRepository.class);
+			//			String airlineCode = repository.getIataCodeFromLegId(leg.getId());
+			//			String legCode = leg.getFlightNumber().substring(0, 3);
+			//			if (!airlineCode.equals(legCode))
+			//				super.state(context, false, "flightNumber", "acme.validation.leg.flightNumber.message");
 
 		}
 		result = !super.hasErrors(context);

@@ -9,3 +9,4 @@
 # they accept any liabilities with respect to them.
 
 acme.validation.flight.identifierNumber.message = El identificador numerico no concuerda con las iniciales
+acme.validation.leg.flightNumber.message =El identificador no corresponde con el codigo IATA
