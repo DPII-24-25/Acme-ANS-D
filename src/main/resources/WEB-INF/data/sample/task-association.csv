@@ -1,0 +1,12 @@
+key,key:record,key:task
+task-association-01,maintanence-record-01,task-01
+task-association-02,maintanence-record-01,task-02
+task-association-03,maintanence-record-01,task-03
+task-association-04,maintanence-record-01,task-04
+task-association-05,maintanence-record-02,task-05
+task-association-06,maintanence-record-02,task-06
+task-association-07,maintanence-record-02,task-07
+task-association-08,maintanence-record-02,task-08
+task-association-09,maintanence-record-03,task-09
+task-association-10,maintanence-record-03,task-10
+task-association-11,maintanence-record-03,task-11
