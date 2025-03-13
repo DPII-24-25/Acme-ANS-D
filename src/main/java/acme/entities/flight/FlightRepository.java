@@ -26,7 +26,7 @@ public interface FlightRepository extends AbstractRepository {
 	@Query("SELECT COUNT(l) - 1 FROM Leg l WHERE l.flight.id = :id")
 	Integer getLayovers(int id);
 
-	@Query("SELECT a.iataCode FROM Airline a WHERE a.id = (SELECT l.aircraft.airline.id FROM Leg l WHERE l.id = :id)")
+	@Query("SELECT a.iataCode FROM Airline a WHERE a.id = (SELECT l.flight.airline.id FROM Leg l WHERE l.id = :id)")
 	public String getIataCodeFromLegId(int id);
 
 }
