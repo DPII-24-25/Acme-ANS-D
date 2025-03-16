@@ -1,6 +1,9 @@
 
 package acme.constraints;
 
+import java.util.Collection;
+import java.util.List;
+
 import javax.validation.ConstraintValidatorContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +12,7 @@ import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
 import acme.entities.flight.Flight;
 import acme.entities.flight.FlightRepository;
+import acme.entities.flight.Leg;
 
 @Validator
 public class FlightValidator extends AbstractValidator<ValidFlight, Flight> {
@@ -25,16 +29,37 @@ public class FlightValidator extends AbstractValidator<ValidFlight, Flight> {
 	@Override
 	public boolean isValid(final Flight flight, final ConstraintValidatorContext context) {
 		assert context != null;
-		boolean result;
-		if (flight == null)
+
+		if (flight == null) {
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
-		else {
-
-			//Validaciones futuras
-
+			return false;
 		}
-		result = !super.hasErrors(context);
-		return result;
+
+		Collection<Leg> legs = this.repository.getLegsOrderedByDeparture(flight.getId());
+
+		// Validar que los tramos sean compatibles
+		boolean incompatible = this.hasIncompatibleLegs(legs);
+
+		super.state(context, !incompatible, "*", "acme.validation.flight.legs.departure");
+
+		return !super.hasErrors(context);
+	}
+
+	public boolean hasIncompatibleLegs(final Collection<Leg> legs) {
+		if (legs == null || legs.size() < 2)
+			return false;
+
+		List<Leg> legList = List.copyOf(legs);
+
+		for (int i = 1; i < legList.size(); i++) {
+			Leg previous = legList.get(i - 1);
+			Leg current = legList.get(i);
+
+			if (!current.getScheduleDeparture().after(previous.getScheduleArrival()))
+				return true;
+		}
+
+		return false;
 	}
 
 }

@@ -1,6 +1,7 @@
 
 package acme.entities.flight;
 
+import java.util.Collection;
 import java.util.Date;
 
 import org.springframework.data.jpa.repository.Query;
@@ -28,5 +29,11 @@ public interface FlightRepository extends AbstractRepository {
 
 	@Query("SELECT a.iataCode FROM Airline a WHERE a.id = (SELECT l.flight.airline.id FROM Leg l WHERE l.id = :id)")
 	public String getIataCodeFromLegId(int id);
+
+	@Query("SELECT l FROM Leg l WHERE l.flight.id = :id ORDER BY l.scheduleDeparture ASC")
+	Collection<Leg> getLegsOrderedByDeparture(int id);
+
+	@Query("SELECT l FROM Leg l WHERE l.flight.id = :id ORDER BY l.scheduleDeparture ASC")
+	Collection<Leg> getLegsOrderedByArrival(int id);
 
 }

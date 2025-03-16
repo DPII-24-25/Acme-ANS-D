@@ -10,3 +10,5 @@
 
 acme.validation.flight.identifierNumber.message = The identifier do not correspond with the initials
 acme.validation.leg.flightNumber.message = The identifier do not correspond with the IATA code
+acme.validation.flight.legs.departure = There is a departure incompatibility in the flight legs.
+acme.validation.flight.legs.arrival = There is an arrival incompatibility in the flight legs.

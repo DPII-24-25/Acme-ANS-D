@@ -9,4 +9,6 @@
 # they accept any liabilities with respect to them.
 
 acme.validation.flight.identifierNumber.message = El identificador numerico no concuerda con las iniciales
-acme.validation.leg.flightNumber.message =El identificador no corresponde con el codigo IATA
+acme.validation.leg.flightNumber.message = El identificador no corresponde con el codigo IATA
+acme.validation.flight.legs.departure = Existe incompatibilidad de despegues en los tramos del vuelo. 
+acme.validation.flight.legs.arrival = Existe incompatibilidad de llegadas en los tramos del vuelo.

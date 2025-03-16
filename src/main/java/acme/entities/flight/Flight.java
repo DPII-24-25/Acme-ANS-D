@@ -37,7 +37,6 @@ public class Flight extends AbstractEntity {
 	@Automapped
 	private String				tag;
 
-	@Mandatory
 	@Automapped
 	private boolean				selfTransfer;
 
@@ -116,5 +115,9 @@ public class Flight extends AbstractEntity {
 
 		return wraper;
 	}
+
+
+	@Automapped
+	private boolean DraftMode;
 
 }
