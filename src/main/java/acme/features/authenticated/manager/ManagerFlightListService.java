@@ -13,6 +13,7 @@
 package acme.features.authenticated.manager;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -57,9 +58,11 @@ public class ManagerFlightListService extends AbstractGuiService<Manager, Flight
 	@Override
 	public void unbind(final Flight flight) {
 		Dataset dataset;
+		Date duration;
 
+		duration = flight.getScheduleArrivals();
 		dataset = super.unbindObject(flight, "tag", "cost", "airline");
-		super.addPayload(dataset, flight, "description");
+		dataset.put("scheduleArrival", duration);
 
 		super.getResponse().addData(dataset);
 	}

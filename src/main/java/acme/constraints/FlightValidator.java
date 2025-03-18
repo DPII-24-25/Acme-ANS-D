@@ -39,14 +39,16 @@ public class FlightValidator extends AbstractValidator<ValidFlight, Flight> {
 
 		// Validar que los tramos sean compatibles
 		boolean incompatible = this.hasIncompatibleLegs(legs);
-
 		super.state(context, !incompatible, "*", "acme.validation.flight.legs.departure");
+
+		if (legs.size() < 1)
+			super.state(context, false, "*", "acme.validation.flight.legs.empty");
 
 		return !super.hasErrors(context);
 	}
 
 	public boolean hasIncompatibleLegs(final Collection<Leg> legs) {
-		if (legs == null || legs.size() < 2)
+		if (legs.size() == 1)
 			return false;
 
 		List<Leg> legList = List.copyOf(legs);
