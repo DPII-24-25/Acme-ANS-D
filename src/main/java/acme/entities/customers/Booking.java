@@ -18,6 +18,8 @@ import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidString;
+import acme.constraints.ValidDigitsCreditCard;
+import acme.entities.flight.Flight;
 import acme.realms.Customer;
 import lombok.Getter;
 import lombok.Setter;
@@ -48,13 +50,13 @@ public class Booking extends AbstractEntity {
 
 	@Automapped
 	@Mandatory
-	@ValidMoney
+	@ValidMoney(min = 0, max = 1000000)
 
 	private Money				price;
 
 	@Automapped
 	@Optional
-	@ValidString(max = 4)
+	@ValidDigitsCreditCard
 	private String				creditCard;
 
 	@Automapped
@@ -64,5 +66,10 @@ public class Booking extends AbstractEntity {
 
 	private Customer			customer;
 
-	//tiene una relacion con flights mandatory, manytoone
+	@Automapped
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+
+	private Flight				flight;
 }
