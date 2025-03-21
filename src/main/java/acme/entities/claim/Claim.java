@@ -16,7 +16,7 @@ import acme.client.components.validation.ValidEmail;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
 import acme.constraints.ValidClaim;
-import acme.realms.assistanceAgent.AssistanceAgent;
+import acme.realms.assistance_agent.AssistanceAgent;
 import lombok.Getter;
 import lombok.Setter;
 
