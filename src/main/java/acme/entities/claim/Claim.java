@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
@@ -30,7 +32,7 @@ public class Claim extends AbstractEntity {
 
 	@Mandatory
 	@ValidMoment(past = true)
-	@Automapped
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date				registrationMoment;
 
 	@Mandatory
@@ -43,8 +45,9 @@ public class Claim extends AbstractEntity {
 	@Automapped
 	private String				description;
 
-	@Enumerated(EnumType.STRING)
 	@Mandatory
+	@Enumerated(EnumType.STRING)
+	@Automapped
 	private IssuesType			type;
 
 	@Mandatory

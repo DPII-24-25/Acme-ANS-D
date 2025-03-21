@@ -6,8 +6,8 @@ import javax.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.validation.AbstractValidator;
-import acme.entities.trackinglog.TrackingLog;
-import acme.entities.trackinglog.TrackingLogRepository;
+import acme.entities.tracking_log.TrackingLog;
+import acme.entities.tracking_log.TrackingLogRepository;
 
 public class TrackingLogValidator extends AbstractValidator<ValidTrackingLog, TrackingLog> {
 
