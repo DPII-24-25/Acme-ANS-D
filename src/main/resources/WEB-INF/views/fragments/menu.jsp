@@ -29,6 +29,7 @@
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.administrator" access="hasRealm('Administrator')">
+			<acme:menu-suboption code="master.menu.administrator.list-airlines" action="/administrator/airline/list" />
 			<acme:menu-suboption code="master.menu.administrator.list-user-accounts" action="/administrator/user-account/list"/>
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.populate-db-initial" action="/administrator/system/populate-initial"/>
@@ -55,5 +56,6 @@
 			<acme:menu-suboption code="master.menu.user-account.consumer-profile" action="/authenticated/consumer/update" access="hasRealm('Consumer')"/>
 		</acme:menu-option>
 	</acme:menu-right>
+	
 </acme:menu-bar>
 

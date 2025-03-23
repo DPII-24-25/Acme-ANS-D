@@ -10,3 +10,6 @@
 
 acme.validation.flight.identifierNumber.message = The identifier do not correspond with the initials
 acme.validation.leg.flightNumber.message = The identifier do not correspond with the IATA code
+acme.validation.airline.nameLength.message = Name must not exceed 50 characters
+acme.validation.airline.momentIsInPast.message = Foundation moment can't be placed in the future
+acme.validation.airline.uniqueIataCode.message = IATA code must be unique
