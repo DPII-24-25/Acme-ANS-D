@@ -1,0 +1,5 @@
+customer.booking.list.title = Mis reservas
+customer.booking.list.label.locatorcode = Codigo de Reserva
+customer.booking.list.label.travelclass = Clase
+customer.booking.list.label.purchasemoment = Fecha de Compra
+customer.list.label.create = Crear

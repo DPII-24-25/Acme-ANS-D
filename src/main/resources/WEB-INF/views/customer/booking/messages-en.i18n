@@ -1,0 +1,5 @@
+customer.booking.list.title = My Bookings
+customer.booking.list.label.locatorcode = LocatorCode
+customer.booking.list.label.travelclass = Travel Class
+customer.booking.list.label.purchasemoment = Purchase Moment
+customer.list.label.create = Create
