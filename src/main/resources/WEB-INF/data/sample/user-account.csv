@@ -23,3 +23,6 @@ user-account-technician-01,true,"UserIdentity{name: 'Rand', surname: 'AlThor', e
 user-account-technician-02,true,"UserIdentity{name: 'Matrim', surname: 'Cauthom', email: 'mat@mail.com' }",technician2,technician2
 user-account-technician-03,true,"UserIdentity{name: 'Perrin Goldeneyes', surname: 'Aybarra', email: 'perrin@mail.com'}",technician3,technician3
 
+user-account-agent-01,true,"UserIdentity{name: 'Luis', surname: 'Martínez Díaz', email: 'luis.martinez@acme.com'}",agent1,agent1
+user-account-agent-02,true,"UserIdentity{name: 'Ana', surname: 'Ruiz Pérez', email: 'ana.ruiz@acme.com'}",agent2,agent2
+user-account-agent-03,true,"UserIdentity{name: 'Carlos', surname: 'López García', email: 'carlos.lopez@acme.com'}",agent3,agent3

@@ -1,5 +1,5 @@
 
-package acme.realms.assistance_agent;
+package acme.realms.assistanceagent;
 
 import java.util.Date;
 
@@ -34,18 +34,13 @@ public class AssistanceAgent extends AbstractRole {
 
 	@Column(unique = true)
 	@Mandatory
-	@ValidString(pattern = "^[A-Z]{2-3}\\d{6}$")
+	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$")
 	private String				employeeCode;
 
 	@Mandatory
 	@ValidString(max = 255)
 	@Automapped
 	private String				spokenLanguages;
-
-	@Mandatory
-	@Valid
-	@ManyToOne(optional = false)
-	private Airline				airline;
 
 	@Mandatory
 	@ValidMoment(past = true)
@@ -66,5 +61,12 @@ public class AssistanceAgent extends AbstractRole {
 	@ValidUrl
 	@Automapped
 	private String				linkPhoto;
+
+	// Relatrionships -----------------------------------------------------
+
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	private Airline				airline;
 
 }

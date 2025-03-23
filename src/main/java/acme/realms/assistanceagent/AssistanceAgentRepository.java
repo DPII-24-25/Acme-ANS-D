@@ -1,5 +1,5 @@
 
-package acme.realms.assistance_agent;
+package acme.realms.assistanceagent;
 
 import org.springframework.stereotype.Repository;
 

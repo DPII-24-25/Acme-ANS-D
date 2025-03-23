@@ -1,5 +1,5 @@
 
-package acme.entities.tracking_log;
+package acme.entities.trackinglog;
 
 import org.springframework.stereotype.Repository;
 

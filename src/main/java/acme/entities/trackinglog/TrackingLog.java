@@ -1,9 +1,11 @@
 
-package acme.entities.tracking_log;
+package acme.entities.trackinglog;
 
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -45,8 +47,9 @@ public class TrackingLog extends AbstractEntity {
 	private Double				resolutionPorcentage;
 
 	@Mandatory
+	@Enumerated(EnumType.STRING)
 	@Automapped
-	private Boolean				indicator;
+	private TrackingLogStatus	status;
 
 	@Optional
 	@ValidString(max = 255)
