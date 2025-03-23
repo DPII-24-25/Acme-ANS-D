@@ -61,7 +61,7 @@ public class ManagerFlightListService extends AbstractGuiService<Manager, Flight
 		Date duration;
 
 		duration = flight.getScheduleArrivals();
-		dataset = super.unbindObject(flight, "tag", "cost", "airline");
+		dataset = super.unbindObject(flight, "tag", "selfTransfer", "description", "airline.iataCode", "cost", "draft");
 		dataset.put("scheduleArrival", duration);
 
 		super.getResponse().addData(dataset);

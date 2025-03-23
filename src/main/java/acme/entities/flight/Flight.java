@@ -18,6 +18,7 @@ import acme.client.components.validation.ValidString;
 import acme.client.helpers.SpringHelper;
 import acme.constraints.ValidFlight;
 import acme.entities.airline.Airline;
+import acme.entities.airports.Airport;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -37,6 +38,7 @@ public class Flight extends AbstractEntity {
 	@Automapped
 	private String				tag;
 
+	@Mandatory
 	@Automapped
 	private boolean				selfTransfer;
 
@@ -64,7 +66,7 @@ public class Flight extends AbstractEntity {
 		Date wraper;
 
 		repository = SpringHelper.getBean(FlightRepository.class);
-		wraper = repository.getScheduleDeparture(this.getId());
+		wraper = repository.getScheduleDeparture(this.getId()).orNull();
 
 		return wraper;
 	}
@@ -75,7 +77,7 @@ public class Flight extends AbstractEntity {
 		Date wraper;
 
 		repository = SpringHelper.getBean(FlightRepository.class);
-		wraper = repository.getScheduleArrivals(this.getId());
+		wraper = repository.getScheduleArrivals(this.getId()).orNull();
 
 		return wraper;
 
@@ -84,24 +86,23 @@ public class Flight extends AbstractEntity {
 	@Transient
 	public String getDepartureCity() {
 		FlightRepository repository;
-		String wraper;
+		Airport wraper;
 
 		repository = SpringHelper.getBean(FlightRepository.class);
-		wraper = repository.getDepartureCity(this.getId());
+		wraper = repository.getDepartureCity(this.getId()).orNull();
 
-		return wraper;
-
+		return wraper != null ? wraper.getCity() : null;
 	}
 
 	@Transient
-	public String arrivalCity() {
+	public String getArrivalCity() {
 		FlightRepository repository;
-		String wraper;
+		Airport wraper;
 
 		repository = SpringHelper.getBean(FlightRepository.class);
-		wraper = repository.getArrivalCity(this.getId());
+		wraper = repository.getArrivalCity(this.getId()).orNull();
 
-		return wraper;
+		return wraper != null ? wraper.getCity() : null;
 
 	}
 
@@ -111,7 +112,7 @@ public class Flight extends AbstractEntity {
 		Integer wraper;
 
 		repository = SpringHelper.getBean(FlightRepository.class);
-		wraper = repository.getLayovers(this.getId());
+		wraper = repository.getLayovers(this.getId()).orNull();
 
 		return wraper;
 	}
@@ -119,5 +120,5 @@ public class Flight extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	private boolean draftMode;
+	private boolean isDraft;
 }

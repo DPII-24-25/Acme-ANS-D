@@ -16,7 +16,7 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:list>
-	<acme:list-column code="manager.flight.list.label.airline" path="airline" width="30%"/>
+	<acme:list-column code="manager.flight.list.label.airline" path="airline.iataCode" width="30%"/>
 	<acme:list-column code="manager.flight.list.label.tag" path="tag" width="50%"/>
 	<acme:list-column code="manager.flight.list.label.cost" path="cost" width="20%"/>
 	<acme:list-column code="manager.flight.list.label.scheduleArrival" path="scheduleArrival"/>>

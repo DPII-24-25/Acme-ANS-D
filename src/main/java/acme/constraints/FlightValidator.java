@@ -41,14 +41,14 @@ public class FlightValidator extends AbstractValidator<ValidFlight, Flight> {
 		boolean incompatible = this.hasIncompatibleLegs(legs);
 		super.state(context, !incompatible, "*", "acme.validation.flight.legs.departure");
 
-		if (flight.getLayovers() < 0)
-			super.state(context, false, "*", "acme.validation.flight.legs.empty");
+		//		if (flight.getLayovers() < 0)
+		//			super.state(context, false, "*", "acme.validation.flight.legs.empty");
 
 		return !super.hasErrors(context);
 	}
 
 	public boolean hasIncompatibleLegs(final Collection<Leg> legs) {
-		if (legs.size() == 1)
+		if (legs.size() <= 1)
 			return false;
 
 		List<Leg> legList = List.copyOf(legs);
@@ -58,6 +58,9 @@ public class FlightValidator extends AbstractValidator<ValidFlight, Flight> {
 			Leg current = legList.get(i);
 
 			if (!current.getScheduleDeparture().after(previous.getScheduleArrival()))
+				return true;
+
+			if (previous.getDepartureAirport().getId() != current.getArrivalAirport().getId())
 				return true;
 		}
 

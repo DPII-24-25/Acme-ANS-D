@@ -13,3 +13,16 @@ manager.flight.list.label.tag = Tag
 manager.flight.list.label.cost= Cost
 manager.flight.list.title = Flights
 manager.flight.list.label.scheduleArrival = Arrival Schedule Date 
+
+manager.flight.form.title = Flight Details
+flight.form.label.tag = Tag
+flight.form.label.selfTransfer = Self Transfer
+flight.form.label.description = Description
+flight.form.label.airline = Airline
+flight.form.label.cost = Cost
+flight.form.label.draftMode = Draft Mode
+flight.form.label.scheduleArrival = Arrival Schedule Date
+flight.form.label.scheduleDeparture = Departure Schedule Date
+flight.form.label.arrivalCity = Arrival City
+flight.form.label.departureCity = Departure City
+flight.form.label.layovers = Layovers
