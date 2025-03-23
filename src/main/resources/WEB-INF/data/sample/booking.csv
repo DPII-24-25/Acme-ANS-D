@@ -3,7 +3,7 @@ booking-01,XYZ789,2003/05/10 14:30,ECONOMY,EUR 55.00,2222,customer-01,flight-01,
 booking-02,LMN6543,2010/06/30 21:45,BUSINESS,EUR 750.00,null,customer-02,flight-02,true
 booking-03,OPQ98765,2008/09/12 10:15,ECONOMY,EUR 29.99,3333,customer-02,flight-03,true
 booking-04,RST543,2005/08/05 19:20,BUSINESS,EUR 210.00,5555,customer-03,flight-04,true
-booking-05,ABC123,2011/01/15 09:00,ECONOMY,EUR 45.00,1111,customer-01,flight-05,true
+booking-05,ABC123,2011/01/15 09:00,ECONOMY,EUR 45.00,,customer-01,flight-05,true
 booking-06,DEF456,2012/02/20 16:30,BUSINESS,EUR 800.00,null,customer-02,flight-06,true
 booking-07,GHI789,2013/03/25 11:15,ECONOMY,EUR 35.50,4444,customer-01,flight-07,true
 booking-08,JKL012,2014/04/10 08:45,BUSINESS,EUR 900.00,6666,customer-03,flight-08,true
