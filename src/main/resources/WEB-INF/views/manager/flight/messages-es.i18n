@@ -26,3 +26,5 @@ flight.form.label.scheduleDeparture = Fecha programada de salida
 flight.form.label.arrivalCity = Ciudad de llegada
 flight.form.label.departureCity = Ciudad de salida
 flight.form.label.layovers = Escalas
+flight.form.validation.legs = Todos los tramos de un vuelo deben estar publicados
+flight.form.validation.oneLeg = El vuelo tiene que tener al menos un tramo para ser publicado

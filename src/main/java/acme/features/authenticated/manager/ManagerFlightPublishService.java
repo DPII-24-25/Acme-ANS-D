@@ -69,8 +69,14 @@ public class ManagerFlightPublishService extends AbstractGuiService<Manager, Fli
 
 	@Override
 	public void validate(final Flight flight) {
-		;
+		boolean oneLeg;
+		boolean allLegsPublished;
 
+		oneLeg = this.repository.findNumberLegsByFlightId(flight.getId()) >= 1 ? true : false;
+		allLegsPublished = this.repository.findAllLegsByFLightId(flight.getId()).stream().allMatch(x -> x.isDraftMode() == false);
+
+		super.state(!allLegsPublished, "*", "flight.form.validation.legs");
+		super.state(!oneLeg, "*", "flight.form.validation.oneLeg");
 	}
 
 	@Override

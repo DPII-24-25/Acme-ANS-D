@@ -26,3 +26,5 @@ flight.form.label.scheduleDeparture = Departure Schedule Date
 flight.form.label.arrivalCity = Arrival City
 flight.form.label.departureCity = Departure City
 flight.form.label.layovers = Layovers
+flight.form.validation.legs = All legs from a flight should be published
+flight.form.validation.oneLeg = The flight need to have at least one leg to be published
