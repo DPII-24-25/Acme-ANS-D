@@ -24,7 +24,7 @@ public class AssistanceAgentClaimListService extends AbstractGuiService<Assistan
 
 		status = super.getRequest().getPrincipal().hasRealmOfType(AssistanceAgent.class);
 
-		super.getResponse().setAuthorised(true);
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -35,7 +35,6 @@ public class AssistanceAgentClaimListService extends AbstractGuiService<Assistan
 		assistanceAgentId = super.getRequest().getPrincipal().getActiveRealm().getId();
 
 		claims = this.repository.findClaimsByAssistanceAgentId(assistanceAgentId);
-		System.out.println(claims);
 
 		super.getBuffer().addData(claims);
 	}

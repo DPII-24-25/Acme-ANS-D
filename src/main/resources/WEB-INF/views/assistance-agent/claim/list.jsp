@@ -11,3 +11,5 @@
 	<acme:list-column code="assistance-agent.claim.list.label.indicator" path="indicator" width="20%"/>
 	<acme:list-payload path="payload"/>
 </acme:list>
+
+<acme:button code="assistance-agent.claim.list.button.create" action="/assistance-agent/claim/create"/>
