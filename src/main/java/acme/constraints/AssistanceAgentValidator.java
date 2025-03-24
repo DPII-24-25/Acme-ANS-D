@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
-import acme.realms.assistanceagent.AssistanceAgent;
-import acme.realms.assistanceagent.AssistanceAgentRepository;
+import acme.realms.AssistanceAgent;
+import acme.realms.AssistanceAgentRepository;
 
 @Validator
 public class AssistanceAgentValidator extends AbstractValidator<ValidAssistanceAgent, AssistanceAgent> {

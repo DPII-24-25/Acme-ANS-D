@@ -19,7 +19,7 @@ import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
 import acme.constraints.ValidClaim;
 import acme.entities.flight.Flight;
-import acme.realms.assistanceagent.AssistanceAgent;
+import acme.realms.AssistanceAgent;
 import lombok.Getter;
 import lombok.Setter;
 
