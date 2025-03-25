@@ -12,10 +12,11 @@ import acme.client.services.GuiService;
 import acme.entities.claim.Claim;
 import acme.entities.claim.IssuesType;
 import acme.entities.flight.Leg;
+import acme.entities.trackinglog.TrackingLog;
 import acme.realms.AssistanceAgent;
 
 @GuiService
-public class AssistanceAgentClaimUpdateService extends AbstractGuiService<AssistanceAgent, Claim> {
+public class AssistanceAgentClaimDeleteService extends AbstractGuiService<AssistanceAgent, Claim> {
 
 	@Autowired
 	private AssistanceAgentClaimRepository repository;
@@ -53,7 +54,7 @@ public class AssistanceAgentClaimUpdateService extends AbstractGuiService<Assist
 
 	@Override
 	public void perform(final Claim claim) {
-		this.repository.save(claim);
+		this.repository.delete(claim);
 	}
 
 	@Override
@@ -80,4 +81,5 @@ public class AssistanceAgentClaimUpdateService extends AbstractGuiService<Assist
 
 		super.getResponse().addData(dataset);
 	}
+
 }

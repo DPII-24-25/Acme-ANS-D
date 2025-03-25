@@ -13,7 +13,7 @@ assistance-agent.claim.form.label.passengerEmail = Correo del pasajero
 assistance-agent.claim.form.label.description = Descripción
 assistance-agent.claim.form.label.type = Tipo
 assistance-agent.claim.form.label.indicator = Indicador
-assistance-agent.claim.form.label.flight = Vuelo
+assistance-agent.claim.form.label.leg = Tramo
 
 assistance-agent.claim.form.label.button.update = Actualizar
 assistance-agent.claim.form.label.button.delete = Eliminar

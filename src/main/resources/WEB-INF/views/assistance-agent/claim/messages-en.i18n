@@ -13,7 +13,7 @@ assistance-agent.claim.form.label.passengerEmail = Passenger Email
 assistance-agent.claim.form.label.description = Description
 assistance-agent.claim.form.label.type = Type
 assistance-agent.claim.form.label.indicator = Indicator
-assistance-agent.claim.form.label.flight = Flight
+assistance-agent.claim.form.label.leg = Leg
 
 assistance-agent.claim.form.label.button.update = Update
 assistance-agent.claim.form.label.button.delete = Delete
