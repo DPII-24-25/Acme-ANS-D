@@ -56,6 +56,8 @@ public class Claim extends AbstractEntity {
 	@Automapped
 	private Boolean				indicator;
 
+	private boolean				draftMode;
+
 	// Relatrionships -----------------------------------------------------
 
 	@Mandatory

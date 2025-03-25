@@ -17,11 +17,17 @@
     <acme:input-select code="assistance-agent.claim.form.label.leg" path="leg" choices="${legs}"/>
 
     <jstl:choose>
-        <jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish')}">
+        <jstl:when test="${_command == 'show' && draftMode == true}">
             <acme:submit code="assistance-agent.claim.form.label.button.update"
                 action="/assistance-agent/claim/update" />
             <acme:submit code="assistance-agent.claim.form.label.button.delete"
                 action="/assistance-agent/claim/delete" />
+            <acme:submit code="assistance-agent.claim.form.label.button.publish"
+                action="/assistance-agent/claim/publish" />
+        </jstl:when>
+        <jstl:when test="${_command == 'show' && draftMode == false}">
+            <acme:button code="assistance-agent.claim.form.label.button.trackingLogs"
+                action="/assistance-agent/tracking-log/list?masterId=${id}" />                
         </jstl:when>
         <jstl:when test="${_command == 'create'}">
             <acme:submit code="assistance-agent.claim.form.label.button.create"

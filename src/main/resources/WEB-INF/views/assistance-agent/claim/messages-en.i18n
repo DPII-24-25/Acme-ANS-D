@@ -4,6 +4,7 @@ assistance-agent.claim.list.label.passengerEmail = Passenger Email
 assistance-agent.claim.list.label.description= Description
 assistance-agent.claim.list.label.type = Type
 assistance-agent.claim.list.label.indicator = Indicator
+assistance-agent.claim.list.label.draftMode = Draft Mode
 
 assistance-agent.claim.list.button.create = Create
 
@@ -19,3 +20,4 @@ assistance-agent.claim.form.label.button.update = Update
 assistance-agent.claim.form.label.button.delete = Delete
 assistance-agent.claim.form.label.button.publish = Publish
 assistance-agent.claim.form.label.button.create = Create
+assistance-agent.claim.form.label.button.trackingLogs = Tracking Logs
