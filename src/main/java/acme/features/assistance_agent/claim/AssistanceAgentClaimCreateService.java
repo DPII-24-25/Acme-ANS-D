@@ -1,11 +1,19 @@
 
 package acme.features.assistance_agent.claim;
 
+import java.util.Collection;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
+import acme.client.components.models.Dataset;
+import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claim.Claim;
+import acme.entities.claim.IssuesType;
+import acme.entities.flight.Flight;
 import acme.realms.AssistanceAgent;
 
 @GuiService
@@ -38,35 +46,48 @@ public class AssistanceAgentClaimCreateService extends AbstractGuiService<Assist
 	}
 
 	@Override
-	public void bind(final Claim object) {
-		/*
-		 * assert object != null;
-		 * 
-		 * int claimId;
-		 * Flight flight;
-		 * 
-		 * claimId = super.getRequest().getData("claim", int.class);
-		 * claim = this.repository.findOneProjectById(projectId);
-		 * super.bind(object, "code", "providerName", "customerName", "goals", "budget");
-		 * final Date cMoment = MomentHelper.getCurrentMoment();
-		 * object.setInstantiationMoment(cMoment);
-		 * object.setProject(project);
-		 */
-	}
+	public void bind(final Claim claim) {
 
-	@Override
-	public void perform(final Claim object) {
-		this.repository.save(object);
-	}
+		int flightId;
+		Flight flight;
 
-	@Override
-	public void validate(final Claim object) {
+		flightId = super.getRequest().getData("flight", int.class);
+		flight = this.repository.findFlightById(flightId);
+		super.bindObject(claim, "passengerEmail", "description", "type", "indicator");
+		final Date cMoment = MomentHelper.getCurrentMoment();
+		claim.setRegistrationMoment(cMoment);
+		claim.setFlight(flight);
 
 	}
 
 	@Override
-	public void unbind(final Claim object) {
-		String dataset = null;
+	public void perform(final Claim claim) {
+		this.repository.save(claim);
+	}
+
+	@Override
+	public void validate(final Claim claim) {
+		assert claim != null;
+	}
+
+	@Override
+	public void unbind(final Claim claim) {
+
+		SelectChoices choicesFlights;
+		SelectChoices choicesIssuesType;
+		Collection<Flight> flights = null;
+		Dataset dataset;
+
+		flights = this.repository.findFlightsByAirline(claim.getAssistanceAgent().getAirline().getId());
+		choicesFlights = SelectChoices.from(flights, "tag", claim.getFlight());
+		choicesIssuesType = SelectChoices.from(IssuesType.class, claim.getType());
+
+		dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "type", "indicator");
+
+		dataset.put("flight", choicesFlights.getSelected().getKey());
+		dataset.put("flights", choicesFlights);
+		dataset.put("types", choicesIssuesType);
+
 		super.getResponse().addData(dataset);
 	}
 }

@@ -4,11 +4,16 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form>
-	<acme:input-moment code="assistance-agent.claim.form.label.registrationMoment" path="registrationMoment" readonly="true"/>
-	<acme:input-textbox code="assistance-agent.claim.form.label.passengerEmail" path="passengerEmail" readonly="true"/>
-	<acme:input-textbox code="assistance-agent.claim.form.label.description" path="description" readonly="true"/>
+	<jstl:choose>
+		<jstl:when test="${acme:anyOf(_command, 'show')}">
+			<acme:input-moment code="assistance-agent.claim.form.label.registrationMoment" path="registrationMoment"/>
+		</jstl:when>		
+	</jstl:choose>
+	
+	<acme:input-textbox code="assistance-agent.claim.form.label.passengerEmail" path="passengerEmail"/>
+	<acme:input-textbox code="assistance-agent.claim.form.label.description" path="description"/>
 	<acme:input-select code="assistance-agent.claim.form.label.type" path="type" choices="${types}"/>
-	<acme:input-checkbox code="assistance-agent.claim.form.label.indicator" path="indicator" readonly="true"/>
+	<acme:input-checkbox code="assistance-agent.claim.form.label.indicator" path="indicator"/>
 	<acme:input-select code="assistance-agent.claim.form.label.flight" path="flight" choices="${flights}"/>
 	
 	<jstl:choose>

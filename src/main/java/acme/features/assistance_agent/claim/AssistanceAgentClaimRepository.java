@@ -23,6 +23,9 @@ public interface AssistanceAgentClaimRepository extends AbstractRepository {
 	@Query("select f from Flight f")
 	Collection<Flight> findFlights();
 
+	@Query("select f from Flight f where f.id =:id")
+	Flight findFlightById(int id);
+
 	@Query("select f from Flight f where f.airline.id =:id")
 	Collection<Flight> findFlightsByAirline(int id);
 
