@@ -13,7 +13,7 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claim.Claim;
 import acme.entities.claim.IssuesType;
-import acme.entities.flight.Flight;
+import acme.entities.flight.Leg;
 import acme.realms.AssistanceAgent;
 
 @GuiService
@@ -26,38 +26,30 @@ public class AssistanceAgentClaimCreateService extends AbstractGuiService<Assist
 	@Override
 	public void authorise() {
 		boolean status;
-
 		status = super.getRequest().getPrincipal().hasRealmOfType(AssistanceAgent.class);
-
 		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
 		Claim claim = new Claim();
-
 		AssistanceAgent assistanceAgent;
-
 		assistanceAgent = this.repository.findAssistanceAgentById(super.getRequest().getPrincipal().getActiveRealm().getId());
-
 		claim.setAssistanceAgent(assistanceAgent);
-
 		super.getBuffer().addData(claim);
 	}
 
 	@Override
 	public void bind(final Claim claim) {
+		int legId;
+		Leg leg;
 
-		int flightId;
-		Flight flight;
-
-		flightId = super.getRequest().getData("flight", int.class);
-		flight = this.repository.findFlightById(flightId);
+		legId = super.getRequest().getData("leg", int.class);
+		leg = this.repository.findLegById(legId);
 		super.bindObject(claim, "passengerEmail", "description", "type", "indicator");
 		final Date cMoment = MomentHelper.getCurrentMoment();
 		claim.setRegistrationMoment(cMoment);
-		claim.setFlight(flight);
-
+		claim.setLeg(leg);
 	}
 
 	@Override
@@ -73,19 +65,19 @@ public class AssistanceAgentClaimCreateService extends AbstractGuiService<Assist
 	@Override
 	public void unbind(final Claim claim) {
 
-		SelectChoices choicesFlights;
+		SelectChoices choicesLegs;
 		SelectChoices choicesIssuesType;
-		Collection<Flight> flights = null;
+		Collection<Leg> legs = null;
 		Dataset dataset;
 
-		flights = this.repository.findFlightsByAirline(claim.getAssistanceAgent().getAirline().getId());
-		choicesFlights = SelectChoices.from(flights, "tag", claim.getFlight());
+		legs = this.repository.findLegsByAirlineId(claim.getAssistanceAgent().getAirline().getId());
+		choicesLegs = SelectChoices.from(legs, "flightNumber", claim.getLeg());
 		choicesIssuesType = SelectChoices.from(IssuesType.class, claim.getType());
 
 		dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "type", "indicator");
 
-		dataset.put("flight", choicesFlights.getSelected().getKey());
-		dataset.put("flights", choicesFlights);
+		dataset.put("leg", choicesLegs.getSelected().getKey());
+		dataset.put("legs", choicesLegs);
 		dataset.put("types", choicesIssuesType);
 
 		super.getResponse().addData(dataset);

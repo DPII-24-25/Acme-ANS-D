@@ -14,7 +14,7 @@
 	<acme:input-textbox code="assistance-agent.claim.form.label.description" path="description"/>
 	<acme:input-select code="assistance-agent.claim.form.label.type" path="type" choices="${types}"/>
 	<acme:input-checkbox code="assistance-agent.claim.form.label.indicator" path="indicator"/>
-	<acme:input-select code="assistance-agent.claim.form.label.flight" path="flight" choices="${flights}"/>
+	<acme:input-select code="assistance-agent.claim.form.label.flight" path="leg" choices="${legs}"/>
 	
 	<jstl:choose>
 		<jstl:when
