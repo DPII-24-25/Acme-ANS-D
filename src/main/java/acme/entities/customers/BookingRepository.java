@@ -12,9 +12,10 @@ public interface BookingRepository extends AbstractRepository {
 	@Query("SELECT b.creditCard FROM Booking b WHERE b.id = :bookingId")
 	String findCreditCardByBookingId(int bookingId);
 
-	Booking findBookingById(int masterId);
-
 	@Query("select b from Booking b where b.customer.id = :id")
 	Collection<Booking> findBookingsById(int id);
+
+	@Query("select b from Booking b where b.id =:id")
+	Booking findBookingById(int id);
 
 }
