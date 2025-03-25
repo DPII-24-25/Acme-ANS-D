@@ -56,6 +56,8 @@ public class TrackingLog extends AbstractEntity {
 	@Automapped
 	private String				resolution;
 
+	private boolean				draftMode;
+
 	// Relatrionships -----------------------------------------------------
 
 	@Mandatory

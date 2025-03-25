@@ -8,7 +8,8 @@
 	<acme:list-column code="assistance-agent.tracking-log.list.label.stepUndergoing" path="stepUndergoing" width="20%"/>
 	<acme:list-column code="assistance-agent.tracking-log.list.label.resolutionPorcentage" path="resolutionPorcentage" width="20%"/>
 	<acme:list-column code="assistance-agent.tracking-log.list.label.status" path="status" width="20%"/>
-	<acme:list-column code="assistance-agent.tracking-log.list.label.resolution" path="resolution" width="20%"/>
+	<acme:list-column code="assistance-agent.tracking-log.list.label.resolution" path="resolution" width="10%"/>
+	<acme:list-column code="assistance-agent.tracking-log.list.label.draftMode" path="draftMode" width="10%"/>
 	<acme:list-payload path="payload"/>
 </acme:list>
 
