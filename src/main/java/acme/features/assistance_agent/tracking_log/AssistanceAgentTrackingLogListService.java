@@ -65,4 +65,18 @@ public class AssistanceAgentTrackingLogListService extends AbstractGuiService<As
 		super.getResponse().addData(dataset);
 	}
 
+	@Override
+	public void unbind(final Collection<TrackingLog> trackingLog) {
+
+		int masterId;
+		Claim claim;
+		final boolean showCreate;
+
+		masterId = super.getRequest().getData("masterId", int.class);
+		claim = this.repository.findClaimById(masterId);
+		showCreate = super.getRequest().getPrincipal().hasRealm(claim.getAssistanceAgent());
+
+		super.getResponse().addGlobal("masterId", masterId);
+	}
+
 }
