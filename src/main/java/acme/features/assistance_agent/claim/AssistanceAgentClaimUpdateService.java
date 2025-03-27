@@ -29,7 +29,7 @@ public class AssistanceAgentClaimUpdateService extends AbstractGuiService<Assist
 		int activeAsistanceAgentId = super.getRequest().getPrincipal().getActiveRealm().getId();
 		Claim claim = this.repository.findClaimById(masterId);
 		boolean owner = activeAsistanceAgentId == claim.getAssistanceAgent().getId();
-		super.getResponse().setAuthorised(auth && owner);
+		super.getResponse().setAuthorised(auth && owner && claim.isDraftMode());
 	}
 
 	@Override

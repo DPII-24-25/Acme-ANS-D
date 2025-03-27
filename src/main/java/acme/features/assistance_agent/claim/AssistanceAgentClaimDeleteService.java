@@ -29,7 +29,7 @@ public class AssistanceAgentClaimDeleteService extends AbstractGuiService<Assist
 		int activeAsistanceAgentId = super.getRequest().getPrincipal().getActiveRealm().getId();
 		Claim claim = this.repository.findClaimById(masterId);
 		boolean owner = activeAsistanceAgentId == claim.getAssistanceAgent().getId();
-		super.getResponse().setAuthorised(auth && owner);
+		super.getResponse().setAuthorised(auth && owner && claim.isDraftMode());
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class AssistanceAgentClaimDeleteService extends AbstractGuiService<Assist
 
 		legId = super.getRequest().getData("leg", int.class);
 		leg = this.repository.findLegById(legId);
-		super.bindObject(claim, "passengerEmail", "description", "type", "indicator");
+		super.bindObject(claim, "passengerEmail", "description", "type");
 		claim.setLeg(leg);
 	}
 
