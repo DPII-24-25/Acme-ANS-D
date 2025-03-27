@@ -9,7 +9,7 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claim.Claim;
 import acme.entities.trackinglog.TrackingLog;
-import acme.entities.trackinglog.TrackingLogStatus;
+import acme.entities.trackinglog.TypeStatus;
 import acme.realms.AssistanceAgent;
 
 @GuiService
@@ -56,7 +56,7 @@ public class AssistanceAgentTrackingLogShowService extends AbstractGuiService<As
 
 		Dataset dataset;
 
-		choicesStatus = SelectChoices.from(TrackingLogStatus.class, trackingLog.getStatus());
+		choicesStatus = SelectChoices.from(TypeStatus.class, trackingLog.getStatus());
 
 		dataset = super.unbindObject(trackingLog, "lastUpdateMoment", "stepUndergoing", "resolutionPorcentage", "status", "resolution", "draftMode");
 		dataset.put("masterId", trackingLog.getClaim().getId());

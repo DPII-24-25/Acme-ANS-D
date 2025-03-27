@@ -13,7 +13,11 @@
     <acme:input-textbox code="assistance-agent.claim.form.label.passengerEmail" path="passengerEmail"/>
     <acme:input-textbox code="assistance-agent.claim.form.label.description" path="description"/>
     <acme:input-select code="assistance-agent.claim.form.label.type" path="type" choices="${types}"/>
-    <acme:input-checkbox code="assistance-agent.claim.form.label.indicator" path="indicator"/>
+	<jstl:choose>
+        <jstl:when test="${_command != 'create'}">
+	<acme:input-textbox code="assistance-agent.claim.form.label.indicator" path="indicator" readonly="true"/>
+    	</jstl:when>        
+    </jstl:choose>
     <acme:input-select code="assistance-agent.claim.form.label.leg" path="leg" choices="${legs}"/>
 
     <jstl:choose>

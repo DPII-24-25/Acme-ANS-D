@@ -49,7 +49,7 @@ public class TrackingLog extends AbstractEntity {
 	@Mandatory
 	@Enumerated(EnumType.STRING)
 	@Automapped
-	private TrackingLogStatus	status;
+	private TypeStatus			status;
 
 	@Optional
 	@ValidString(max = 255)
