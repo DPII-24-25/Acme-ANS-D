@@ -29,6 +29,9 @@ public interface AdministratorAirlineRepository extends AbstractRepository {
 	@Query("select a from Airline a")
 	Collection<Airline> findAllAirlines();
 
+	@Query("select a from Airline a where a.iataCode = :code")
+	Airline findAirlineByIataCode(String code);
+
 	//	@Query("select a from Airline a where a.moment > :deadline")
 	//Collection<Airline> findAnnouncementsByMoment(Date deadline);
 
