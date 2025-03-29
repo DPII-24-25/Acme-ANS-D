@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -17,6 +18,7 @@ import acme.client.components.validation.ValidEmail;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
 import acme.client.components.validation.ValidUrl;
+import acme.realms.Manager;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -45,7 +47,7 @@ public class Airline extends AbstractEntity {
 	@Mandatory
 	@Valid
 	@Automapped
-	private AirlineType				type;
+	private AirlineType			type;
 
 	@Mandatory
 	@ValidMoment(past = true)
@@ -61,5 +63,10 @@ public class Airline extends AbstractEntity {
 	@ValidString(pattern = "^\\+?\\d{6,15}$")
 	@Automapped
 	private String				phoneNumber;
+
+	@Mandatory
+	@ManyToOne(optional = false)
+	@Valid
+	private Manager				manager;
 
 }

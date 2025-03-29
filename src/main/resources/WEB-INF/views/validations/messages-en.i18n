@@ -10,3 +10,9 @@
 
 acme.validation.flight.identifierNumber.message = The identifier do not correspond with the initials
 acme.validation.leg.flightNumber.message = The identifier do not correspond with the IATA code
+acme.validation.flight.legs.departure = There is a departure incompatibility in the flight legs.
+acme.validation.flight.legs.arrival = There is an arrival incompatibility in the flight legs.
+acme.validation.leg.arrivalDeparture.message = The scheduleDeparture should be before the scheduleArrival.
+acme.validation.leg.airports.message = The airport of arrival and departure should be different
+acme.validation.leg.aircraft.message = The aircraft assigned to this leg is rigth now in maintenance
+acme.validation.flight.legs.empty = It is not possible to have a flight without no legs assigned

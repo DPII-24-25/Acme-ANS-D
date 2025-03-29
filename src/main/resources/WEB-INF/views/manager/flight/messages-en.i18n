@@ -1,0 +1,30 @@
+# messages-en.i18n
+#
+# Copyright (C) 2012-2025 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+manager.flight.list.label.airline = Airline
+manager.flight.list.label.tag = Tag
+manager.flight.list.label.cost= Cost
+manager.flight.list.title = Flights
+manager.flight.list.label.scheduleArrival = Arrival Schedule Date 
+
+manager.flight.form.title = Flight Details
+flight.form.label.tag = Tag
+flight.form.label.selfTransfer = Self Transfer
+flight.form.label.description = Description
+flight.form.label.airline = Airline
+flight.form.label.cost = Cost
+flight.form.label.draftMode = Draft Mode
+flight.form.label.scheduleArrival = Arrival Schedule Date
+flight.form.label.scheduleDeparture = Departure Schedule Date
+flight.form.label.arrivalCity = Arrival City
+flight.form.label.departureCity = Departure City
+flight.form.label.layovers = Layovers
+flight.form.validation.legs = All legs from a flight should be published
+flight.form.validation.oneLeg = The flight need to have at least one leg to be published
