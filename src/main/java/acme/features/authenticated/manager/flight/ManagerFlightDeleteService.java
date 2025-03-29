@@ -10,11 +10,9 @@ import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
-import acme.entities.activityLog.ActivityLog;
 import acme.entities.airline.Airline;
 import acme.entities.flight.Flight;
 import acme.entities.flight.Leg;
-import acme.entities.flightAssignment.FlightAssignment;
 import acme.features.authenticated.manager.leg.ManagerLegRepository;
 import acme.realms.Manager;
 
@@ -70,15 +68,15 @@ public class ManagerFlightDeleteService extends AbstractGuiService<Manager, Flig
 
 	@Override
 	public void perform(final Flight flight) {
-		Collection<Leg> allMyLegs;
-		allMyLegs = this.legRepository.findAllLegsByFlightId(flight.getId());
-		allMyLegs.stream().forEach(x -> {
-			Collection<ActivityLog> allMyActivityLogs = this.legRepository.findAllActivityLogsByLegId(x.getId());
-			Collection<FlightAssignment> allMyFlightAssigment = this.legRepository.findAllFlightAssignmentByLegId(x.getId());
-			this.legRepository.deleteAll(allMyActivityLogs);
-			this.legRepository.deleteAll(allMyFlightAssigment);
-		});
-
+				Collection<Leg> allMyLegs;
+				allMyLegs = this.legRepository.findAllLegsByFlightId(flight.getId());
+		//		allMyLegs.stream().forEach(x -> {
+		//			Collection<ActivityLog> allMyActivityLogs = this.legRepository.findAllActivityLogsByLegId(x.getId());
+		//			Collection<FlightAssignment> allMyFlightAssigment = this.legRepository.findAllFlightAssignmentByLegId(x.getId());
+		//			this.legRepository.deleteAll(allMyActivityLogs);
+		//			this.legRepository.deleteAll(allMyFlightAssigment);
+		//		});
+		//
 		this.legRepository.deleteAll(allMyLegs);
 		this.flightRepository.delete(flight);
 	}

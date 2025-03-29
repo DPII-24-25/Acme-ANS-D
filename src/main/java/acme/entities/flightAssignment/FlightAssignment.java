@@ -51,8 +51,8 @@ public class FlightAssignment extends AbstractEntity {
 
 	@Valid
 	private FlightCrewMember		flightCrewMember;
+	
 	@ManyToOne(optional = false)
-
 	@Valid
 	private Leg						flightLeg;
 
