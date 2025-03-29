@@ -13,8 +13,10 @@
 		choices="${airlines}" />
 	<acme:input-money code="flight.form.label.cost" path="cost" />
 
+
+
 	<acme:input-checkbox code="flight.form.label.draftMode" path="draft" readonly="true" />
-	<jstl:if test="${acme:anyOf(_command, 'show|update|publish')}">
+	<jstl:if test="${acme:anyOf(_command, 'show|update|publish|delete')}">
 		<acme:input-moment code="flight.form.label.scheduleArrival"
 			path="scheduleArrival" readonly="true" />
 		<acme:input-moment code="flight.form.label.scheduleDeparture"

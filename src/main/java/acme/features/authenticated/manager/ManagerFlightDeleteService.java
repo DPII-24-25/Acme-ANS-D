@@ -1,14 +1,3 @@
-/*
- * WorkerJobShowService.java
- *
- * Copyright (C) 2012-2025 Rafael Corchuelo.
- *
- * In keeping with the traditional purpose of furthering education and research, it is
- * the policy of the copyright owner to permit non-commercial use and redistribution of
- * this software. It has been tested carefully, but it is not guaranteed for any particular
- * purposes. The copyright owner does not offer any warranties or representations, nor do
- * they accept any liabilities with respect to them.
- */
 
 package acme.features.authenticated.manager;
 
@@ -26,7 +15,7 @@ import acme.entities.flight.Flight;
 import acme.realms.Manager;
 
 @GuiService
-public class ManagerFlightShowService extends AbstractGuiService<Manager, Flight> {
+public class ManagerFlightDeleteService extends AbstractGuiService<Manager, Flight> {
 
 	@Autowired
 	private ManagerFlightRepository repository;
@@ -34,11 +23,19 @@ public class ManagerFlightShowService extends AbstractGuiService<Manager, Flight
 
 	@Override
 	public void authorise() {
-		int masterId = this.getRequest().getData("id", int.class);
-		int managerId = this.getRequest().getPrincipal().getActiveRealm().getId();
+		int masterId;
+		boolean status;
+		boolean isOwner;
+		boolean editable;
+		Flight flight;
 
-		boolean isOwner = this.repository.findFlightId(masterId).getAirline().getManager().getId() == managerId;
-		super.getResponse().setAuthorised(isOwner);
+		masterId = super.getRequest().getData("id", int.class);
+		flight = this.repository.findFlightId(masterId);
+		status = super.getRequest().getPrincipal().hasRealmOfType(Manager.class);
+		isOwner = super.getRequest().getPrincipal().getActiveRealm().getId() == flight.getAirline().getManager().getId();
+		editable = flight.isDraft();
+
+		super.getResponse().setAuthorised(status && isOwner && editable);
 	}
 
 	@Override
@@ -49,6 +46,30 @@ public class ManagerFlightShowService extends AbstractGuiService<Manager, Flight
 		flight = this.repository.findFlightId(masterId);
 
 		super.getBuffer().addData(flight);
+	}
+
+	@Override
+	public void bind(final Flight flight) {
+		int airlineId;
+		Airline airline;
+
+		airlineId = super.getRequest().getData("airline", int.class);
+		airline = this.repository.findAirlineById(airlineId);
+
+		super.bindObject(flight, "tag", "selfTransfer", "description", "cost");
+		flight.setAirline(airline);
+
+	}
+
+	@Override
+	public void perform(final Flight flight) {
+		this.repository.delete(flight);
+	}
+
+	@Override
+	public void validate(final Flight flight) {
+		;
+
 	}
 
 	@Override
@@ -86,5 +107,4 @@ public class ManagerFlightShowService extends AbstractGuiService<Manager, Flight
 
 		super.getResponse().addData(dataset);
 	}
-
 }
