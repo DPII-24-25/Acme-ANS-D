@@ -10,7 +10,7 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.authenticated.manager;
+package acme.features.authenticated.manager.flight;
 
 import java.util.Collection;
 import java.util.Date;

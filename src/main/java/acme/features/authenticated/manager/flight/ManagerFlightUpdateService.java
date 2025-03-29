@@ -1,5 +1,5 @@
 
-package acme.features.authenticated.manager;
+package acme.features.authenticated.manager.flight;
 
 import java.util.Collection;
 import java.util.Date;
@@ -15,7 +15,7 @@ import acme.entities.flight.Flight;
 import acme.realms.Manager;
 
 @GuiService
-public class ManagerFlightDeleteService extends AbstractGuiService<Manager, Flight> {
+public class ManagerFlightUpdateService extends AbstractGuiService<Manager, Flight> {
 
 	@Autowired
 	private ManagerFlightRepository repository;
@@ -63,7 +63,7 @@ public class ManagerFlightDeleteService extends AbstractGuiService<Manager, Flig
 
 	@Override
 	public void perform(final Flight flight) {
-		this.repository.delete(flight);
+		this.repository.save(flight);
 	}
 
 	@Override

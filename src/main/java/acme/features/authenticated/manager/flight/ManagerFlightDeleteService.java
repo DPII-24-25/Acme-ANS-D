@@ -1,5 +1,5 @@
 
-package acme.features.authenticated.manager;
+package acme.features.authenticated.manager.flight;
 
 import java.util.Collection;
 import java.util.Date;
@@ -10,15 +10,22 @@ import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.entities.activityLog.ActivityLog;
 import acme.entities.airline.Airline;
 import acme.entities.flight.Flight;
+import acme.entities.flight.Leg;
+import acme.entities.flightAssignment.FlightAssignment;
+import acme.features.authenticated.manager.leg.ManagerLegRepository;
 import acme.realms.Manager;
 
 @GuiService
-public class ManagerFlightUpdateService extends AbstractGuiService<Manager, Flight> {
+public class ManagerFlightDeleteService extends AbstractGuiService<Manager, Flight> {
 
 	@Autowired
-	private ManagerFlightRepository repository;
+	private ManagerFlightRepository	flightRepository;
+
+	@Autowired
+	private ManagerLegRepository	legRepository;
 
 
 	@Override
@@ -30,7 +37,7 @@ public class ManagerFlightUpdateService extends AbstractGuiService<Manager, Flig
 		Flight flight;
 
 		masterId = super.getRequest().getData("id", int.class);
-		flight = this.repository.findFlightId(masterId);
+		flight = this.flightRepository.findFlightId(masterId);
 		status = super.getRequest().getPrincipal().hasRealmOfType(Manager.class);
 		isOwner = super.getRequest().getPrincipal().getActiveRealm().getId() == flight.getAirline().getManager().getId();
 		editable = flight.isDraft();
@@ -43,7 +50,7 @@ public class ManagerFlightUpdateService extends AbstractGuiService<Manager, Flig
 		Flight flight;
 		int masterId = this.getRequest().getData("id", int.class);
 
-		flight = this.repository.findFlightId(masterId);
+		flight = this.flightRepository.findFlightId(masterId);
 
 		super.getBuffer().addData(flight);
 	}
@@ -54,7 +61,7 @@ public class ManagerFlightUpdateService extends AbstractGuiService<Manager, Flig
 		Airline airline;
 
 		airlineId = super.getRequest().getData("airline", int.class);
-		airline = this.repository.findAirlineById(airlineId);
+		airline = this.flightRepository.findAirlineById(airlineId);
 
 		super.bindObject(flight, "tag", "selfTransfer", "description", "cost");
 		flight.setAirline(airline);
@@ -63,7 +70,17 @@ public class ManagerFlightUpdateService extends AbstractGuiService<Manager, Flig
 
 	@Override
 	public void perform(final Flight flight) {
-		this.repository.save(flight);
+		Collection<Leg> allMyLegs;
+		allMyLegs = this.legRepository.findAllLegsByFlightId(flight.getId());
+		allMyLegs.stream().forEach(x -> {
+			Collection<ActivityLog> allMyActivityLogs = this.legRepository.findAllActivityLogsByLegId(x.getId());
+			Collection<FlightAssignment> allMyFlightAssigment = this.legRepository.findAllFlightAssignmentByLegId(x.getId());
+			this.legRepository.deleteAll(allMyActivityLogs);
+			this.legRepository.deleteAll(allMyFlightAssigment);
+		});
+
+		this.legRepository.deleteAll(allMyLegs);
+		this.flightRepository.delete(flight);
 	}
 
 	@Override
@@ -85,7 +102,7 @@ public class ManagerFlightUpdateService extends AbstractGuiService<Manager, Flig
 		String departureCity;
 
 		manager = (Manager) super.getRequest().getPrincipal().getActiveRealm();
-		airlines = this.repository.findAirlinesByManager(manager.getId());
+		airlines = this.flightRepository.findAirlinesByManager(manager.getId());
 
 		choices = SelectChoices.from(airlines, "iataCode", flight.getAirline());
 		scheduleArrival = flight.getScheduleArrivals();

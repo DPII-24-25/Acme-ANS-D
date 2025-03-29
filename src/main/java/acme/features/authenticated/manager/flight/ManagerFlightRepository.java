@@ -1,5 +1,5 @@
 
-package acme.features.authenticated.manager;
+package acme.features.authenticated.manager.flight;
 
 import java.util.Collection;
 
