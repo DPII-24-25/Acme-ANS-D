@@ -16,41 +16,45 @@ import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
 import acme.constraints.ValidActivityLog;
-import acme.entities.flight.Leg;
-import acme.realms.FlightCrewMember;
+import acme.entities.flightAssignment.FlightAssignment;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
 @ValidActivityLog
 public class ActivityLog extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
 
-	@ValidMoment(past = true)
 	@Mandatory
+	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				registrationMoment;
 
-	@ValidString(max = 50)
 	@Mandatory
+	@ValidString(max = 50)
 	@Automapped
 	private String				typeOfIncident;
 
-	@ValidString(max = 255)
 	@Mandatory
+	@ValidString(max = 255)
 	@Automapped
 	private String				description;
 
-	@ValidNumber(min = 0, max = 10)
 	@Mandatory
+	@ValidNumber(min = 0, max = 10)
 	@Automapped
 	private double				severityLevel;
 
-	@ManyToOne(optional = false)
-	@Valid
-	private FlightCrewMember	crewMember;
+	private boolean				draftMode;
 
-	@ManyToOne(optional = false)
+	// Relatrionships -----------------------------------------------------
+
+	@Mandatory
 	@Valid
-	private Leg					leg;
+	@ManyToOne(optional = false)
+	private FlightAssignment	flightAssignment;
 
 }
