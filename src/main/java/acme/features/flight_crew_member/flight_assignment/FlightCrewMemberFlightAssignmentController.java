@@ -25,6 +25,9 @@ public class FlightCrewMemberFlightAssignmentController extends AbstractGuiContr
 	@Autowired
 	private FlightCrewMemberFlightAssignmentUpdateService	updateService;
 
+	@Autowired
+	private FlightCrewMemberFlightAssignmentDeleteService	deleteService;
+
 
 	@PostConstruct
 	protected void initialise() {
@@ -32,6 +35,7 @@ public class FlightCrewMemberFlightAssignmentController extends AbstractGuiContr
 		super.addBasicCommand("show", this.showService);
 		super.addBasicCommand("create", this.createService);
 		super.addBasicCommand("update", this.updateService);
+		super.addBasicCommand("delete", this.deleteService);
 	}
 
 }
