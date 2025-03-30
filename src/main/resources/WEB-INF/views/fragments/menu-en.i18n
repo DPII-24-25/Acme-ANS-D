@@ -42,6 +42,11 @@ master.menu.consumer.favourite-link = Favourite link
 master.menu.assistanceagent = Assistance Agent
 master.menu.assistanceagent.claim.list = My claim
 
+# master.menu.flightcrewmember #################################################
+
+master.menu.flightcrewmember = Flight Crew Member
+master.menu.flightcrewmember.flightassignment.list = My Flight Assignment
+
 # master.menu.user-account ####################################################
 
 master.menu.user-account = Account

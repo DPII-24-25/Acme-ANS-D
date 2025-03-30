@@ -48,6 +48,10 @@
 		<acme:menu-option code="master.menu.assistanceagent" access="hasRealm('AssistanceAgent')">
 			<acme:menu-suboption code="master.menu.assistanceagent.claim.list" action="/assistance-agent/claim/list"/>
 		</acme:menu-option>
+		
+		<acme:menu-option code="master.menu.flightcrewmember" access="hasRealm('FlightCrewMember')">
+			<acme:menu-suboption code="master.menu.flightcrewmember.flightassignment.list" action="/flight-crew-member/flight-assignment/list"/>
+		</acme:menu-option>
 	</acme:menu-left>
 
 	<acme:menu-right>		
