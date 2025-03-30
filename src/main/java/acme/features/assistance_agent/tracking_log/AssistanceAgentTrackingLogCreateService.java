@@ -37,8 +37,6 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 		status = super.getRequest().getPrincipal().hasRealmOfType(AssistanceAgent.class);
 
 		super.getResponse().setAuthorised(status && claim != null && assistanceAgentOwnsClaim && !claim.isDraftMode());
-
-		super.getResponse().setAuthorised(true);
 	}
 
 	@Override
@@ -58,7 +56,6 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 
 	@Override
 	public void bind(final TrackingLog trackingLog) {
-		System.out.println("BIND");
 		super.bindObject(trackingLog, "stepUndergoing", "resolutionPorcentage", "status", "resolution");
 		final Date cMoment = MomentHelper.getCurrentMoment();
 		trackingLog.setLastUpdateMoment(cMoment);
@@ -76,8 +73,6 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 
 	@Override
 	public void unbind(final TrackingLog trackingLog) {
-		System.out.println("UNBIND");
-
 		SelectChoices choicesStatus;
 
 		Dataset dataset;
