@@ -4,38 +4,32 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form>
+    <acme:input-select code="flight-crew-member.flight-assignment.form.label.duty" path="duty" choices="${duties}"/>
     <jstl:choose>
         <jstl:when test="${acme:anyOf(_command, 'show')}">
-            <acme:input-moment code="assistance-agent.claim.form.label.registrationMoment" path="registrationMoment" readonly="true"/>
+            <acme:input-moment code="flight-crew-member.flight-assignment.form.label.lastUpdate" path="lastUpdate" readonly="true"/>
         </jstl:when>        
     </jstl:choose>
-
-    <acme:input-textbox code="assistance-agent.claim.form.label.passengerEmail" path="passengerEmail"/>
-    <acme:input-textbox code="assistance-agent.claim.form.label.description" path="description"/>
-    <acme:input-select code="assistance-agent.claim.form.label.type" path="type" choices="${types}"/>
-	<jstl:choose>
-        <jstl:when test="${_command != 'create'}">
-	<acme:input-textbox code="assistance-agent.claim.form.label.indicator" path="indicator" readonly="true"/>
-    	</jstl:when>        
-    </jstl:choose>
-    <acme:input-select code="assistance-agent.claim.form.label.leg" path="leg" choices="${legs}"/>
+     <acme:input-select code="flight-crew-member.flight-assignment.form.label.status" path="status" choices="${statutes}"/>
+    <acme:input-textbox code="flight-crew-member.flight-assignment.form.label.remarks" path="remarks"/>
+    <acme:input-select code="flight-crew-member.flight-assignment.form.label.leg" path="leg" choices="${legs}"/>
 
     <jstl:choose>
         <jstl:when test="${_command == 'show' && draftMode == true}">
-            <acme:submit code="assistance-agent.claim.form.label.button.update"
-                action="/assistance-agent/claim/update" />
-            <acme:submit code="assistance-agent.claim.form.label.button.delete"
-                action="/assistance-agent/claim/delete" />
-            <acme:submit code="assistance-agent.claim.form.label.button.publish"
-                action="/assistance-agent/claim/publish" />
+            <acme:submit code="flight-crew-member.flight-assignment.form.label.button.update"
+                action="/flight-crew-member/flight-assignment/update" />
+            <acme:submit code="flight-crew-member.flight-assignment.form.label.button.delete"
+                action="/flight-crew-member/flight-assignment/delete" />
+            <acme:submit code="flight-crew-member.flight-assignment.form.label.button.publish"
+                action="/flight-crew-member/flight-assignment/publish" />
         </jstl:when>
         <jstl:when test="${_command == 'show' && draftMode == false}">
-            <acme:button code="assistance-agent.claim.form.label.button.trackingLogs"
-                action="/assistance-agent/tracking-log/list?masterId=${id}" />                
+            <acme:button code="flight-crew-member.flight-assignment.form.label.button.activityLogs"
+                action="/flight-crew-member/activity-log/list?masterId=${id}" />                
         </jstl:when>
         <jstl:when test="${_command == 'create'}">
-            <acme:submit code="assistance-agent.claim.form.label.button.create"
-                action="/assistance-agent/claim/create" />
+            <acme:submit code="flight-crew-member.flight-assignment.form.label.button.create"
+                action="/flight-crew-member/flight-assignment/create" />
         </jstl:when>
     </jstl:choose>
 </acme:form>
