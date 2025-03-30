@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import acme.client.repositories.AbstractRepository;
 import acme.entities.flight.Leg;
 import acme.entities.flightAssignment.FlightAssignment;
+import acme.realms.FlightCrewMember;
 
 @Repository
 public interface FlightCrewMemberFlightAssignmentRepository extends AbstractRepository {
@@ -24,4 +25,8 @@ public interface FlightCrewMemberFlightAssignmentRepository extends AbstractRepo
 
 	@Query("select l from Leg l where l.flight.airline.id =:id")
 	Collection<Leg> findLegsByAirlineId(int id);
+
+	@Query("select a from FlightCrewMember a where a.id =:id")
+	FlightCrewMember findFlightCrewMemberById(int id);
+
 }
