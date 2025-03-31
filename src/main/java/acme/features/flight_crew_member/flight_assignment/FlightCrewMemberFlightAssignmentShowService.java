@@ -15,6 +15,7 @@ import acme.entities.flight.Leg;
 import acme.entities.flightAssignment.FlightAssignment;
 import acme.entities.flightAssignment.FlightAssignmentStatus;
 import acme.entities.flightAssignment.FlightCrewDuty;
+import acme.realms.FlightCrewAvailability;
 import acme.realms.FlightCrewMember;
 
 @GuiService
@@ -51,6 +52,10 @@ public class FlightCrewMemberFlightAssignmentShowService extends AbstractGuiServ
 		Collection<Leg> legs;
 		Dataset dataset;
 
+		int flightCrewMemberId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		FlightCrewMember member = this.repository.findFlightCrewMemberById(flightCrewMemberId);
+		boolean available = member.getAvailabilityStatus() == FlightCrewAvailability.AVAILABLE;
+
 		final Date cMoment = MomentHelper.getCurrentMoment();
 		legs = this.repository.findLegsAfterCurrentDateByAirlineId(object.getFlightCrewMember().getAirline().getId(), cMoment);
 
@@ -63,6 +68,7 @@ public class FlightCrewMemberFlightAssignmentShowService extends AbstractGuiServ
 		dataset.put("legs", choicesLegs);
 		dataset.put("duties", choicesDuty);
 		dataset.put("statutes", choicesStatus);
+		dataset.put("estado", available);
 
 		super.getResponse().addData(dataset);
 	}

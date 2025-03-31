@@ -11,5 +11,9 @@
 	<acme:list-column code="flight-crew-member.flight-assignment.list.label.draftMode" path="draftMode" width="20%"/>
 	<acme:list-payload path="payload"/>
 </acme:list>
-
-<acme:button code="flight-crew-member.flight-assignment.list.button.create" action="/flight-crew-member/flight-assignment/create"/>
+<jstl:choose>
+	<jstl:when test="${estado}">
+		<acme:button code="flight-crew-member.flight-assignment.list.button.create"
+			action="/flight-crew-member/flight-assignment/create"/>
+	</jstl:when>
+</jstl:choose>

@@ -15,13 +15,17 @@
     <acme:input-select code="flight-crew-member.flight-assignment.form.label.leg" path="leg" choices="${legs}"/>
 
     <jstl:choose>
-        <jstl:when test="${_command == 'show' && draftMode == true}">
+        <jstl:when test="${_command == 'show' && draftMode == true && estado}">
             <acme:submit code="flight-crew-member.flight-assignment.form.label.button.update"
                 action="/flight-crew-member/flight-assignment/update" />
             <acme:submit code="flight-crew-member.flight-assignment.form.label.button.delete"
                 action="/flight-crew-member/flight-assignment/delete" />
             <acme:submit code="flight-crew-member.flight-assignment.form.label.button.publish"
                 action="/flight-crew-member/flight-assignment/publish" />
+        </jstl:when>
+        <jstl:when test="${_command == 'show' && draftMode == true}">
+            <acme:submit code="flight-crew-member.flight-assignment.form.label.button.delete"
+                action="/flight-crew-member/flight-assignment/delete" />
         </jstl:when>
         <jstl:when test="${_command == 'show' && draftMode == false}">
             <acme:button code="flight-crew-member.flight-assignment.form.label.button.activityLogs"
