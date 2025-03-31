@@ -14,3 +14,7 @@ customer.booking.form.button.update = Update
 customer.booking.form.button.publish = Publish
 customer.booking.form.button.create= Create
 customer.booking.form.title= Booking
+customer.booking.list.label.flightDeparture = Departure Airport
+customer.booking.list.label.scheduleDeparture = Departure Date
+customer.booking.form.label.flight = Flight
+customer.booking.form.error.flight-required = You have to assign a Flight

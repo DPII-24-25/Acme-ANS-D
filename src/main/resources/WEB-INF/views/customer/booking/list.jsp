@@ -7,6 +7,11 @@
 	<acme:list-column code="customer.booking.list.label.locatorcode" path="locatorCode" width="30%"/>
 	<acme:list-column code="customer.booking.list.label.travelclass" path="travelClass" width="10%"/>
 	<acme:list-column code="customer.booking.list.label.purchasemoment" path="purchaseMoment" width="10%"/>
+	<acme:list-column code="customer.booking.list.label.flightDeparture" path="departureCity" width="10%"/>
+	<acme:list-column code="customer.booking.list.label.scheduleDeparture" path="scheduledDeparture" width="10%"/>
+	
+	
+	
 	<acme:list-payload path="payload"/>
 </acme:list>
 

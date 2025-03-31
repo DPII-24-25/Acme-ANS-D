@@ -1,6 +1,7 @@
 
 package acme.features.authenticated.customer.booking;
 
+import java.util.Collection;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import acme.client.services.GuiService;
 import acme.entities.customers.Booking;
 import acme.entities.customers.BookingRepository;
 import acme.entities.customers.TravelClass;
+import acme.entities.flight.Flight;
 import acme.realms.Customer;
 
 @GuiService
@@ -60,6 +62,12 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 				super.state(false, "travelClass", "customer.booking.form.error.invalid-travel-class");
 			}
 
+		int flightId = super.getRequest().getData("flight", int.class);
+		if (flightId > 0) {
+			Flight flight = this.repository.findFlightById(flightId);
+			booking.setFlight(flight);
+		} else
+			super.state(false, "flight", "customer.booking.form.error.flight-required");
 	}
 
 	@Override
@@ -72,8 +80,6 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 		if (!super.getBuffer().getErrors().hasErrors("identifier")) {
 
 			String initials = name.substring(0, 1).toUpperCase() + surname.substring(0, 1).toUpperCase();
-			System.out.println(identifier);
-			System.out.println(initials);
 			boolean startsWithInitials = identifier.startsWith(initials);
 			super.state(startsWithInitials, "identifier", "customer.booking.form.error.mismatched-initials");
 		}
@@ -88,11 +94,15 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 	}
 	@Override
 	public void unbind(final Booking booking) {
-		SelectChoices choices;
+		SelectChoices choices, choices2;
 		Dataset dataset;
+		Collection<Flight> publishedFlights = this.repository.findAllPublishedFlights();
+
+		choices2 = SelectChoices.from(publishedFlights, "description", booking.getFlight());
 
 		choices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
-		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "price", "creditCard", "draftMode");
+		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "price", "creditCard", "draftMode", "flight");
+		dataset.put("flight", choices2);
 		dataset.put("travelClass", choices);
 		super.getResponse().addData(dataset);
 	}

@@ -14,3 +14,7 @@ customer.booking.form.button.update = Actualizar
 customer.booking.form.button.publish = Publicar
 customer.booking.form.button.create = Crear
 customer.booking.form.title = Reserva
+customer.booking.list.label.flightDeparture = Aeropuerto de Salida
+customer.booking.list.label.scheduleDeparture = Fecha de Salida
+customer.booking.form.label.flight = Vuelo
+customer.booking.form.error.flight-required = Tienes que hacer una reserva con un vuelo asignado
