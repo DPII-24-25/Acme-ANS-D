@@ -2,6 +2,7 @@
 package acme.features.flight_crew_member.flight_assignment;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -25,6 +26,9 @@ public interface FlightCrewMemberFlightAssignmentRepository extends AbstractRepo
 
 	@Query("select l from Leg l where l.flight.airline.id =:id")
 	Collection<Leg> findLegsByAirlineId(int id);
+
+	@Query("select l from Leg l where l.flight.airline.id =:id and l.scheduleDeparture >:scheduleDeparture")
+	Collection<Leg> findLegsAfterCurrentDateByAirlineId(int id, Date scheduleDeparture);
 
 	@Query("select a from FlightCrewMember a where a.id =:id")
 	FlightCrewMember findFlightCrewMemberById(int id);

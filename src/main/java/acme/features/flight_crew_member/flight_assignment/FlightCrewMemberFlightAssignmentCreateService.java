@@ -15,6 +15,7 @@ import acme.entities.flight.Leg;
 import acme.entities.flightAssignment.FlightAssignment;
 import acme.entities.flightAssignment.FlightAssignmentStatus;
 import acme.entities.flightAssignment.FlightCrewDuty;
+import acme.realms.FlightCrewAvailability;
 import acme.realms.FlightCrewMember;
 
 @GuiService
@@ -61,6 +62,19 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 
 	@Override
 	public void validate(final FlightAssignment object) {
+		if (!super.getBuffer().getErrors().hasErrors("")) {
+			FlightCrewMember flightCrewMember = object.getFlightCrewMember();
+
+			// Suponiendo que FlightCrewMember tiene un método getStatus()
+			if (!FlightCrewAvailability.AVAILABLE.equals(flightCrewMember.getAvailabilityStatus()))
+				super.getBuffer().getErrors().add("status", "El miembro de la tripulación debe estar en estado AVAILABLE para asignarse a un vuelo.");
+		}
+		// Validar que no exista otro flightAssignment con el mismo flighCrewMember
+		// Validar que no exista otro flightAssignment con otro pilot, copilot, etc.
+		// Validar que el member no tenga asignado otro leg con las mimas horas.
+		// Verificar que los leg sean solo los que se permiten.
+		// Verificar que el member este en AVAILABLE.
+		// 
 		assert object != null;
 	}
 
@@ -72,8 +86,8 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 		SelectChoices choicesStatus;
 		Collection<Leg> legs;
 		Dataset dataset;
-
-		legs = this.repository.findLegsByAirlineId(object.getFlightCrewMember().getAirline().getId());
+		final Date cMoment = MomentHelper.getCurrentMoment();
+		legs = this.repository.findLegsAfterCurrentDateByAirlineId(object.getFlightCrewMember().getAirline().getId(), cMoment);
 		choicesLegs = SelectChoices.from(legs, "flightNumber", object.getLeg());
 		choicesDuty = SelectChoices.from(FlightCrewDuty.class, object.getDuty());
 		choicesStatus = SelectChoices.from(FlightAssignmentStatus.class, object.getStatus());
