@@ -43,7 +43,8 @@ master.menu.assistanceagent.claim.list = Mis reclamos
 # master.menu.flightcrewmember #################################################
 
 master.menu.flightcrewmember = Tripulante de vuelo
-master.menu.flightcrewmember.flightassignment.list = Mis asignaciones de vuelo
+master.menu.flightcrewmember.flightassignment.listcompleted = Mis asignaciones de vuelo completadas
+master.menu.flightcrewmember.flightassignment.listplanned = Mis asignaciones de vuelo planificadas
 
 # master.menu.user-account ####################################################
 

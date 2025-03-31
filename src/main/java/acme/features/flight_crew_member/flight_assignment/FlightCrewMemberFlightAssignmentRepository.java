@@ -18,6 +18,12 @@ public interface FlightCrewMemberFlightAssignmentRepository extends AbstractRepo
 	@Query("select fa from FlightAssignment fa where fa.flightCrewMember.id =:id")
 	Collection<FlightAssignment> findFlightAssignmentByFlightCrewMemberId(int id);
 
+	@Query("select fa from FlightAssignment fa where fa.flightCrewMember.id =:id and fa.leg.scheduleArrival<:currentDate")
+	Collection<FlightAssignment> findFlightAssignmentOfPastByFlightCrewMemberId(int id, Date currentDate);
+
+	@Query("select fa from FlightAssignment fa where fa.flightCrewMember.id =:id and fa.leg.scheduleDeparture>:currentDate")
+	Collection<FlightAssignment> findFlightAssignmentOfFutureByFlightCrewMemberId(int id, Date currentDate);
+
 	@Query("select fa from FlightAssignment fa where fa.id =:id")
 	FlightAssignment findFlightAssignmentById(int id);
 
