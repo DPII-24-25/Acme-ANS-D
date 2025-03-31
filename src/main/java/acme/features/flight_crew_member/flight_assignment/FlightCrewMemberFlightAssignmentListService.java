@@ -12,6 +12,7 @@ import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.flightAssignment.FlightAssignment;
+import acme.realms.FlightCrewAvailability;
 import acme.realms.FlightCrewMember;
 
 @GuiService
@@ -43,15 +44,26 @@ public class FlightCrewMemberFlightAssignmentListService extends AbstractGuiServ
 	@Override
 	public void unbind(final FlightAssignment object) {
 		Dataset dataset;
+		int flightCrewMemberId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		FlightCrewMember member = this.repository.findFlightCrewMemberById(flightCrewMemberId);
+		boolean available = member.getAvailabilityStatus() == FlightCrewAvailability.AVAILABLE;
+
+		// Verifica que el estado es correcto en consola
+		System.out.println("Estado del Flight Crew Member: " + available);
 
 		dataset = super.unbindObject(object, "duty", "lastUpdate", "status", "remarks");
+		dataset.put("estado", available);
 
 		if (object.isDraftMode()) {
 			final Locale local = super.getRequest().getLocale();
 			dataset.put("draftMode", local.equals(Locale.ENGLISH) ? "Yes" : "Sí");
 		} else
 			dataset.put("draftMode", "No");
+
 		super.getResponse().addData(dataset);
+
+		// 🔹 Enviar la variable globalmente para que el JSP pueda usarla fuera de la lista
+		super.getResponse().addGlobal("estado", available);
 	}
 
 }
