@@ -76,6 +76,8 @@ public class AssistanceAgentTrackingLogUpdateService extends AbstractGuiService<
 	@Override
 	public void validate(final TrackingLog object) {
 		assert object != null;
+		if (object.getStatus() != TypeStatus.PENDING && object.getResolution().isEmpty())
+			super.state(false, "resolution", "Es obligatorio si es status es ACCEPTED o REJECTED");
 	}
 
 	@Override

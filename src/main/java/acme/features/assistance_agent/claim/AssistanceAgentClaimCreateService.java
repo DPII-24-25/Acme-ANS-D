@@ -60,7 +60,6 @@ public class AssistanceAgentClaimCreateService extends AbstractGuiService<Assist
 
 	@Override
 	public void validate(final Claim object) {
-		// Validar que el leg seleccionado pertenezca a los legs posibles, osea que pertenezcan a la misma airline que el assistanceagent y que tengan fecha de arrival inferior a la fecha actual
 		assert object != null;
 		final Date cMoment = MomentHelper.getCurrentMoment();
 		Collection<Leg> legs = this.repository.findLegsByAirlineId(object.getAssistanceAgent().getAirline().getId(), cMoment);
