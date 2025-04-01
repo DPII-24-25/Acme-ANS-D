@@ -70,8 +70,8 @@ public class AssistanceAgentClaimCreateService extends AbstractGuiService<Assist
 		SelectChoices choicesIssuesType;
 		Collection<Leg> legs = null;
 		Dataset dataset;
-
-		legs = this.repository.findLegsByAirlineId(claim.getAssistanceAgent().getAirline().getId());
+		final Date cMoment = MomentHelper.getCurrentMoment();
+		legs = this.repository.findLegsByAirlineId(claim.getAssistanceAgent().getAirline().getId(), cMoment);
 		choicesLegs = SelectChoices.from(legs, "flightNumber", claim.getLeg());
 		choicesIssuesType = SelectChoices.from(IssuesType.class, claim.getType());
 
