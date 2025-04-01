@@ -1,4 +1,4 @@
-key,moment,status,inspectDueDate,estCost,moreInfo,draftMode,key:technician,key:aircraft
+key,moment,status,inspectDueDate,estCost,moreInfo,draftMode,key:technician-,key:aircraft
 # base entity
 maintenance-record-01,2011/04/16 0:00,COMPLETED,2011/04/20 0:00,EUR 500000.00,"The Wheel of Time turns, and Ages come and pass, leaving memories that become legend. Legend fades to myth, and even myth is lon",FALSE,technician-01,aircraft-01
 # moment - standard variations
@@ -32,7 +32,7 @@ maintenance-record-24,2011/04/16 0:00,COMPLETED,2011/04/20 0:00,EUR 500000.00,<s
 maintenance-record-25,2011/04/16 0:00,COMPLETED,2011/04/20 0:00,EUR 500000.00,' or 'A' = 'A,TRUE,technician-01,aircraft-01
 # draftMode - standard variations
 maintenance-record-26,2011/04/16 0:00,COMPLETED,2011/04/20 0:00,EUR 500000.00,"The Wheel of Time turns, and Ages come and pass, leaving memories that become legend. Legend fades to myth, and even myth is lon",FALSE,technician-01,aircraft-01
-# technician - standard variations
+# technician- - standard variations
 maintenance-record-27,2011/04/16 0:00,COMPLETED,2011/04/20 0:00,EUR 500000.00,"The Wheel of Time turns, and Ages come and pass, leaving memories that become legend. Legend fades to myth, and even myth is lon",TRUE,technician-02,aircraft-01
 # aircraft - standard variations
 maintenance-record-28,2011/04/16 0:00,COMPLETED,2011/04/20 0:00,EUR 500000.00,"The Wheel of Time turns, and Ages come and pass, leaving memories that become legend. Legend fades to myth, and even myth is lon",FALSE,technician-01,aircraft-00
