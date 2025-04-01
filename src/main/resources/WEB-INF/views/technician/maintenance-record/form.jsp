@@ -16,27 +16,26 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form> 
-	<acme:input-textbox code="employer.job.form.label.ticker" path="ticker"/>
-	<acme:input-select code="employer.job.form.label.contractor" path="contractor" choices="${contractors}"/>	
-	<acme:input-textbox code="employer.job.form.label.title" path="title"/>
-	<acme:input-moment code="employer.job.form.label.deadline" path="deadline"/>
-	<acme:input-money code="employer.job.form.label.salary" path="salary"/>
-	<acme:input-double code="employer.job.form.label.score" path="score" placeholder="employer.job.form.placeholder.score"/>
-	<acme:input-url code="employer.job.form.label.moreInfo" path="moreInfo"/>
-	<acme:input-textarea code="employer.job.form.label.description" path="description"/>
+	<acme:input-moment code="technician.maintenance-record.form.label.moment" path="moment"/>
+	<acme:input-select code="technician.maintenance-record.form.label.status" path="status" choices="${statuses}"/>
+	<acme:input-moment code="technician.maintenance-record.form.label.estCost" path="estCost"/>
+	<acme:input-textarea code="technician.maintenance-record.form.label.moreInfo" path="moreInfo"/>
+	<acme:input-select code="technician.maintenance-record.form.label.aircraft" path="aircraft" choices="${aircrafts}"/>
+	
+		
 
 	<jstl:choose>	 
 		<jstl:when test="${_command == 'show' && draftMode == false}">
-			<acme:button code="employer.job.form.button.duties" action="/employer/duty/list?masterId=${id}"/>			
+			<acme:button code="technician.maintenance-record.form.button.duties" action="/technician/duty/list?masterId=${id}"/>			
 		</jstl:when>
 		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true}">
-			<acme:button code="employer.job.form.button.duties" action="/employer/duty/list?masterId=${id}"/>
-			<acme:submit code="employer.job.form.button.update" action="/employer/job/update"/>
-			<acme:submit code="employer.job.form.button.delete" action="/employer/job/delete"/>
-			<acme:submit code="employer.job.form.button.publish" action="/employer/job/publish"/>
+			<acme:input-checkbox code="technician.maintenance-record.form.label.draftMode" path="draftMode"/>
+			<acme:submit code="technician.maintenance-record.form.button.update" action="/technician/maintenance-record/update"/>
+			<acme:submit code="technician.maintenance-record.form.button.delete" action="/technician/maintenance-record/delete"/>
+			<acme:submit code="technician.maintenance-record.form.button.publish" action="/technician/maintenance-record/publish"/>
 		</jstl:when>
 		<jstl:when test="${_command == 'create'}">
-			<acme:submit code="employer.job.form.button.create" action="/employer/job/create"/>
+			<acme:submit code="technician.maintenance-record.form.button.create" action="/technician/maintenance-record/create"/>
 		</jstl:when>		
 	</jstl:choose>
 </acme:form>

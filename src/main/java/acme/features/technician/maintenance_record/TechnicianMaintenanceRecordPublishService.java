@@ -14,12 +14,15 @@ package acme.features.technician.maintenance_record;
 
 import java.util.Collection;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.maintenance_records.MaintenanceRecord;
+import acme.entities.maintenance_records.MaintenanceStatus;
 import acme.entities.tasks.Task;
 import acme.realms.Technician;
 
@@ -28,7 +31,7 @@ public class TechnicianMaintenanceRecordPublishService extends AbstractGuiServic
 
 	// Internal state ---------------------------------------------------------
 
-	//@Autowired
+	@Autowired
 	private TechnicianMaintenanceRecordRepository repository;
 
 	// AbstractGuiService interface -------------------------------------------
@@ -101,7 +104,9 @@ public class TechnicianMaintenanceRecordPublishService extends AbstractGuiServic
 		Collection<Aircraft> aircrafts;
 		SelectChoices choices;
 		Dataset dataset;
+		SelectChoices choicesStatus;
 
+		choicesStatus = SelectChoices.from(MaintenanceStatus.class, record1.getStatus());
 		//technicianId = super.getRequest().getPrincipal().getActiveRealm().getId();
 		aircrafts = this.repository.findAllAircrafts();
 		choices = SelectChoices.from(aircrafts, "aircraft", record1.getAircraft());
@@ -109,6 +114,7 @@ public class TechnicianMaintenanceRecordPublishService extends AbstractGuiServic
 		dataset = super.unbindObject(record1, "moment", "status", "inspectDueDate", "estCost", "moreInfo", "draftMode");
 		dataset.put("aircraft", choices.getSelected().getKey());
 		dataset.put("aircrafts", choices);
+		dataset.put("statuses", choicesStatus);
 
 		super.getResponse().addData(dataset);
 	}

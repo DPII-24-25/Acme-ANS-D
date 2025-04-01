@@ -20,6 +20,7 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.maintenance_records.MaintenanceRecord;
+import acme.entities.maintenance_records.MaintenanceStatus;
 import acme.realms.Technician;
 
 @GuiService
@@ -66,15 +67,18 @@ public class TechnicianMaintenanceRecordShowService extends AbstractGuiService<T
 		//int technicianId;
 		Collection<Aircraft> aircrafts;
 		SelectChoices choices;
+		SelectChoices choicesStatus;
 		Dataset dataset;
 
 		aircrafts = this.repository.findAllAircrafts();
 
 		choices = SelectChoices.from(aircrafts, "name", record1.getAircraft());
+		choicesStatus = SelectChoices.from(MaintenanceStatus.class, record1.getStatus());
 
 		dataset = super.unbindObject(record1, "moment", "status", "inspectDueDate", "estCost", "moreInfo", "draftMode");
 		dataset.put("aircraft", choices.getSelected().getKey());
 		dataset.put("aircrafts", choices);
+		dataset.put("statuses", choicesStatus);
 
 		super.getResponse().addData(dataset);
 	}

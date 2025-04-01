@@ -14,6 +14,8 @@ package acme.features.technician.maintenance_record;
 
 import java.util.Collection;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
@@ -25,7 +27,7 @@ public class TechnicianMaintenanceRecordListService extends AbstractGuiService<T
 
 	// Internal state ---------------------------------------------------------
 
-	//@Autowired
+	@Autowired
 	private TechnicianMaintenanceRecordRepository repository;
 
 	// AbstractGuiService interface -------------------------------------------
