@@ -68,8 +68,8 @@ public class ManagerFlightDeleteService extends AbstractGuiService<Manager, Flig
 
 	@Override
 	public void perform(final Flight flight) {
-				Collection<Leg> allMyLegs;
-				allMyLegs = this.legRepository.findAllLegsByFlightId(flight.getId());
+		Collection<Leg> allMyLegs;
+		allMyLegs = this.legRepository.findAllLegsByFlightId(flight.getId());
 		//		allMyLegs.stream().forEach(x -> {
 		//			Collection<ActivityLog> allMyActivityLogs = this.legRepository.findAllActivityLogsByLegId(x.getId());
 		//			Collection<FlightAssignment> allMyFlightAssigment = this.legRepository.findAllFlightAssignmentByLegId(x.getId());

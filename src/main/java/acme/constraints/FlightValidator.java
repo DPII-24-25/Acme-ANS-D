@@ -57,7 +57,7 @@ public class FlightValidator extends AbstractValidator<ValidFlight, Flight> {
 			Leg previous = legList.get(i - 1);
 			Leg current = legList.get(i);
 
-			if (!current.getScheduleDeparture().after(previous.getScheduleArrival()))
+			if (!current.getScheduleArrival().after(previous.getScheduleDeparture()))
 				return true;
 
 			if (previous.getDepartureAirport().getId() != current.getArrivalAirport().getId())
