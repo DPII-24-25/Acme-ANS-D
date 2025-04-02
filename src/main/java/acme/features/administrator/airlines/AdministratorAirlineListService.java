@@ -56,8 +56,6 @@ public class AdministratorAirlineListService extends AbstractGuiService<Administ
 
 		choices = SelectChoices.from(AirlineType.class, airline.getType());
 		dataset = super.unbindObject(airline, "name", "type", "iataCode");
-		//super.addPayload(dataset, airline, "text");
-		//<acme:list-payload path="payload"/>	--- si quieres usar el payload tienes q meter esto en el list.jsp dentro del acme:list
 		dataset.put("types", choices);
 
 		super.getResponse().addData(dataset);

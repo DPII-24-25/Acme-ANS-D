@@ -17,7 +17,14 @@
 
 <acme:form>
 	<acme:input-textbox code="administrator.airline.form.label.name" path="name"/>	
-	<acme:input-textbox code="administrator.airline.form.label.iataCode" path="iataCode"/>
+	<jstl:choose>
+		<jstl:when test="${_command == 'create'}">
+			<acme:input-textbox code="administrator.airline.form.label.iataCode" path="iataCode"/>	
+		</jstl:when>
+		<jstl:when test="${acme:anyOf(_command, 'show|update')}">	
+			<acme:input-textbox code="administrator.airline.form.label.iataCode" path="iataCode" readonly="true"/>
+		</jstl:when>				
+	</jstl:choose>	
 	<acme:input-url code="administrator.airline.form.label.website" path="website"/>	
 	<acme:input-select code="administrator.airline.form.label.type" path="type" choices="${types}"/>
 	<acme:input-moment code="administrator.airline.form.label.foundationMoment" path="foundationMoment"/>

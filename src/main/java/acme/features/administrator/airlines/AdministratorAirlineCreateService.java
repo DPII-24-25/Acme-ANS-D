@@ -67,22 +67,12 @@ public class AdministratorAirlineCreateService extends AbstractGuiService<Admini
 	@Override
 	public void validate(final Airline airline) {
 		boolean confirmation;
-		//boolean properLength;
-		//boolean isInPast;
 		boolean uniqueIataCode;
 
-		//String name = super.getRequest().getData("name", String.class);
-		//Date moment = super.getRequest().getData("foundationMoment", Date.class);
 		String iataCode = super.getRequest().getData("iataCode", String.class);
 
 		uniqueIataCode = !this.repository.findAllAirlines().stream().map(Airline::getIataCode).anyMatch(i -> i.equals(iataCode));
 		super.state(uniqueIataCode, "iataCode", "acme.validation.airline.uniqueIataCode.message");
-
-		//properLength = name.length() <= 50;
-		//super.state(properLength, "name", "acme.validation.airline.nameLength.message");
-
-		//isInPast = moment != null && (moment.before(MomentHelper.getCurrentMoment()) || moment.equals(MomentHelper.getCurrentMoment()));
-		//super.state(isInPast, "foundationMoment", "acme.validation.airline.momentIsInPast.message");
 
 		confirmation = super.getRequest().getData("confirmation", boolean.class);
 		super.state(confirmation, "confirmation", "acme.validation.confirmation.message");

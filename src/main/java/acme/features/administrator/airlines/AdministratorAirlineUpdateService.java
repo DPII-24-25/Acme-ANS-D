@@ -51,33 +51,13 @@ public class AdministratorAirlineUpdateService extends AbstractGuiService<Admini
 
 	@Override
 	public void bind(final Airline airline) {
-		super.bindObject(airline, "name", "iataCode", "website", "type", "foundationMoment", "emailAdress", "phoneNumber");
+		super.bindObject(airline, "name", "website", "type", "foundationMoment", "emailAdress", "phoneNumber");
 	}
 
 	@Override
 	public void validate(final Airline airline) {
 
 		boolean confirmation;
-		//boolean properLength;
-		//boolean isInPast;
-		boolean codeCond1;
-		boolean codeCond2;
-		boolean uniqueIataCode;
-
-		//String name = super.getRequest().getData("name", String.class);
-		//Date moment = super.getRequest().getData("foundationMoment", Date.class);
-		String iataCode = super.getRequest().getData("iataCode", String.class);
-		codeCond1 = !this.repository.findAllAirlines().stream().map(Airline::getIataCode).anyMatch(i -> i.equals(iataCode));
-		codeCond2 = airline.equals(this.repository.findAirlineByIataCode(iataCode));
-
-		uniqueIataCode = codeCond1 || codeCond2;
-		super.state(uniqueIataCode, "iataCode", "acme.validation.airline.uniqueIataCode.message");
-
-		//properLength = name.length() <= 50;
-		//super.state(properLength, "name", "acme.validation.airline.nameLength.message");
-
-		//isInPast = moment != null && moment.par(moment.before(MomentHelper.getCurrentMoment()) || moment.equals(MomentHelper.getCurrentMoment()));
-		//super.state(isInPast, "foundationMoment", "acme.validation.airline.momentIsInPast.message");
 
 		confirmation = super.getRequest().getData("confirmation", boolean.class);
 		super.state(confirmation, "confirmation", "acme.validation.confirmation.message");
