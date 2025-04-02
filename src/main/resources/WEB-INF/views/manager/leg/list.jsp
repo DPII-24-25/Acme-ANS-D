@@ -19,7 +19,11 @@
 	<acme:list-column code="manager.leg.list.label.flightNumber" path="flightNumber" width="10%"/>
 	<acme:list-column code="manager.leg.list.label.scheduleDeparture" path="scheduleDeparture" width="20%"/>
 	<acme:list-column code="manager.leg.list.label.scheduleArrival" path="scheduleArrival" width="20%"/>
-		<acme:list-column code="manager.leg.list.label.status" path="status" width="10%"/>
+	<acme:list-column code="manager.leg.list.label.status" path="status" width="10%"/>
 	
 	<acme:list-payload path="payload"/>
+	
 </acme:list>
+
+<acme:button code="flight.form.label.button.create"
+				action="/manager/leg/create?flightId=${flightId}" />

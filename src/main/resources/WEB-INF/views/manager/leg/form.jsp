@@ -28,7 +28,7 @@
             <acme:submit code="leg.form.label.button.publish" action="/manager/leg/publish"/>
         </jstl:when>
         <jstl:when test="${_command == 'create'}">
-            <acme:submit code="leg.form.label.button.create" action="/manager/leg/create"/>
+            <acme:submit code="leg.form.label.button.create" action="/manager/leg/create?flightId=${flightId}"/>
         </jstl:when>
     </jstl:choose>
 </acme:form>

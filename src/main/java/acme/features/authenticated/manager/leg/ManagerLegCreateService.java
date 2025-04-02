@@ -18,7 +18,7 @@ import acme.features.authenticated.manager.flight.ManagerFlightRepository;
 import acme.realms.Manager;
 
 @GuiService
-public class ManagerLegUpdateService extends AbstractGuiService<Manager, Leg> {
+public class ManagerLegCreateService extends AbstractGuiService<Manager, Leg> {
 
 	@Autowired
 	private ManagerFlightRepository	flightRepository;
@@ -28,26 +28,18 @@ public class ManagerLegUpdateService extends AbstractGuiService<Manager, Leg> {
 
 	@Override
 	public void authorise() {
-		int masterId;
-		boolean status;
-		boolean isOwner;
-		boolean editable;
-		Leg leg;
 
-		masterId = super.getRequest().getData("id", int.class);
-		leg = this.repository.findLegId(masterId);
-		isOwner = super.getRequest().getPrincipal().getActiveRealm().getId() == leg.getFlight().getAirline().getManager().getId();
-		editable = leg.isDraftMode();
-
-		super.getResponse().setAuthorised(isOwner && editable);
+		super.getResponse().setAuthorised(true);
 	}
 
 	@Override
 	public void load() {
 		Leg leg;
-		int masterId = this.getRequest().getData("id", int.class);
+		int flightId = this.getRequest().getData("flightId", int.class);
 
-		leg = this.repository.findLegId(masterId);
+		leg = new Leg();
+		leg.setDraftMode(false);
+		leg.setFlight(this.repository.findFlightById(flightId));
 
 		super.getBuffer().addData(leg);
 	}
@@ -110,6 +102,7 @@ public class ManagerLegUpdateService extends AbstractGuiService<Manager, Leg> {
 		dataset.put("arrivalAirports", airportArrivalsChoices);
 		dataset.put("arrivalAirportSelected", airportArrivalsChoices.getSelected().getKey());
 
+		dataset.put("flightId", leg.getFlight().getId());
 		super.getResponse().addData(dataset);
 	}
 
