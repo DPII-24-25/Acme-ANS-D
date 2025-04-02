@@ -5,7 +5,7 @@
 
 <acme:form>
     <jstl:choose>
-        <jstl:when test="${acme:anyOf(_command, 'show')}">
+        <jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish')}">
             <acme:input-moment code="assistance-agent.tracking-log.form.label.lastUpdateMoment" path="lastUpdateMoment" readonly="true"/>
         </jstl:when>        
     </jstl:choose>
@@ -16,7 +16,7 @@
     <acme:input-textbox code="assistance-agent.tracking-log.form.label.resolution" path="resolution"/>
 
     <jstl:choose>
-        <jstl:when test="${_command == 'show' && draftMode == true}">
+        <jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true}">
             <acme:submit code="assistance-agent.tracking-log.form.label.button.update"
                 action="/assistance-agent/tracking-log/update" />
             <acme:submit code="assistance-agent.tracking-log.form.label.button.delete"
