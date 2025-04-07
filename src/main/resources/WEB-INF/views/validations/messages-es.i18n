@@ -9,4 +9,7 @@
 # they accept any liabilities with respect to them.
 
 acme.validation.flight.identifierNumber.message = El identificador numerico no concuerda con las iniciales
-acme.validation.leg.flightNumber.message =El identificador no corresponde con el codigo IATA
+acme.validation.leg.flightNumber.message = El identificador no corresponde con el codigo IATA
+acme.validation.airline.nameLength.message = Nombre no debe exceder los 50 characteres
+acme.validation.airline.momentIsInPast.message = El momento de fundación no puede ser en el futuro
+acme.validation.airline.uniqueIataCode.message = Código IATA debe ser único

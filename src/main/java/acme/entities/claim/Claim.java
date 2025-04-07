@@ -1,12 +1,16 @@
 
 package acme.entities.claim;
 
+import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
@@ -15,8 +19,11 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidEmail;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
+import acme.client.helpers.SpringHelper;
 import acme.constraints.ValidClaim;
-import acme.realms.assistanceAgent.AssistanceAgent;
+import acme.entities.flight.Leg;
+import acme.entities.trackinglog.TypeStatus;
+import acme.realms.AssistanceAgent;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -30,7 +37,7 @@ public class Claim extends AbstractEntity {
 
 	@Mandatory
 	@ValidMoment(past = true)
-	@Automapped
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date				registrationMoment;
 
 	@Mandatory
@@ -43,14 +50,12 @@ public class Claim extends AbstractEntity {
 	@Automapped
 	private String				description;
 
-	@Enumerated(EnumType.STRING)
 	@Mandatory
+	@Enumerated(EnumType.STRING)
+	@Automapped
 	private IssuesType			type;
 
-	@Mandatory
-	@Valid
-	@Automapped
-	private Boolean				indicator;
+	private boolean				draftMode;
 
 	// Relatrionships -----------------------------------------------------
 
@@ -58,5 +63,25 @@ public class Claim extends AbstractEntity {
 	@Valid
 	@ManyToOne(optional = false)
 	private AssistanceAgent		assistanceAgent;
+
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	private Leg					leg;
+
+	// Atributos derivados ------------------------------------------------
+
+
+	@Transient
+	public TypeStatus getIndicator() {
+		ClaimRepository repository = SpringHelper.getBean(ClaimRepository.class);
+		Collection<TypeStatus> statusTL = repository.findTrackingLogStatusByClaimId(this.getId());
+
+		if (statusTL.contains(TypeStatus.ACCEPTED))
+			return TypeStatus.ACCEPTED;
+		if (statusTL.contains(TypeStatus.REJECTED))
+			return TypeStatus.REJECTED;
+		return TypeStatus.PENDING;
+	}
 
 }
