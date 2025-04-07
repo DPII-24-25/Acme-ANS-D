@@ -11,9 +11,9 @@
 technician.task.form.title = Detalles de tarea
 technician.task.list.title = Lista de tareas
 
-technician.task.form.label.moment = Tipo:
+technician.task.form.label.type = Tipo:
 technician.task.form.label.description = Descripción: 
-technician.task.form.label.estCost = Fecha límite:
+technician.task.form.label.deadline = Fecha límite:
 technician.task.form.label.priority = priority:
 technician.task.form.label.estimatedDuration = Duración Estimada:
 technician.task.form.label.technician-licenseNum = Técnico:
