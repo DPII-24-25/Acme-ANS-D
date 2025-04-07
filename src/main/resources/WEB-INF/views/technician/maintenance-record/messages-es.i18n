@@ -8,28 +8,30 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-employer.job.form.title = Detalles de trabajo 
-employer.job.list.title = Lista de trabajos
+technician.maintenance-record.form.title = Detalles de registro de mantenimiento 
+technician.maintenance-record.list.title = Lista de registros de mantenimiento
 
-employer.job.form.label.ticker = Referencia:
-employer.job.form.label.contractor = Contratista: 
-employer.job.form.label.title = Título:
-employer.job.form.label.deadline = Fecha límite:
-employer.job.form.label.salary = Salario:
-employer.job.form.label.score = Puntuación:
-employer.job.form.label.moreInfo = Más información: (Opcional)
-employer.job.form.label.description = Descripción:
+technician.maintenance-record.form.label.moment = Momento:
+technician.maintenance-record.form.label.status = Estado: 
+technician.maintenance-record.form.label.estCost = Coste estimado:
+technician.maintenance-record.form.label.inspectDueDate = Próxima inspección:
+technician.maintenance-record.form.label.moreInfo = Más información: (Opcional)
+technician.maintenance-record.form.label.aircraft = Aeronave:
+technician.maintenance-record.form.label.draftMode = Es borrador:
 
-employer.job.form.placeholder.score = 0,00 - 100,00
 		
-employer.job.form.button.duties = Responsabilidades
-employer.job.form.button.update = Actualizar
-employer.job.form.button.delete = Borrar
-employer.job.form.button.publish = Publicar
-employer.job.form.button.create = Crear
+technician.maintenance-record.form.button.task-association = Tareas Asociadas
+technician.maintenance-record.form.button.update = Actualizar
+technician.maintenance-record.form.button.delete = Borrar
+technician.maintenance-record.form.button.publish = Publicar
+technician.maintenance-record.form.button.create = Crear
 
-employer.job.list.label.ticker = Referencia
-employer.job.list.label.deadline = Fecha límite
-employer.job.list.label.title = Título
+technician.maintenance-record.list.label.status = Estado
+technician.maintenance-record.list.label.aircraft = Aeronave
+technician.maintenance-record.list.label.inspectDueDate = Próxima inspección
+technician.maintenance-record.list.label.draftMode = Es borrador
 
-employer.job.list.button.create = Crear
+technician.maintenance-record.list.button.create = Crear
+
+acme.validation.maintenance-record.inspectDueDate-is-before-moment.message = La próxima inspección no puede ser antes que el momento
+acme.validation.maintenance-record.moment-is-null-dueDate-is-not.message = antes de introducir la próxima inspección debe rellenar el momento

@@ -14,6 +14,8 @@ package acme.features.technician.maintenance_record;
 
 import java.util.Collection;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
@@ -28,7 +30,7 @@ public class TechnicianMaintenanceRecordShowService extends AbstractGuiService<T
 
 	// Internal state ---------------------------------------------------------
 
-	//@Autowired
+	@Autowired
 	private TechnicianMaintenanceRecordRepository repository;
 
 	// AbstractGuiService interface -------------------------------------------
@@ -41,13 +43,21 @@ public class TechnicianMaintenanceRecordShowService extends AbstractGuiService<T
 		MaintenanceRecord record1;
 		Technician technician;
 		//Date currentMoment;
+		int technicianId;
+		//		boolean isMine;
 
 		masterId = super.getRequest().getData("id", int.class);
 		record1 = this.repository.findMaintenanceRecordById(masterId);
+		technicianId = super.getRequest().getPrincipal().getActiveRealm().getId();
+
+		boolean owner = technicianId == record1.getTechnician().getId();
 		technician = record1 == null ? null : record1.getTechnician();
 		//currentMoment = MomentHelper.getCurrentMoment();
-		status = super.getRequest().getPrincipal().hasRealm(technician) || record1 != null && !record1.isDraftMode();
-
+		if (record1.isDraftMode()) {
+			status = super.getRequest().getPrincipal().hasRealm(technician) || record1 != null;
+			status = owner;
+		} else
+			status = true;
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -72,7 +82,7 @@ public class TechnicianMaintenanceRecordShowService extends AbstractGuiService<T
 
 		aircrafts = this.repository.findAllAircrafts();
 
-		choices = SelectChoices.from(aircrafts, "name", record1.getAircraft());
+		choices = SelectChoices.from(aircrafts, "registrationNumber", record1.getAircraft());
 		choicesStatus = SelectChoices.from(MaintenanceStatus.class, record1.getStatus());
 
 		dataset = super.unbindObject(record1, "moment", "status", "inspectDueDate", "estCost", "moreInfo", "draftMode");

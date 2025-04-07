@@ -26,21 +26,28 @@ import acme.realms.Technician;
 @Repository
 public interface TechnicianMaintenanceRecordRepository extends AbstractRepository {
 
-	@Query("select mr from MaintenanceRecord mr where mr.id = :id")
+	@Query("select mr from MaintenanceRecord mr where mr.id =:id")
 	MaintenanceRecord findMaintenanceRecordById(int id);
 
-	@Query("select t from Technician t where t.id = :id")
+	@Query("select t from Technician t where t.id =:id")
 	Technician findTechnicianById(int id);
 
-	@Query("select mr from MaintenanceRecord mr where mr.technician.id = :technicianId")
-	Collection<MaintenanceRecord> findMaintenanceRecordByTechnicianId(int technicianId);
+	@Query("select mr from MaintenanceRecord mr where mr.technician.id =:id")
+	Collection<MaintenanceRecord> findMaintenanceRecordByTechnicianId(int id);
 
-	@Query("select ta.task from TaskAssociation ta where ta.record.id = :maintenanceRecordId")
+	@Query("select mr from MaintenanceRecord mr where mr.draftMode=false")
+	Collection<MaintenanceRecord> findAllPublishedMaintenanceRecordById();
+
+	@Query("select ta.task from TaskAssociation ta where ta.record.id =:maintenanceRecordId")
 	Collection<Task> findTasksByMaintenanceRecordId(int maintenanceRecordId);
+
+	@Query("select count(ta.task) from TaskAssociation ta where ta.record.id =:maintenanceRecordId and ta.task.draftMode = true")
+	Integer findTotalNotPublishedTasksByMaintenanceRecordId(int maintenanceRecordId);
 
 	@Query("select a from Aircraft a")
 	Collection<Aircraft> findAllAircrafts();
 
 	@Query("select a from Aircraft a where a.id = :aircraftId")
 	Aircraft findAircraftById(int aircraftId);
+
 }

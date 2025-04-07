@@ -1,25 +1,25 @@
 key,moment,status,inspectDueDate,estCost,moreInfo,draftMode,key:technician-,key:aircraft
-# base entity
-maintenance-record-01,2011/04/16 0:00,COMPLETED,2011/04/20 0:00,EUR 500000.00,"The Wheel of Time turns, and Ages come and pass, leaving memories that become legend. Legend fades to myth, and even myth is lon",FALSE,technician-01,aircraft-01
+# base entity,"","","","","",""
+maintenance-record-01,2011/04/16 0:00,COMPLETED,2011/04/20 0:00,EUR 500000.00,"The Wheel of Time turns, and Ages come and pass, leaving memories that become legend. Legend fades to myth, and even myth is lon",TRUE,technician-01,aircraft-01
 # moment - standard variations
-maintenance-record-02,2000/01/01 0:00,COMPLETED,2000/04/20 0:00,EUR 500000.00,"The Wheel of Time turns, and Ages come and pass, leaving memories that become legend. Legend fades to myth, and even myth is lon",TRUE,technician-01,aircraft-01
+maintenance-record-02,2000/01/01 0:00,COMPLETED,2000/04/20 0:00,EUR 500000.00,"The Wheel of Time turns, and Ages come and pass, leaving memories that become legend. Legend fades to myth, and even myth is lon",FLASE,technician-01,aircraft-01
 maintenance-record-03,2000/01/01 0:01,COMPLETED,2000/04/20 0:00,EUR 500000.00,"The Wheel of Time turns, and Ages come and pass, leaving memories that become legend. Legend fades to myth, and even myth is lon",TRUE,technician-01,aircraft-01
 maintenance-record-04,2022/07/29 23:59,COMPLETED,2022/08/20 0:00,EUR 500000.00,"The Wheel of Time turns, and Ages come and pass, leaving memories that become legend. Legend fades to myth, and even myth is lon",TRUE,technician-01,aircraft-01
-maintenance-record-05,2022/07/30 0:00,COMPLETED,2022/09/01 10:00,EUR 500000.00,"The Wheel of Time turns, and Ages come and pass, leaving memories that become legend. Legend fades to myth, and even myth is lon",FALSE,technician-01,aircraft-01
+maintenance-record-05,2022/07/30 0:00,COMPLETED,2022/09/01 10:00,EUR 500000.00,"The Wheel of Time turns, and Ages come and pass, leaving memories that become legend. Legend fades to myth, and even myth is lon",TRUE,technician-01,aircraft-01
 # status - standard variations
 maintenance-record-06,2011/04/16 0:00,IN_PROGRESS,2011/04/20 0:00,EUR 500000.00,"The Wheel of Time turns, and Ages come and pass, leaving memories that become legend. Legend fades to myth, and even myth is lon",TRUE,technician-01,aircraft-01
 maintenance-record-07,2011/04/16 0:00,PENDING,2011/04/20 0:00,EUR 500000.00,"The Wheel of Time turns, and Ages come and pass, leaving memories that become legend. Legend fades to myth, and even myth is lon",TRUE,technician-01,aircraft-01
 # inspectDueDate - standard variations
 maintenance-record-08,2011/04/16 0:00,COMPLETED,2022/08/04 0:00,EUR 500000.00,"The Wheel of Time turns, and Ages come and pass, leaving memories that become legend. Legend fades to myth, and even myth is lon",FALSE,technician-01,aircraft-01
-maintenance-record-09,2011/04/16 0:00,COMPLETED,2022/08/04 0:01,EUR 500000.00,"The Wheel of Time turns, and Ages come and pass, leaving memories that become legend. Legend fades to myth, and even myth is lon",FALSE,technician-01,aircraft-01
-maintenance-record-10,2011/04/16 0:00,COMPLETED,2199/12/31 23:59,EUR 500000.00,"The Wheel of Time turns, and Ages come and pass, leaving memories that become legend. Legend fades to myth, and even myth is lon",TRUE,technician-01,aircraft-01
+maintenance-record-09,2011/04/16 0:00,COMPLETED,2022/08/04 0:01,EUR 500000.00,"The Wheel of Time turns, and Ages come and pass, leaving memories that become legend. Legend fades to myth, and even myth is lon",TRUE,technician-01,aircraft-01
+maintenance-record-10,2011/04/16 0:00,COMPLETED,2199/12/31 23:59,EUR 500000.00,"The Wheel of Time turns, and Ages come and pass, leaving memories that become legend. Legend fades to myth, and even myth is lon",FALSE,technician-01,aircraft-01
 maintenance-record-11,2011/04/16 0:00,COMPLETED,2200/01/01 0:00,EUR 500000.00,"The Wheel of Time turns, and Ages come and pass, leaving memories that become legend. Legend fades to myth, and even myth is lon",TRUE,technician-01,aircraft-01
 # estCost - standard variations
 maintenance-record-12,2011/04/16 0:00,COMPLETED,2011/04/20 0:00,EUR 0.00,"The Wheel of Time turns, and Ages come and pass, leaving memories that become legend. Legend fades to myth, and even myth is lon",FALSE,technician-01,aircraft-01
 maintenance-record-13,2011/04/16 0:00,COMPLETED,2011/04/20 0:00,EUR 1.00,"The Wheel of Time turns, and Ages come and pass, leaving memories that become legend. Legend fades to myth, and even myth is lon",TRUE,technician-01,aircraft-01
-maintenance-record-14,2011/04/16 0:00,COMPLETED,2011/04/20 0:00,EUR 999999.00,"The Wheel of Time turns, and Ages come and pass, leaving memories that become legend. Legend fades to myth, and even myth is lon",FALSE,technician-01,aircraft-01
-maintenance-record-15,2011/04/16 0:00,COMPLETED,2011/04/20 0:00,EUR 1000000.00,"The Wheel of Time turns, and Ages come and pass, leaving memories that become legend. Legend fades to myth, and even myth is lon",FALSE,technician-01,aircraft-01
-maintenance-record-16,2011/04/16 0:00,COMPLETED,2011/04/20 0:00,USD 500000.00,"The Wheel of Time turns, and Ages come and pass, leaving memories that become legend. Legend fades to myth, and even myth is lon",TRUE,technician-01,aircraft-01
+maintenance-record-14,2011/04/16 0:00,COMPLETED,2011/04/20 0:00,EUR 999999.00,"The Wheel of Time turns, and Ages come and pass, leaving memories that become legend. Legend fades to myth, and even myth is lon",TRUE,technician-01,aircraft-01
+maintenance-record-15,2011/04/16 0:00,COMPLETED,2011/04/20 0:00,EUR 1000000.00,"The Wheel of Time turns, and Ages come and pass, leaving memories that become legend. Legend fades to myth, and even myth is lon",TRUE,technician-01,aircraft-01
+maintenance-record-16,2011/04/16 0:00,COMPLETED,2011/04/20 0:00,USD 500000.00,"The Wheel of Time turns, and Ages come and pass, leaving memories that become legend. Legend fades to myth, and even myth is lon",FALSE,technician-01,aircraft-01
 # moreInfo - standard variations
 maintenance-record-17,2011/04/16 0:00,COMPLETED,2011/04/20 0:00,EUR 500000.00,T,TRUE,technician-01,aircraft-01
 maintenance-record-18,2011/04/16 0:00,COMPLETED,2011/04/20 0:00,EUR 500000.00,Th,TRUE,technician-01,aircraft-01
@@ -31,8 +31,8 @@ maintenance-record-23,2011/04/16 0:00,COMPLETED,2011/04/20 0:00,EUR 500000.00,<m
 maintenance-record-24,2011/04/16 0:00,COMPLETED,2011/04/20 0:00,EUR 500000.00,<script>alert(‘Hacked!’);</script>,TRUE,technician-01,aircraft-01
 maintenance-record-25,2011/04/16 0:00,COMPLETED,2011/04/20 0:00,EUR 500000.00,' or 'A' = 'A,TRUE,technician-01,aircraft-01
 # draftMode - standard variations
-maintenance-record-26,2011/04/16 0:00,COMPLETED,2011/04/20 0:00,EUR 500000.00,"The Wheel of Time turns, and Ages come and pass, leaving memories that become legend. Legend fades to myth, and even myth is lon",FALSE,technician-01,aircraft-01
+maintenance-record-26,2011/04/16 0:00,COMPLETED,2011/04/20 0:00,EUR 500000.00,"The Wheel of Time turns, and Ages come and pass, leaving memories that become legend. Legend fades to myth, and even myth is lon",TRUE,technician-01,aircraft-01
 # technician- - standard variations
 maintenance-record-27,2011/04/16 0:00,COMPLETED,2011/04/20 0:00,EUR 500000.00,"The Wheel of Time turns, and Ages come and pass, leaving memories that become legend. Legend fades to myth, and even myth is lon",TRUE,technician-02,aircraft-01
 # aircraft - standard variations
-maintenance-record-28,2011/04/16 0:00,COMPLETED,2011/04/20 0:00,EUR 500000.00,"The Wheel of Time turns, and Ages come and pass, leaving memories that become legend. Legend fades to myth, and even myth is lon",FALSE,technician-01,aircraft-00
+maintenance-record-28,2011/04/16 0:00,COMPLETED,2011/04/20 0:00,EUR 500000.00,"The Wheel of Time turns, and Ages come and pass, leaving memories that become legend. Legend fades to myth, and even myth is lon",TRUE,technician-01,aircraft-00

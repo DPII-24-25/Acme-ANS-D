@@ -8,28 +8,29 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-employer.job.form.title = Job form 
-employer.job.list.title = Listing of jobs
+technician.maintenance-record.form.title = Maintenance record form 
+technician.maintenance-record.list.title = Listing of maintenance records
 
-employer.job.form.label.ticker = Ticker:
-employer.job.form.label.contractor = Contractor: 
-employer.job.form.label.title = Title:
-employer.job.form.label.deadline = Deadline:
-employer.job.form.label.salary = Salary:
-employer.job.form.label.score = Score:
-employer.job.form.label.moreInfo = More info: (Optional)
-employer.job.form.label.description = Description:
-
-employer.job.form.placeholder.score = 0.00 - 100.00
+technician.maintenance-record.form.label.moment = Moment:
+technician.maintenance-record.form.label.status = Status: 
+technician.maintenance-record.form.label.estCost = Estimated cost:
+technician.maintenance-record.form.label.inspectDueDate = Next inspection:
+technician.maintenance-record.form.label.moreInfo = More info: (Optional)
+technician.maintenance-record.form.label.aircraft = Aircraft:
+technician.maintenance-record.form.label.draftMode = Is draft:
 		
-employer.job.form.button.duties = Duties
-employer.job.form.button.update = Update
-employer.job.form.button.delete = Delete
-employer.job.form.button.publish = Publish
-employer.job.form.button.create = Create
+technician.maintenance-record.form.button.task-association = Associated Tasks
+technician.maintenance-record.form.button.update = Update
+technician.maintenance-record.form.button.delete = Delete
+technician.maintenance-record.form.button.publish = Publish
+technician.maintenance-record.form.button.create = Create
 
-employer.job.list.label.ticker = Ticker
-employer.job.list.label.deadline = Deadline
-employer.job.list.label.title = Title
+technician.maintenance-record.list.label.status = Status
+technician.maintenance-record.list.label.aircraft = Aircraft
+technician.maintenance-record.list.label.inspectDueDate = Next Inspection
+technician.maintenance-record.list.label.draftMode = Is draft
 
-employer.job.list.button.create = Create
+technician.maintenance-record.list.button.create = Create
+
+acme.validation.maintenance-record.inspectDueDate-is-before-moment.message = The next inspection can't be before the moment 
+acme.validation.maintenance-record.moment-is-null-dueDate-is-not.message = Before you can fill out the next inspection you first have to introduce a moment

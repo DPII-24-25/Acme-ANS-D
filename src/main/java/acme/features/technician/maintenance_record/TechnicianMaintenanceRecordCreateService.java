@@ -60,7 +60,7 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 		int aircraftId;
 		Aircraft aircraft;
 
-		aircraftId = super.getRequest().getData("contractor", int.class);
+		aircraftId = super.getRequest().getData("aircraft", int.class);
 		aircraft = this.repository.findAircraftById(aircraftId);
 
 		super.bindObject(record1, "moment", "status", "inspectDueDate", "estCost", "moreInfo");
@@ -88,7 +88,7 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 		choicesStatus = SelectChoices.from(MaintenanceStatus.class, record1.getStatus());
 		//technicianId = super.getRequest().getPrincipal().getActiveRealm().getId();
 		aircrafts = this.repository.findAllAircrafts();
-		choices = SelectChoices.from(aircrafts, "aircraft", record1.getAircraft());
+		choices = SelectChoices.from(aircrafts, "registrationNumber", record1.getAircraft());
 
 		dataset = super.unbindObject(record1, "moment", "status", "inspectDueDate", "estCost", "moreInfo", "draftMode");
 		dataset.put("aircraft", choices.getSelected().getKey());

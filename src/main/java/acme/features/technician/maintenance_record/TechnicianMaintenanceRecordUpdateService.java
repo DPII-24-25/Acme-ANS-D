@@ -94,7 +94,7 @@ public class TechnicianMaintenanceRecordUpdateService extends AbstractGuiService
 
 		//technicianId = super.getRequest().getPrincipal().getActiveRealm().getId();
 		aircrafts = this.repository.findAllAircrafts();
-		choices = SelectChoices.from(aircrafts, "aircraft", record1.getAircraft());
+		choices = SelectChoices.from(aircrafts, "registrationNumber", record1.getAircraft());
 
 		choicesStatus = SelectChoices.from(MaintenanceStatus.class, record1.getStatus());
 

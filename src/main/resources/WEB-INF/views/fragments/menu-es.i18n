@@ -35,6 +35,12 @@ master.menu.provider.favourite-link = Enlace favorito
 master.menu.consumer = Consumidor
 master.menu.consumer.favourite-link = Enlace favorito
 
+# master.menu.technician ##########################################################
+
+master.menu.technician = Técnico
+master.menu.technician.list-maintenance-record-mine = Mis registros
+master.menu.technician.list-maintenance-record-published = Todos los registros publicados
+
 # master.menu.user-account ####################################################
 
 master.menu.user-account = Cuenta

@@ -17,7 +17,7 @@
 
 <acme:list>
 	<acme:list-column code="technician.maintenance-record.list.label.status" path="status" width="20%"/>
-	<acme:list-column code="technician.maintenance-record.list.label.aircraft" path="aircraft" width="20%"/>
+	<acme:list-column code="technician.maintenance-record.list.label.aircraft" path="aircraft.registrationNumber" width="20%"/>
 	<acme:list-column code="technician.maintenance-record.list.label.inspectDueDate" path="inspectDueDate" width="40%"/>
 	<acme:list-column code="technician.maintenance-record.list.label.draftMode" path="draftMode" width="20%"/>
 </acme:list>
