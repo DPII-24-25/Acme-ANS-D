@@ -42,6 +42,8 @@ master.menu.consumer.favourite-link = Favourite link
 master.menu.technician = Technician
 master.menu.technician.list-maintenance-record-mine = My records
 master.menu.technician.list-maintenance-record-published = All published records
+master.menu.technician.list-task-mine = My tasks
+master.menu.technician.list-task-published = All published tasks
 
 # master.menu.user-account ####################################################
 

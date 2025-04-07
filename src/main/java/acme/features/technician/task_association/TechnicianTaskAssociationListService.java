@@ -36,7 +36,27 @@ public class TechnicianTaskAssociationListService extends AbstractGuiService<Tec
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		int masterId;
+		int technicianId;
+		MaintenanceRecord record1;
+		boolean status;
+		Technician technician;
+
+		masterId = super.getRequest().getData("masterId", int.class);
+		super.getResponse().addGlobal("masterId", masterId);
+
+		record1 = this.repository.findMaintenanceRecordById(masterId);
+		technicianId = super.getRequest().getPrincipal().getActiveRealm().getId();
+
+		boolean owner = technicianId == record1.getTechnician().getId();
+		technician = record1 == null ? null : record1.getTechnician();
+
+		if (record1.isDraftMode()) {
+			status = super.getRequest().getPrincipal().hasRealm(technician) || record1 != null;
+			status = owner;
+		} else
+			status = true;
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -46,6 +66,7 @@ public class TechnicianTaskAssociationListService extends AbstractGuiService<Tec
 		Collection<TaskAssociation> associations;
 
 		masterId = super.getRequest().getData("masterId", int.class);
+
 		associations = this.repository.findTaskAssociationsByMaintenanceRecordId(masterId);
 
 		super.getBuffer().addData(associations);

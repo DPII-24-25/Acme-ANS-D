@@ -1,5 +1,5 @@
 /*
- * TechnicianTaskAssociationShowService.java
+ * TechnicianTaskShowService.java
  *
  * Copyright (C) 2012-2025 Rafael Corchuelo.
  *
@@ -10,9 +10,7 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.technician.task_association;
-
-import java.util.Collection;
+package acme.features.technician.task;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -20,41 +18,37 @@ import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
-import acme.entities.maintenance_records.MaintenanceRecord;
-import acme.entities.task_associations.TaskAssociation;
 import acme.entities.tasks.Task;
+import acme.entities.tasks.TaskType;
 import acme.realms.Technician;
 
 @GuiService
-public class TechnicianTaskAssociationShowService extends AbstractGuiService<Technician, TaskAssociation> {
+public class TechnicianTaskShowService extends AbstractGuiService<Technician, Task> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private TechnicianTaskAssociationRepository repository;
+	private TechnicianTaskRepository repository;
 
 	// AbstractGuiService interface -------------------------------------------
 
 
 	@Override
 	public void authorise() {
-		int masterId;
-		int technicianId;
-		MaintenanceRecord record1;
 		boolean status;
+		int masterId;
+		Task task1;
 		Technician technician;
+		int technicianId;
 
 		masterId = super.getRequest().getData("id", int.class);
-		super.getResponse().addGlobal("id", masterId);
-
-		record1 = this.repository.findTaskAssociationById(masterId).getRecord();
+		task1 = this.repository.findTaskById(masterId);
 		technicianId = super.getRequest().getPrincipal().getActiveRealm().getId();
 
-		boolean owner = technicianId == record1.getTechnician().getId();
-		technician = record1 == null ? null : record1.getTechnician();
-
-		if (record1.isDraftMode()) {
-			status = super.getRequest().getPrincipal().hasRealm(technician) || record1 != null;
+		boolean owner = technicianId == task1.getTechnician().getId();
+		technician = task1 == null ? null : task1.getTechnician();
+		if (task1.isDraftMode()) {
+			status = super.getRequest().getPrincipal().hasRealm(technician) || task1 != null;
 			status = owner;
 		} else
 			status = true;
@@ -63,28 +57,26 @@ public class TechnicianTaskAssociationShowService extends AbstractGuiService<Tec
 
 	@Override
 	public void load() {
-		TaskAssociation association;
+		Task task1;
 		int id;
 
 		id = super.getRequest().getData("id", int.class);
-		association = this.repository.findTaskAssociationById(id);
+		task1 = this.repository.findTaskById(id);
 
-		super.getBuffer().addData(association);
+		super.getBuffer().addData(task1);
 	}
 
 	@Override
-	public void unbind(final TaskAssociation object) {
-		SelectChoices choices;
-		Collection<Task> tasks;
+	public void unbind(final Task task1) {
+
+		SelectChoices choicesTypes;
 		Dataset dataset;
 
-		tasks = this.repository.findAllAvailableTasks();
-		choices = SelectChoices.from(tasks, "description", object.getTask());
+		choicesTypes = SelectChoices.from(TaskType.class, task1.getType());
 
-		dataset = super.unbindObject(object);
-		dataset.put("task", choices.getSelected().getKey());
-		dataset.put("tasks", choices);
-		dataset.put("draftMode", object.getRecord().isDraftMode());
+		dataset = super.unbindObject(task1, "type", "description", "deadline", "priority", "estimatedDuration", "technician.licenseNum", "draftMode");
+
+		dataset.put("types", choicesTypes);
 
 		super.getResponse().addData(dataset);
 	}

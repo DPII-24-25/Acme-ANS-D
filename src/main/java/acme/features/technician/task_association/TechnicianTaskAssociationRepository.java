@@ -29,7 +29,7 @@ public interface TechnicianTaskAssociationRepository extends AbstractRepository 
 	@Query("select ta from TaskAssociation ta where ta.id =:id")
 	TaskAssociation findTaskAssociationById(int id);
 
-	@Query("select ta from TaskAssociation ta where ta.maintenanceRecord.id =:maintenanceRecordId")
+	@Query("select ta from TaskAssociation ta where ta.record.id =:maintenanceRecordId")
 	Collection<TaskAssociation> findTaskAssociationsByMaintenanceRecordId(int maintenanceRecordId);
 
 	// MaintenanceRecord

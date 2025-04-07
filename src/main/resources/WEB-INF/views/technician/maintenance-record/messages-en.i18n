@@ -32,5 +32,6 @@ technician.maintenance-record.list.label.draftMode = Is draft
 
 technician.maintenance-record.list.button.create = Create
 
+technician.maintenance-record.form.error.not-enough-tasks = To publish this record it needs at least one task to be associated to it
 acme.validation.maintenance-record.inspectDueDate-is-before-moment.message = The next inspection can't be before the moment 
 acme.validation.maintenance-record.moment-is-null-dueDate-is-not.message = Before you can fill out the next inspection you first have to introduce a moment

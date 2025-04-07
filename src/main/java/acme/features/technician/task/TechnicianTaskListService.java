@@ -10,7 +10,7 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.technician.maintenance_record;
+package acme.features.technician.task;
 
 import java.util.Collection;
 
@@ -19,16 +19,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
-import acme.entities.maintenance_records.MaintenanceRecord;
+import acme.entities.tasks.Task;
 import acme.realms.Technician;
 
 @GuiService
-public class TechnicianMaintenanceRecordListService extends AbstractGuiService<Technician, MaintenanceRecord> {
+public class TechnicianTaskListService extends AbstractGuiService<Technician, Task> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private TechnicianMaintenanceRecordRepository repository;
+	private TechnicianTaskRepository repository;
 
 	// AbstractGuiService interface -------------------------------------------
 
@@ -40,7 +40,7 @@ public class TechnicianMaintenanceRecordListService extends AbstractGuiService<T
 
 	@Override
 	public void load() {
-		Collection<MaintenanceRecord> records;
+		Collection<Task> tasks;
 		int technicianId;
 		boolean isMine;
 
@@ -48,18 +48,18 @@ public class TechnicianMaintenanceRecordListService extends AbstractGuiService<T
 		technicianId = super.getRequest().getPrincipal().getActiveRealm().getId();
 
 		if (isMine)
-			records = this.repository.findMaintenanceRecordByTechnicianId(technicianId);
+			tasks = this.repository.findTaskByTechnicianId(technicianId);
 		else
-			records = this.repository.findAllPublishedMaintenanceRecordById();
+			tasks = this.repository.findAllPublishedTasks();
 
-		super.getBuffer().addData(records);
+		super.getBuffer().addData(tasks);
 	}
 
 	@Override
-	public void unbind(final MaintenanceRecord record1) {
+	public void unbind(final Task task1) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(record1, "status", "aircraft.registrationNumber", "inspectDueDate", "draftMode");
+		dataset = super.unbindObject(task1, "type", "deadline", "priority", "draftMode");
 
 		super.getResponse().addData(dataset);
 	}

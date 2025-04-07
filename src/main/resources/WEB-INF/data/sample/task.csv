@@ -1,4 +1,4 @@
-key,type,description,deadline,priority,estimatedDuration,draft-mode,key:technician
+key,type,description,deadline,priority,estimatedDuration,draftMode,key:technician
 # base entity
 task-00,MAINTENANCE,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2011/04/16 0:00,5,500,TRUE,technician-01
 # type - standard variations

@@ -1,5 +1,5 @@
 /*
- * TechnicianMaintenanceRecordCreateService.java
+ * TechnicianTaskCreateService.java
  *
  * Copyright (C) 2012-2025 Rafael Corchuelo.
  *
@@ -90,7 +90,7 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 		aircrafts = this.repository.findAllAircrafts();
 		choices = SelectChoices.from(aircrafts, "registrationNumber", record1.getAircraft());
 
-		dataset = super.unbindObject(record1, "moment", "status", "inspectDueDate", "estCost", "moreInfo", "draftMode");
+		dataset = super.unbindObject(record1, "moment", "status", "inspectDueDate", "estCost", "moreInfo");
 		dataset.put("aircraft", choices.getSelected().getKey());
 		dataset.put("aircrafts", choices);
 		dataset.put("statuses", choicesStatus);

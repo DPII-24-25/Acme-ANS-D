@@ -40,6 +40,8 @@ master.menu.consumer.favourite-link = Enlace favorito
 master.menu.technician = Técnico
 master.menu.technician.list-maintenance-record-mine = Mis registros
 master.menu.technician.list-maintenance-record-published = Todos los registros publicados
+master.menu.technician.list-task-mine = Mis tareas
+master.menu.technician.list-task-published = Todas las tareas publicadas
 
 # master.menu.user-account ####################################################
 

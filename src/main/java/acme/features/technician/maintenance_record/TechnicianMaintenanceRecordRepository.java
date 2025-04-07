@@ -1,5 +1,5 @@
 /*
- * TechnicianMaintenanceRecordRepository.java
+ * TechnicianTaskRepository.java
  *
  * Copyright (C) 2012-2025 Rafael Corchuelo.
  *
@@ -41,7 +41,7 @@ public interface TechnicianMaintenanceRecordRepository extends AbstractRepositor
 	@Query("select ta.task from TaskAssociation ta where ta.record.id =:maintenanceRecordId")
 	Collection<Task> findTasksByMaintenanceRecordId(int maintenanceRecordId);
 
-	@Query("select count(ta.task) from TaskAssociation ta where ta.record.id =:maintenanceRecordId and ta.task.draftMode = true")
+	@Query("select count(ta.task) from TaskAssociation ta where ta.record.id =:maintenanceRecordId and ta.task.draftMode =true")
 	Integer findTotalNotPublishedTasksByMaintenanceRecordId(int maintenanceRecordId);
 
 	@Query("select a from Aircraft a")

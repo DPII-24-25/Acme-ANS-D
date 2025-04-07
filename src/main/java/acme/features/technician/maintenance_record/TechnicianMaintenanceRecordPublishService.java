@@ -1,5 +1,5 @@
 /*
- * TechnicianMaintenanceRecordPublishService.java
+ * TechnicianTaskPublishService.java
  *
  * Copyright (C) 2012-2025 Rafael Corchuelo.
  *
@@ -79,17 +79,17 @@ public class TechnicianMaintenanceRecordPublishService extends AbstractGuiServic
 	public void validate(final MaintenanceRecord record1) {
 		Collection<Task> tasks;
 		int totalTasks;
-		boolean allTasksPublished;
+		//boolean allTasksPublished;
 
 		tasks = this.repository.findTasksByMaintenanceRecordId(record1.getId());
 
 		totalTasks = tasks.size();
 
-		allTasksPublished = tasks.stream().allMatch(us -> !us.isDraftMode());
+		//allTasksPublished = tasks.stream().allMatch(us -> !us.isDraftMode());
 
 		super.state(totalTasks >= 1, "*", "technician.maintenance-record.form.error.not-enough-tasks");
 
-		super.state(allTasksPublished, "*", "technician.maintenance-record.form.error.not-tasks-published");
+		//super.state(allTasksPublished, "*", "technician.maintenance-record.form.error.not-tasks-published");
 	}
 
 	@Override
