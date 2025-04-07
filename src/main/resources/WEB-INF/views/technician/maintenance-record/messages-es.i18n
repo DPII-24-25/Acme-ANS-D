@@ -1,0 +1,38 @@
+# messages-es.i18n
+#
+# Copyright (C) 2012-2025 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+technician.maintenance-record.form.title = Detalles de registro de mantenimiento 
+technician.maintenance-record.list.title = Lista de registros de mantenimiento
+
+technician.maintenance-record.form.label.moment = Momento:
+technician.maintenance-record.form.label.status = Estado: 
+technician.maintenance-record.form.label.estCost = Coste estimado:
+technician.maintenance-record.form.label.inspectDueDate = Próxima inspección:
+technician.maintenance-record.form.label.moreInfo = Más información: (Opcional)
+technician.maintenance-record.form.label.aircraft = Aeronave:
+technician.maintenance-record.form.label.draftMode = Es borrador:
+
+		
+technician.maintenance-record.form.button.task-association = Tareas Asociadas
+technician.maintenance-record.form.button.update = Actualizar
+technician.maintenance-record.form.button.delete = Borrar
+technician.maintenance-record.form.button.publish = Publicar
+technician.maintenance-record.form.button.create = Crear
+
+technician.maintenance-record.list.label.status = Estado
+technician.maintenance-record.list.label.aircraft = Aeronave
+technician.maintenance-record.list.label.inspectDueDate = Próxima inspección
+technician.maintenance-record.list.label.draftMode = Es borrador
+
+technician.maintenance-record.list.button.create = Crear
+
+technician.maintenance-record.form.error.not-enough-tasks = Para que se pueda públicar este registro se necesita como mínimo una tarea asociada a ella
+acme.validation.maintenance-record.inspectDueDate-is-before-moment.message = La próxima inspección no puede ser antes que el momento
+acme.validation.maintenance-record.moment-is-null-dueDate-is-not.message = antes de introducir la próxima inspección debe rellenar el momento

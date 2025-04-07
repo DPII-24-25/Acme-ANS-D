@@ -1,6 +1,6 @@
 
 package acme.entities.tasks;
 
-public enum Type {
+public enum TaskType {
 	MAINTENANCE, INSPECTION, REPAIR, SYSTEM_CHECK
 }
