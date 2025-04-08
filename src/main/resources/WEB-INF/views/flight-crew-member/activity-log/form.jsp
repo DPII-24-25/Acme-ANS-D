@@ -11,7 +11,7 @@
     </jstl:choose>
 
     <acme:input-textbox code="flight-crew-member.activity-log.form.label.typeOfIncident" path="typeOfIncident"/>
-    <acme:input-double code="flight-crew-member.activity-log.form.label.description" path="description"/>
+    <acme:input-textbox code="flight-crew-member.activity-log.form.label.description" path="description"/>
     <acme:input-textbox code="flight-crew-member.activity-log.form.label.severityLevel" path="severityLevel"/>
 
     <jstl:choose>

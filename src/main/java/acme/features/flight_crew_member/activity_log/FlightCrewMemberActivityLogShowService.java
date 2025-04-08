@@ -29,11 +29,11 @@ public class FlightCrewMemberActivityLogShowService extends AbstractGuiService<F
 		al = this.repository.findActivityLogById(trackingLogId);
 		flightAssignment = al.getFlightAssignment();
 
-		int activeAsistanceAgentId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		boolean assistanceAgentOwnsTl = al.getFlightAssignment().getFlightCrewMember().getId() == activeAsistanceAgentId;
+		int activeFlightCrewMemberId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		boolean flightCrewMemberOwnsAl = al.getFlightAssignment().getFlightCrewMember().getId() == activeFlightCrewMemberId;
 		status = super.getRequest().getPrincipal().hasRealmOfType(FlightCrewMember.class);
 
-		super.getResponse().setAuthorised(status && flightAssignment != null && assistanceAgentOwnsTl && !flightAssignment.isDraftMode());
+		super.getResponse().setAuthorised(status && flightAssignment != null && flightCrewMemberOwnsAl && !flightAssignment.isDraftMode());
 	}
 
 	@Override
