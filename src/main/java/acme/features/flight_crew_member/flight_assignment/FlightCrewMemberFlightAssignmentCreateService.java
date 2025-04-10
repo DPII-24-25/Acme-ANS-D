@@ -66,13 +66,9 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 
 	@Override
 	public void validate(final FlightAssignment object) {
-		if (!super.getBuffer().getErrors().hasErrors("")) {
-			FlightCrewMember flightCrewMember = object.getFlightCrewMember();
+		//if (!super.getBuffer().getErrors().hasErrors("")) {
+		//FlightCrewMember flightCrewMember = object.getFlightCrewMember();
 
-			// Suponiendo que FlightCrewMember tiene un método getStatus()
-			if (!FlightCrewAvailability.AVAILABLE.equals(flightCrewMember.getAvailabilityStatus()))
-				super.getBuffer().getErrors().add("status", "El miembro de la tripulación debe estar en estado AVAILABLE para asignarse a un vuelo.");
-		}
 		// Validar que no exista otro flightAssignment con el mismo flighCrewMember
 		// Validar que no exista otro flightAssignment con otro pilot, copilot, etc.
 		// Validar que el member no tenga asignado otro leg con las mimas horas.
