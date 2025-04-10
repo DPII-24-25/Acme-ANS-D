@@ -5,7 +5,7 @@
 
 <acme:form>
     <jstl:choose>
-        <jstl:when test="${acme:anyOf(_command, 'show')}">
+        <jstl:when test="${_command != 'create'}">
             <acme:input-moment code="flight-crew-member.activity-log.form.label.registrationMoment" path="registrationMoment" readonly="true"/>
         </jstl:when>        
     </jstl:choose>
@@ -15,7 +15,7 @@
     <acme:input-textbox code="flight-crew-member.activity-log.form.label.severityLevel" path="severityLevel"/>
 
     <jstl:choose>
-        <jstl:when test="${_command == 'show' && draftMode == true}">
+        <jstl:when test="${_command != 'create' && draftMode == true}">
             <acme:submit code="flight-crew-member.activity-log.form.label.button.update"
                 action="/flight-crew-member/activity-log/update" />
             <acme:submit code="flight-crew-member.activity-log.form.label.button.delete"
