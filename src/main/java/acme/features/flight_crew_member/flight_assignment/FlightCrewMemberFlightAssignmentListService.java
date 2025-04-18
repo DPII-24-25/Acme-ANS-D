@@ -48,9 +48,6 @@ public class FlightCrewMemberFlightAssignmentListService extends AbstractGuiServ
 		FlightCrewMember member = this.repository.findFlightCrewMemberById(flightCrewMemberId);
 		boolean available = member.getAvailabilityStatus() == FlightCrewAvailability.AVAILABLE;
 
-		// Verifica que el estado es correcto en consola
-		System.out.println("Estado del Flight Crew Member: " + available);
-
 		dataset = super.unbindObject(object, "duty", "lastUpdate", "status", "remarks");
 		dataset.put("estado", available);
 
