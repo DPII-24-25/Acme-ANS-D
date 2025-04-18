@@ -1,12 +1,42 @@
-key,type,description,deadline,priority,estimatedDuration,key:technician
-task-01,MAINTENANCE, Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco,2000/01/01 0:01,6,0,technician-01
-task-02,MAINTENANCE,*,2011/04/16 0:00,8,125,technician-01
-task-03,INSPECTION,S5,2000/01/01 0:00,10,5,technician-01
-task-04,INSPECTION, Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore*,2022/07/29 23:59,4,32,technician-02
-task-05,REPAIR, Sed do: eiusmod temor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore e ,2022/07/30 0:00,10,10,technician-01
-task-06,REPAIR,nug,2022/09/01 10:00,6,22,technician-01
-task-07,REPAIR,as6285d,2022/08/04 0:00,6,17,technician-02
-task-08,SYSTEM_CHECK, 洛伦森 , 2022/08/04 0:01,1,3,technician-01
-task-09,MAINTENANCE,<marquee>Hacked</marquee>,2025/12/3 23:59,0,7,technician-02
-task-10,MAINTENANCE,<script>alert(‘Hacked!’);</script>,2027/01/01 0:00,0,34,technician-02
-task-11,MAINTENANCE,' or 'A' = 'A, 2022/08/04 0:00,5,3,technician-02
+key,type,description,deadline,priority,estimatedDuration,draftMode,key:technician
+# base entity
+task-00,MAINTENANCE,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2011/04/16 0:00,5,500,TRUE,technician-01
+# type - standard variations
+task-01,INSPECTION,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2011/04/16 0:00,5,500,FALSE,technician-01
+task-02,REPAIR,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2011/04/16 0:00,5,500,FALSE,technician-01
+task-03,SYSTEM_CHECK,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2011/04/16 0:00,5,500,FALSE,technician-01
+# type - no singular values
+# description - standard variations
+task-04,MAINTENANCE,L,2011/04/16 0:00,5,500,FALSE,technician-01
+task-05,MAINTENANCE,Lo,2011/04/16 0:00,5,500,FALSE,technician-01
+task-06,MAINTENANCE,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",2011/04/16 0:00,5,500,FALSE,technician-01
+task-07,MAINTENANCE,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*",2011/04/16 0:00,5,500,TRUE,technician-01
+task-08,MAINTENANCE,โลเร็ม อิปซัม,2011/04/16 0:00,5,500,FALSE,technician-01
+task-09,MAINTENANCE,洛伦·伊普森,2011/04/16 0:00,5,500,TRUE,technician-01
+task-10,MAINTENANCE,<marquee>Hacked</marquee>,2011/04/16 0:00,5,500,TRUE,technician-01
+task-11,MAINTENANCE,' or 'A' = 'A,2011/04/16 0:00,5,500,FALSE,technician-01
+# description - no singular values
+# deadline - standard variations
+task-12,MAINTENANCE,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2000/01/01 0:00,5,500,TRUE,technician-01
+task-13,MAINTENANCE,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2000/01/01 0:01,5,500,FALSE,technician-01
+task-15,MAINTENANCE,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2022/07/29 23:59,5,500,FALSE,technician-01
+task-16,MAINTENANCE,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2022/07/30 0:00,5,500,FALSE,technician-01
+# deadline - no singular values
+# priority - standard variations
+task-17,MAINTENANCE,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2011/04/16 0:00,0,500,FALSE,technician-01
+task-18,MAINTENANCE,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2011/04/16 0:00,1,500,TRUE,technician-01
+task-19,MAINTENANCE,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2011/04/16 0:00,9,500,TRUE,technician-01
+task-20,MAINTENANCE,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2011/04/16 0:00,10,500,FALSE,technician-01
+# priority - no singular values
+# estimatedDuration - standard variations
+task-21,MAINTENANCE,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2011/04/16 0:00,5,0,FALSE,technician-01
+task-22,MAINTENANCE,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2011/04/16 0:00,5,1,TRUE,technician-01
+task-23,MAINTENANCE,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2011/04/16 0:00,5,999,FALSE,technician-01
+task-24,MAINTENANCE,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2011/04/16 0:00,5,1000,TRUE,technician-01
+# estimatedDuration - no singular values
+# draftMode - standard variations
+task-25,MAINTENANCE,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2011/04/16 0:00,5,500,FALSE,technician-01
+# draftMode - no singular values
+# technician - standard variations
+task-26,MAINTENANCE,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2011/04/16 0:00,5,500,TRUE,technician-02
+# technician - no singular values

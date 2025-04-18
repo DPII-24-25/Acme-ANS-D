@@ -37,7 +37,7 @@ public class Task extends AbstractEntity {
 	@Valid
 	@Automapped
 	@Enumerated(EnumType.STRING)
-	private Type				type;
+	private TaskType			type;
 
 	@Mandatory
 	@ValidString(max = 255)
@@ -55,9 +55,14 @@ public class Task extends AbstractEntity {
 	private Integer				priority;
 
 	@Mandatory
-	@ValidNumber(min = 0)
+	@ValidNumber(min = 0, max = 1000)
 	@Automapped
 	private Integer				estimatedDuration;
+
+	@Mandatory
+	// HINT: @Valid by default.
+	@Automapped
+	private boolean				draftMode;
 
 	// Derived attributes -----------------------------------------------------
 
