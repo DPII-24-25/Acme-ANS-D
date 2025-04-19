@@ -53,7 +53,7 @@
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.technician.list-task-mine" action="/technician/task/list?mine=true"/>
 			<acme:menu-suboption code="master.menu.technician.list-task-published" action="/technician/task/list?mine=false"/>
-
+		</acme:menu-option>
 		<acme:menu-option code="master.menu.assistanceagent" access="hasRealm('AssistanceAgent')">
 			<acme:menu-suboption code="master.menu.assistanceagent.claim.list" action="/assistance-agent/claim/list"/>
 		</acme:menu-option>
