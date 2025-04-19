@@ -16,7 +16,7 @@
     <acme:input-textbox code="assistance-agent.tracking-log.form.label.resolution" path="resolution"/>
 
     <jstl:choose>
-        <jstl:when test="${_command == 'show' && draftMode == true}">
+        <jstl:when test="${_command != 'create' && draftMode == true}">
             <acme:submit code="assistance-agent.tracking-log.form.label.button.update"
                 action="/assistance-agent/tracking-log/update" />
             <acme:submit code="assistance-agent.tracking-log.form.label.button.delete"
