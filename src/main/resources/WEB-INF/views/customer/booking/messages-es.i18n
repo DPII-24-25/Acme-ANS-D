@@ -18,3 +18,6 @@ customer.booking.list.label.flightDeparture = Aeropuerto de Salida
 customer.booking.list.label.scheduleDeparture = Fecha de Salida
 customer.booking.form.label.flight = Vuelo
 customer.booking.form.error.flight-required = Tienes que hacer una reserva con un vuelo asignado
+customer.passenger.form.title = Pasajeros
+customer.passenger.form.button.update = Actualizar
+customer.passenger.form.button.publish = Publicar

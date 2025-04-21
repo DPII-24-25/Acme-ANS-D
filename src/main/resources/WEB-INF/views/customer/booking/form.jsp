@@ -18,8 +18,8 @@
 <acme:form>
 	<acme:input-select code="customer.booking.form.label.flight" path="flight" choices="${flight}"/>
 	<acme:input-textbox code="customer.booking.form.label.locatorcode" path="locatorCode"/>
-	<acme:input-moment code="customer.booking.form.label.purchasemoment" path="purchaseMoment" readonly = "true"/>	
 	<acme:input-select code="customer.booking.form.label.travelclass" path="travelClass" choices="${travelClass}"/>
+	<acme:input-moment code="customer.booking.form.label.purchasemoment" path="purchaseMoment" readonly="true"/>
 	<acme:input-money code="customer.booking.form.label.price" path="price"/>
 	<acme:input-textbox code="customer.booking.form.label.creditcard" path="creditCard"/>
 	<acme:input-checkbox code="customer.booking.form.label.draftMode" path="draftMode" readonly ="true"/>

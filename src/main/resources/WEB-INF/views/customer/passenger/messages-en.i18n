@@ -1,0 +1,12 @@
+customer.passenger.list.title = Passengers
+customer.passenger.list.label.fullName = Full Name
+customer.passenger.list.label.dateBirth = Birth Date
+customer.passenger.list.label.specialNeeds = Special Needs
+customer.passenger.list.label.passportNumber = Passport Number
+customer.passenger.list.label.email = Email
+customer.passenger.form.label.booking = Booking Locator Code
+customer.passsenger.form.label.draftMode = isDraft
+customer.passenger.form.title = Passengers
+customer.passenger.form.button.update = Update
+customer.passenger.form.button.publish = Publish
+customer.passenger.form.button.create = Create

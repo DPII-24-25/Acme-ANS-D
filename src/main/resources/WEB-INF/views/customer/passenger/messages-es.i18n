@@ -1,0 +1,9 @@
+customer.passenger.list.title = Pasajeros
+customer.passenger.list.label.fullName = Nombre Completo
+customer.passenger.list.label.dateBirth = Fecha de Nacimiento
+customer.passenger.list.label.specialNeeds = Necesidades Especiales
+customer.passenger.list.label.passportNumber = Numero de Pasaporte
+customer.passenger.list.label.email = Email
+customer.passenger.form.label.booking= Codigo de la Reserva
+customer.passsenger.form.label.draftMode = esBorrador
+customer.passenger.form.button.create = Crear

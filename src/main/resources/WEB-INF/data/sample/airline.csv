@@ -1,5 +1,5 @@
 key,name,iataCode,website,type,foundationMoment,emailAdress,phoneNumber,key:manager
-airline-01,aeromax,QTR,http://aeromax.com/aeromax,STANDARD,2003/04/15 09:30,aeromax@gmail.com,612345678,manager-01
+airline-01,aeromax,QTR,http://aeromax.com/aeromax,STANDARD,2020/04/16 22:45,aeromax@gmail.com,612345678,manager-01
 airline-02,skyjet,BZX,http://skyjet.com/skyjet,LUXURY,2001/06/18 22:45,skyjet@hotmail.com,689745123,manager-02
 airline-03,flygo,TNX,http://flygo.com/flygo,LOWCOST,2005/08/12 12:15,flygo@gmail.com,934567890,manager-01
 airline-04,lightair,LTA,http://lightair.com/lightair,STANDARD,2010/03/20 15:00,lightair@gmail.com,612345679,manager-02
@@ -14,4 +14,3 @@ airline-12,flyocb,FOC,http://flyocb.com/flyocb,LUXURY,2022/06/05 09:45,flyocb@ho
 airline-13,vueling,VLG,http://vueling.com/vueling,STANDARD,2004/08/18 17:30,vueling@gmail.com,612345682,manager-02
 airline-14,wizzair,WZZ,http://wizzair.com/wizzair,LOWCOST,2016/02/14 12:00,wizzair@hotmail.com,689745127,manager-02
 airline-15,skere,SKR,http://skere.com/skere,LUXURY,2020/03/30 18:15,skere@gmail.com,934567894,manager-03
-
