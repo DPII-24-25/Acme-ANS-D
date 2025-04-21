@@ -16,3 +16,6 @@ acme.validation.leg.arrivalDeparture.message = The scheduleDeparture should be b
 acme.validation.leg.airports.message = The airport of arrival and departure should be different
 acme.validation.leg.aircraft.message = The aircraft assigned to this leg is rigth now in maintenance
 acme.validation.flight.legs.empty = It is not possible to have a flight without no legs assigned
+acme.validation.airline.nameLength.message = Name must not exceed 50 characters
+acme.validation.airline.momentIsInPast.message = Foundation moment can't be placed in the future
+acme.validation.airline.uniqueIataCode.message = IATA code must be unique

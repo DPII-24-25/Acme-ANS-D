@@ -5,23 +5,20 @@ import java.util.Date;
 
 import javax.validation.ConstraintValidatorContext;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
+import acme.client.helpers.MomentHelper;
 import acme.entities.maintenance_records.MaintenanceRecord;
-import acme.entities.maintenance_records.MaintenanceRecordRepository;
 
 @Validator
 public class MaintenanceRecordValidator extends AbstractValidator<ValidMaintenaceRecord, MaintenanceRecord> {
 
 	// Internal state ---------------------------------------------------------
 
-	@Autowired
-	private MaintenanceRecordRepository repository;
+	//@Autowired
+	//private MaintenanceRecordRepository repository;
 
 	// ConstraintValidator interface ------------------------------------------
-
 
 	@Override
 	protected void initialise(final ValidMaintenaceRecord annotation) {
@@ -32,23 +29,22 @@ public class MaintenanceRecordValidator extends AbstractValidator<ValidMaintenac
 	public boolean isValid(final MaintenanceRecord mRecord, final ConstraintValidatorContext context) {
 		// HINT: job can be null
 		assert context != null;
-
+		Date moment;
+		Date dueDate;
 		boolean result;
 
-		if (mRecord == null)
-			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
-		else {
+		moment = mRecord.getMoment();
+		dueDate = mRecord.getInspectDueDate();
+
+		if (!(mRecord == null || dueDate == null)) {
+			//super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
 			boolean dueDateAfterMoment;
-			Date moment;
-			Date dueDate;
-
-			moment = this.repository.findMomentByMR(mRecord);
-			dueDate = this.repository.findDueDateByMR(mRecord);
-
-			dueDateAfterMoment = dueDate.after(moment);
-
-			super.state(context, dueDateAfterMoment, "inspectDueDate", "acme.validation.maintenance-record.inspectDueDate-is-before-moment.message");
-
+			if (moment != null) {
+				//	System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxx-Moment:" + moment + "--------------DueDate:" + dueDate);
+				dueDateAfterMoment = MomentHelper.isAfterOrEqual(dueDate, moment);
+				super.state(context, dueDateAfterMoment, "inspectDueDate", "acme.validation.maintenance-record.inspectDueDate-is-before-moment.message");
+			} else
+				super.state(context, false, "inspectDueDate", "acme.validation.maintenance-record.moment-is-null-dueDate-is-not.message");
 		}
 
 		result = !super.hasErrors(context);

@@ -21,6 +21,7 @@ master.menu.anonymous.mohabu2= Y5061984C: Abulatifa, Mohanad JD
 # master.menu.administrator ###################################################
 
 master.menu.administrator = Administrator
+master.menu.administrator.list-airlines = List airlines 
 master.menu.administrator.list-user-accounts = List user accounts
 master.menu.administrator.populate-db-initial = Populate DB (initial)
 master.menu.administrator.populate-db-sample = Populate DB (samples)
@@ -43,6 +44,24 @@ master.menu.consumer.favourite-link = Favourite link
 
 master.menu.manager = Manager
 master.menu.manager.list.flight = List Flights
+# master.menu.technician ##########################################################
+
+master.menu.technician = Technician
+master.menu.technician.list-maintenance-record-mine = My records
+master.menu.technician.list-maintenance-record-published = All published records
+master.menu.technician.list-task-mine = My tasks
+master.menu.technician.list-task-published = All published tasks
+
+# master.menu.assistanceagent #################################################
+
+master.menu.assistanceagent = Assistance Agent
+master.menu.assistanceagent.claim.list = My claim
+
+# master.menu.flightcrewmember #################################################
+
+master.menu.flightcrewmember = Flight Crew Member
+master.menu.flightcrewmember.flightassignment.listcompleted = My Flight Assignment Completed
+master.menu.flightcrewmember.flightassignment.listplanned = My Flight Assignment Planned
 
 
 # master.menu.user-account ####################################################

@@ -1,7 +1,7 @@
 key,name,iataCode,operationalScope,city,country,website,emailAdress,phoneNumber
 airport-01,Lorem ipsum dolor sit ame,AAA,INTERNATIONAL,' or 'A' = 'A,*,http://lorem.com/ipsum,acme@lorem-ipsum.org,66748520
-airport-02,L,MDR,INTERNATIONAL,<script>alert(‘Hacked!’);</script>, Sed do: eiusmod tempor i,ftp://a,null,002158
-airport-03,Lo,NAM,INTERNATIONAL,<marquee>Hacked</marquee>, Sb,ftp://a.bm,a@b.esx,null
+airport-02,L,MDR,INTERNATIONAL,<script>alert(‘Hacked!’);</script>, Sed do: eiusmod tempor i,http://a,null,002158
+airport-03,Lo,NAM,INTERNATIONAL,<marquee>Hacked</marquee>, Sb,http://a.bm,a@b.esx,null
 airport-04,Lorem ipsum dolor sit amet. consectetur adipiscin,ESP,DOMESTIC,洛伦·伊普森, Sed do: eiusmod tempor incididunt ut labore et do,http://example.org?a=1&b=2,null,null
 airport-05,Lorem ipsum dolor sit amet. consectetur adipiscing,SVQ,DOMESTIC,وريم إيبسو, Sed do: eiusmod tempor incididunt ut labore et d,http://example.org?a,null,null
 airport-06,โลเร็ม อิปซัม,TRY,REGIONAL,โลเร็ม อิปซัม,' or 'A' = 'A,http://www.lorem-ipsum.org/dolor/sit/amet/consectetur/adipiscing/elitdoloreexercitation/ullamco/laboris/nisi/ut/aliquip/ex/ea/commodo/consequat/duis/aute/X,null,null
