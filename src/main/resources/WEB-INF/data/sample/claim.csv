@@ -1,0 +1,11 @@
+key,registrationMoment,passengerEmail,description,type,draftMode,key:assistanceAgent,key:leg
+claim-01,2024/04/16 00:00,acme@lorem-ipsum.org,Vuelo cancelado sin previo aviso,FLIGHT_ISSUES,true,agent-01,leg-03
+claim-02,2024/07/12 00:00,john.doe@example.com,Equipaje perdido en destino final,LUGGAGE_ISSUES,false,agent-02,leg-02
+claim-03,2024/09/23 00:00,sarah.connor@future.net,Problème de sécurité à l'embarquement,SECURITY_INCIDENT,true,agent-01,leg-03
+claim-04,2024/11/05 00:00,maria.garcia@correo.com,遅延についての苦情,LUGGAGE_ISSUES,true,agent-02,leg-04
+claim-05,2024/02/18 00:00,li.wei@china.cn,"Excellent service, thank you!",OTHER_ISSUES,false,agent-01,leg-02
+claim-06,2024/05/22 00:00,abdul.karim@arabia.com,خطأ في معلومات تسجيل الوصول,FLIGHT_ISSUES,true,agent-02,leg-03
+claim-07,2024/08/30 00:00,sofia.lopez@es.com,Incorrect gate information,FLIGHT_ISSUES,false,agent-01,leg-07
+claim-08,2024/10/11 00:00,kevin.brown@uk.co,Problema con el asiento asignado,OTHER_ISSUES,true,agent-02,leg-08
+claim-09,2024/12/25 00:00,hiro.tanaka@jp.co,Online check-in failed (エラー),FLIGHT_ISSUES,false,agent-01,leg-06
+claim-10,2024/03/03 00:00,amelie.dupon@fr.fr,Bagage retardé à l'arrivée,LUGGAGE_ISSUES,true,agent-02,leg-06
