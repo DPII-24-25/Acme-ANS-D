@@ -67,7 +67,7 @@ public class AssistanceAgentClaimCreateService extends AbstractGuiService<Assist
 		if (object.getLeg() != null) {
 			boolean correctlyLeg = legs.stream().anyMatch(x -> x.getId() == object.getLeg().getId());
 			if (!correctlyLeg)
-				throw new IllegalStateException("It is not possible to create a claim with this leg.");
+				throw new IllegalStateException("It is not possible to assign this leg to the claim.");
 		}
 	}
 
