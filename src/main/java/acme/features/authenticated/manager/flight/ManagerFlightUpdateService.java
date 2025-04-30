@@ -24,18 +24,16 @@ public class ManagerFlightUpdateService extends AbstractGuiService<Manager, Flig
 	@Override
 	public void authorise() {
 		int masterId;
-		boolean status;
 		boolean isOwner;
 		boolean editable;
 		Flight flight;
 
 		masterId = super.getRequest().getData("id", int.class);
 		flight = this.repository.findFlightId(masterId);
-		status = super.getRequest().getPrincipal().hasRealmOfType(Manager.class);
 		isOwner = super.getRequest().getPrincipal().getActiveRealm().getId() == flight.getAirline().getManager().getId();
 		editable = flight.isDraft();
 
-		super.getResponse().setAuthorised(status && isOwner && editable);
+		super.getResponse().setAuthorised(isOwner && editable);
 	}
 
 	@Override
@@ -68,7 +66,11 @@ public class ManagerFlightUpdateService extends AbstractGuiService<Manager, Flig
 
 	@Override
 	public void validate(final Flight flight) {
-		;
+		if (flight.getAirline() != null) {
+			Airline airline = flight.getAirline();
+			Manager airManager = airline.getManager();
+			super.state(super.getRequest().getPrincipal().getActiveRealm().getId() == airManager.getId(), "airline", "flight.form.validation.airline.owner");
+		}
 
 	}
 

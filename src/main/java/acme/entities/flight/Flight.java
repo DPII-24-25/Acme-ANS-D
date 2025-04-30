@@ -49,7 +49,7 @@ public class Flight extends AbstractEntity {
 
 	@Automapped
 	@Optional
-	@ValidString
+	@ValidString(max = 255)
 	private String				description;
 
 	//	Legs attributes derivative
@@ -115,6 +115,12 @@ public class Flight extends AbstractEntity {
 		wraper = repository.getLayovers(this.getId()).orNull();
 
 		return wraper;
+	}
+
+	@Transient
+	public String getLabel() {
+		return String
+			.valueOf(this.getAirline().getIataCode() + this.getDepartureCity() != null ? this.getDepartureCity() : "" + this.getArrivalCity() != null ? this.getArrivalCity() : "" + this.getScheduleArrivals() != null ? this.getScheduleDeparture() : "");
 	}
 
 

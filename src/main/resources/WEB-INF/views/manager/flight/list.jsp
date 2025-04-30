@@ -16,9 +16,13 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:list>
-	<acme:list-column code="manager.flight.list.label.airline" path="airline.iataCode" width="30%"/>
+	<acme:list-column code="manager.flight.list.label.airline" path="airline.iataCode" width="20%"/>
 	<acme:list-column code="manager.flight.list.label.tag" path="tag" width="50%"/>
 	<acme:list-column code="manager.flight.list.label.cost" path="cost" width="20%"/>
 	<acme:list-column code="manager.flight.list.label.scheduleArrival" path="scheduleArrival"/>>
+	<acme:list-column code="manager.leg.list.label.label" path="label" width="10%"/>
 	<acme:list-payload path="payload"/>
 </acme:list>
+
+<acme:button code="flight.form.label.button.create"
+				action="/manager/flight/create" />

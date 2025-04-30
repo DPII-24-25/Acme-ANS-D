@@ -83,13 +83,13 @@ public class ManagerLegShowService extends AbstractGuiService<Manager, Leg> {
 
 		dataset.put("statusOptions", statusChoices);
 		dataset.put("flightOptions", flightsChoices);
-		dataset.put("flightSelected", flightsChoices.getSelected().getKey());
+		dataset.put("flight", flightsChoices.getSelected().getKey());
 		dataset.put("aircraftOptions", aircraftChoices);
-		dataset.put("aircraftSelected", aircraftChoices.getSelected().getKey());
+		dataset.put("aircraft", aircraftChoices.getSelected().getKey());
 		dataset.put("departureAirports", airportDepartureChoices);
-		dataset.put("departureAirportSelected", airportDepartureChoices.getSelected().getKey());
+		dataset.put("departureAirport", airportDepartureChoices.getSelected().getKey());
 		dataset.put("arrivalAirports", airportArrivalsChoices);
-		dataset.put("arrivalAirportSelected", airportArrivalsChoices.getSelected().getKey());
+		dataset.put("arrivalAirport", airportArrivalsChoices.getSelected().getKey());
 
 		super.getResponse().addData(dataset);
 	}

@@ -56,11 +56,11 @@ public class ManagerLegUpdateService extends AbstractGuiService<Manager, Leg> {
 	public void bind(final Leg leg) {
 
 		super.bindObject(leg, "status", "flightNumber", "scheduleDeparture", "scheduleArrival");
-		leg.setAircraft(this.repository.findAircraftById(super.getRequest().getData("aircraftSelected", int.class)));
-		leg.setArrivalAirport(this.repository.findAirportById(super.getRequest().getData("arrivalAirportSelected", int.class)));
-		leg.setDepartureAirport(this.repository.findAirportById(super.getRequest().getData("departureAirportSelected", int.class)));
+		leg.setAircraft(this.repository.findAircraftById(super.getRequest().getData("aircraft", int.class)));
+		leg.setArrivalAirport(this.repository.findAirportById(super.getRequest().getData("arrivalAirport", int.class)));
+		leg.setDepartureAirport(this.repository.findAirportById(super.getRequest().getData("departureAirport", int.class)));
 
-		leg.setFlight(this.flightRepository.findFlightId(super.getRequest().getData("flightSelected", int.class)));
+		leg.setFlight(this.flightRepository.findFlightId(super.getRequest().getData("flight", int.class)));
 	}
 
 	@Override
@@ -102,13 +102,13 @@ public class ManagerLegUpdateService extends AbstractGuiService<Manager, Leg> {
 
 		dataset.put("statusOptions", statusChoices);
 		dataset.put("flightOptions", flightsChoices);
-		dataset.put("flightSelected", flightsChoices.getSelected().getKey());
+		dataset.put("flight", flightsChoices.getSelected().getKey());
 		dataset.put("aircraftOptions", aircraftChoices);
-		dataset.put("aircraftSelected", aircraftChoices.getSelected().getKey());
+		dataset.put("aircraft", aircraftChoices.getSelected().getKey());
 		dataset.put("departureAirports", airportDepartureChoices);
-		dataset.put("departureAirportSelected", airportDepartureChoices.getSelected().getKey());
+		dataset.put("departureAirport", airportDepartureChoices.getSelected().getKey());
 		dataset.put("arrivalAirports", airportArrivalsChoices);
-		dataset.put("arrivalAirportSelected", airportArrivalsChoices.getSelected().getKey());
+		dataset.put("arrivalAirport", airportArrivalsChoices.getSelected().getKey());
 
 		super.getResponse().addData(dataset);
 	}

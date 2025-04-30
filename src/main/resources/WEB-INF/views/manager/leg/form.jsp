@@ -10,10 +10,10 @@
     
     <acme:input-select code="leg.form.label.status" path="status" choices="${statusOptions}"/>
     
-    <acme:input-select code="leg.form.label.flight" path="flightSelected" choices="${flightOptions}"/>
-    <acme:input-select code="leg.form.label.departureAirport" path="departureAirportSelected" choices="${departureAirports}"/>
-    <acme:input-select code="leg.form.label.arrivalAirport" path="arrivalAirportSelected" choices="${arrivalAirports}"/>
-    <acme:input-select code="leg.form.label.aircraft" path="aircraftSelected" choices="${aircraftOptions}"/>
+    <acme:input-select code="leg.form.label.flight" path="flight" choices="${flightOptions}"/>
+    <acme:input-select code="leg.form.label.departureAirport" path="departureAirport" choices="${departureAirports}"/>
+    <acme:input-select code="leg.form.label.arrivalAirport" path="arrivalAirport" choices="${arrivalAirports}"/>
+    <acme:input-select code="leg.form.label.aircraft" path="aircraft" choices="${aircraftOptions}"/>
     
     <acme:input-checkbox code="leg.form.label.draftMode" path="draft" readonly="true"/>
     

@@ -23,7 +23,7 @@ public class ManagerFlightController extends AbstractGuiController<Manager, Flig
 	private ManagerFlightCreateService	createService;
 
 	@Autowired
-	private ManagerFlightCreateService	updateService;
+	private ManagerFlightUpdateService	updateService;
 
 	@Autowired
 	private ManagerFlightPublishService	publishService;
