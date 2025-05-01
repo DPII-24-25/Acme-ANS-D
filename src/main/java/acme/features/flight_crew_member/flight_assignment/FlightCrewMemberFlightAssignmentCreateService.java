@@ -80,7 +80,11 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 		// Validar que el member no tenga asignado otro leg con las mimas horas.
 		// Verificar que los leg sean solo los que se permiten.
 		// Verificar que el member este en AVAILABLE.
-		// 
+		//
+
+		FlightCrewAvailability status = object.getFlightCrewMember().getAvailabilityStatus();
+		super.state(status == FlightCrewAvailability.AVAILABLE, "*", "flight-assignment.error.member-not-available");
+
 		assert object != null;
 	}
 
