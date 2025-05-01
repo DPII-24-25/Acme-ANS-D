@@ -13,3 +13,5 @@ flight-11,CustomTag 11,false,EUR 65445.00,Flight details,airline-01
 flight-12,CustomTag 12,true,EUR 510.00,"' OR '1'='1--",airline-01
 flight-13,CustomTag 13,true,EUR 3442.42,<blink>Compromised</blink>,airline-01
 flight-14,CustomTag 14,true,EUR 342.34,<script>alert('Warning');</script>,airline-01
+flight-15,CustomTag 14,true,EUR 342.34,<script>alert('Warning');</script>,airline-02
+flight-16,CustomTag 14,true,EUR 342.34,<script>alert('Warning');</script>,airline-02
