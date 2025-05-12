@@ -19,3 +19,4 @@ acme.validation.flight.legs.empty = It is not possible to have a flight without 
 acme.validation.airline.nameLength.message = Name must not exceed 50 characters
 acme.validation.airline.momentIsInPast.message = Foundation moment can't be placed in the future
 acme.validation.airline.uniqueIataCode.message = IATA code must be unique
+acme.validation.flight.currency = The currency is not supported

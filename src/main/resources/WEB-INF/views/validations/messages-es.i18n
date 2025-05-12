@@ -19,3 +19,4 @@ acme.validation.flight.legs.empty = No es posible que un vuelo no tenga ningún 
 acme.validation.airline.nameLength.message = Nombre no debe exceder los 50 characteres
 acme.validation.airline.momentIsInPast.message = El momento de fundación no puede ser en el futuro
 acme.validation.airline.uniqueIataCode.message = Código IATA debe ser único
+acme.validation.flight.currency = Esta moneda no esta soportada
