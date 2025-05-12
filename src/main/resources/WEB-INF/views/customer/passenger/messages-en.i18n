@@ -10,3 +10,4 @@ customer.passenger.form.title = Passengers
 customer.passenger.form.button.update = Update
 customer.passenger.form.button.publish = Publish
 customer.passenger.form.button.create = Create
+customer.passenger.form.button.delete = Delete

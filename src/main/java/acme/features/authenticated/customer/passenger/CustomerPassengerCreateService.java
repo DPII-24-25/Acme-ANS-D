@@ -25,21 +25,31 @@ public class CustomerPassengerCreateService extends AbstractGuiService<Customer,
 
 	@Override
 	public void load() {
-		int masterId = this.getRequest().getData("masterId", int.class);
-		Passenger obj;
-		Booking booking;
+		final Integer masterId = super.getRequest().getData("masterId", Integer.class);
 
-		booking = this.repository.findBookingById(masterId);
-		obj = new Passenger();
+		if (masterId == null) {
+			super.getResponse().setAuthorised(false);
+			return;
+		}
+
+		Passenger obj = new Passenger();
+		Booking booking = this.repository.findBookingById(masterId.intValue());
+
 		obj.setDraftMode(true);
 		obj.setBooking(booking);
-		super.getBuffer().addData(obj);
 
+		super.getBuffer().addData(obj);
 	}
 
 	@Override
 	public void bind(final Passenger passenger) {
 		super.bindObject(passenger, "fullName", "email", "passportNumber", "dateBirth", "specialNeeds", "draftMode");
+		Integer masterId = super.getRequest().getData("masterId", Integer.class);
+		if (masterId != null) {
+			Booking booking = this.repository.findBookingById(masterId);
+			passenger.setBooking(booking);
+		}
+
 	}
 
 	@Override
@@ -53,8 +63,9 @@ public class CustomerPassengerCreateService extends AbstractGuiService<Customer,
 	@Override
 	public void unbind(final Passenger passenger) {
 		Dataset dataset;
-		dataset = super.unbindObject(passenger, "fullName", "email", "passportNumber", "dateBirth", "specialNeeds", "draftMode");
-		dataset.put("masterId", super.getRequest().getData("masterId", int.class));
+		dataset = super.unbindObject(passenger, "booking", "fullName", "email", "passportNumber", "dateBirth", "specialNeeds", "draftMode");
+		Integer masterId = super.getRequest().getData("masterId", Integer.class);
+		dataset.put("masterId", masterId);
 		super.getResponse().addData(dataset);
 	}
 

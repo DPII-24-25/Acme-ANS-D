@@ -21,3 +21,4 @@ customer.booking.form.error.flight-required = Tienes que hacer una reserva con u
 customer.passenger.form.title = Pasajeros
 customer.passenger.form.button.update = Actualizar
 customer.passenger.form.button.publish = Publicar
+customer.booking.form.error.noPassengers = No se puede publicar ya que no tiene pasajeros asociados

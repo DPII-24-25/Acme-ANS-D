@@ -83,6 +83,7 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 			boolean startsWithInitials = identifier.startsWith(initials);
 			super.state(startsWithInitials, "identifier", "customer.booking.form.error.mismatched-initials");
 		}
+
 	}
 
 	@Override

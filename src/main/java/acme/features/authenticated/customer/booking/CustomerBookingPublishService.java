@@ -12,15 +12,19 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.customers.Booking;
 import acme.entities.customers.BookingRepository;
+import acme.entities.customers.Passenger;
 import acme.entities.customers.TravelClass;
 import acme.entities.flight.Flight;
+import acme.features.authenticated.customer.passenger.PassengerRepository;
 import acme.realms.Customer;
 
 @GuiService
 public class CustomerBookingPublishService extends AbstractGuiService<Customer, Booking> {
 
 	@Autowired
-	private BookingRepository repository;
+	private BookingRepository	repository;
+	@Autowired
+	private PassengerRepository	passengerRepo;
 
 
 	@Override
@@ -76,12 +80,23 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 	@Override
 	public void perform(final Booking booking) {
 		booking.setDraftMode(false);
+		this.repository.findAllPassengerByBookingId(booking.getId()).stream().forEach(x -> {
+			x.setDraftMode(false);
+			this.passengerRepo.save(x);
+		});
 		this.repository.save(booking);
 	}
 
 	@Override
 	public void validate(final Booking booking) {
-		;
+		if (!super.getBuffer().getErrors().hasErrors("creditCard")) {
+			String card = booking.getCreditCard();
+			super.state(!card.isBlank(), "creditCard", "javax.validation.constraints.NotNull.message");
+		}
+		Collection<Passenger> allPassenger = this.passengerRepo.findPassengersByBookingId(booking.getId());
+		System.out.println(allPassenger);
+		if (allPassenger.isEmpty())
+			super.state(false, "*", "customer.booking.form.error.noPassengers");
 	}
 	@Override
 	public void unbind(final Booking booking) {

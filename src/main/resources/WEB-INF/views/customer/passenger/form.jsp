@@ -16,6 +16,7 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form>
+	<acme:hidden-data path="masterId" value="${masterId}"/>	
 	<acme:input-textbox code="customer.passenger.list.label.fullName" path="fullName"/>
 	<acme:input-moment code="customer.passenger.list.label.dateBirth" path="dateBirth"/>
 	<acme:input-textbox code="customer.passenger.list.label.specialNeeds" path="specialNeeds"/>	
@@ -27,11 +28,12 @@
 	
 
 	<jstl:choose>	 
-		<jstl:when test="${acme:anyOf(_command, 'show|update|publish') && draftMode == true}">
+		<jstl:when test="${acme:anyOf(_command, 'show|update|publish|delete') && draftMode == true}">
 			<acme:input-textbox code="customer.passenger.form.label.booking" path="booking" readonly="true"/>
 	
 			<acme:submit code="customer.passenger.form.button.update" action="/customer/passenger/update"/>
 			<acme:submit code="customer.passenger.form.button.publish" action="/customer/passenger/publish"/>
+			<acme:submit code="customer.passenger.form.button.delete" action="/customer/passenger/delete"/>
 		</jstl:when>
 		<jstl:when test="${_command == 'create'}">
 			

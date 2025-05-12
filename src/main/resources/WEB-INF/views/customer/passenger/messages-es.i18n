@@ -7,3 +7,4 @@ customer.passenger.list.label.email = Email
 customer.passenger.form.label.booking= Codigo de la Reserva
 customer.passsenger.form.label.draftMode = esBorrador
 customer.passenger.form.button.create = Crear
+customer.passenger.form.button.delete = Borrar

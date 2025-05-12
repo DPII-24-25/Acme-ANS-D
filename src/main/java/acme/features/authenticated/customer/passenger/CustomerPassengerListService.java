@@ -26,12 +26,18 @@ public class CustomerPassengerListService extends AbstractGuiService<Customer, P
 		super.getResponse().setAuthorised(true);
 	}
 
+
+	private int masterId;
+
+
 	@Override
 	public void load() {
 		Collection<Passenger> passengers;
-		int masterId;
-		masterId = super.getRequest().getData("masterId", int.class);
-		passengers = this.repository.findPassengersByBookingId(masterId);
+		this.masterId = super.getRequest().getData("masterId", int.class);
+		passengers = this.repository.findPassengersByBookingId(this.masterId);
+
+		// Añadir el masterId como variable global para la vista JSP
+		super.getResponse().addGlobal("masterId", this.masterId);
 
 		super.getBuffer().addData(passengers);
 	}
@@ -42,7 +48,6 @@ public class CustomerPassengerListService extends AbstractGuiService<Customer, P
 
 		dataset = super.unbindObject(passenger, "fullName", "dateBirth", "specialNeeds", "passportNumber", "email");
 
-		super.getResponse().addGlobal("masterId", passenger.getBooking().getId());
 		super.getResponse().addData(dataset);
 	}
 

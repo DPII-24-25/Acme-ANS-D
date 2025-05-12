@@ -18,7 +18,6 @@ import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidString;
-import acme.constraints.ValidDigitsCreditCard;
 import acme.entities.flight.Flight;
 import acme.realms.Customer;
 import lombok.Getter;
@@ -56,7 +55,7 @@ public class Booking extends AbstractEntity {
 
 	@Automapped
 	@Optional
-	@ValidDigitsCreditCard
+	@ValidString(min = 4, max = 4, pattern = "^[0-9]+$")
 	private String				creditCard;
 
 	@Automapped
