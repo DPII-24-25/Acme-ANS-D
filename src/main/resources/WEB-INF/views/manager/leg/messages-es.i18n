@@ -32,3 +32,5 @@ leg.form.label.button.delete=Eliminar
 leg.form.label.button.publish=Publicar
 
 leg.form.validation.update.incompatible = Leg incompatible con el fligth que se quiere asignar
+leg.form.validation.update.iataCodeCorrect = Iata code incompatible con la aerolinea
+leg.form.validation.update.fligthNull = Necesitas asignar un vuelo a tu tramo

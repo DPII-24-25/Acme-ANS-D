@@ -55,12 +55,11 @@ public class ManagerLegUpdateService extends AbstractGuiService<Manager, Leg> {
 	@Override
 	public void bind(final Leg leg) {
 
-		super.bindObject(leg, "status", "flightNumber", "scheduleDeparture", "scheduleArrival");
-		leg.setAircraft(this.repository.findAircraftById(super.getRequest().getData("aircraft", int.class)));
-		leg.setArrivalAirport(this.repository.findAirportById(super.getRequest().getData("arrivalAirport", int.class)));
-		leg.setDepartureAirport(this.repository.findAirportById(super.getRequest().getData("departureAirport", int.class)));
-
-		leg.setFlight(this.flightRepository.findFlightId(super.getRequest().getData("flight", int.class)));
+		super.bindObject(leg, "status", "flightNumber", "scheduleDeparture", "scheduleArrival", "aircraft", "arrivalAirport", "departureAirport");
+		//		leg.setAircraft(this.repository.findAircraftById(super.getRequest().getData("aircraft", int.class)));
+		//		leg.setArrivalAirport(this.repository.findAirportById(super.getRequest().getData("arrivalAirport", int.class)));
+		//		leg.setDepartureAirport(this.repository.findAirportById(super.getRequest().getData("departureAirport", int.class)));
+		//		leg.setFlight(this.flightRepository.findFlightId(super.getRequest().getData("flight", int.class)));
 	}
 
 	@Override
@@ -70,7 +69,6 @@ public class ManagerLegUpdateService extends AbstractGuiService<Manager, Leg> {
 
 	@Override
 	public void validate(final Leg leg) {
-
 	}
 
 	@Override
@@ -98,7 +96,7 @@ public class ManagerLegUpdateService extends AbstractGuiService<Manager, Leg> {
 		airportDepartureChoices = SelectChoices.from(airports, "iataCode", leg.getDepartureAirport());
 		aircraftChoices = SelectChoices.from(aircrafts, "registrationNumber", leg.getAircraft());
 
-		dataset = super.unbindObject(leg, "flightNumber", "scheduleDeparture", "scheduleArrival", "status", "draftMode");
+		dataset = super.unbindObject(leg, "flightNumber", "scheduleDeparture", "scheduleArrival", "status", "draftMode", "flight");
 
 		dataset.put("statusOptions", statusChoices);
 		dataset.put("flightOptions", flightsChoices);

@@ -32,3 +32,4 @@ leg.form.label.button.publish=Publish
 
 leg.form.validation.update.incompatible = Leg incompatible with the flight
 leg.form.validation.update.iataCodeCorrect = Iata code incompatible with the airline
+leg.form.validation.update.fligthNull = Flight necessary to assigned your leg
