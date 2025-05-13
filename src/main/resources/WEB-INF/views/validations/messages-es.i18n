@@ -20,3 +20,4 @@ acme.validation.airline.nameLength.message = Nombre no debe exceder los 50 chara
 acme.validation.airline.momentIsInPast.message = El momento de fundación no puede ser en el futuro
 acme.validation.airline.uniqueIataCode.message = Código IATA debe ser único
 acme.validation.flight.currency = Esta moneda no esta soportada
+acme.validation.leg.flightNumber.unique.message = El código insertado ya se ha asignado a otro tramo
