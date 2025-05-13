@@ -15,14 +15,11 @@
     <acme:input-select code="leg.form.label.arrivalAirport" path="arrivalAirport" choices="${arrivalAirports}"/>
     <acme:input-select code="leg.form.label.aircraft" path="aircraft" choices="${aircraftOptions}"/>
     
-    <acme:input-checkbox code="leg.form.label.draftMode" path="draft" readonly="true"/>
+    <acme:input-checkbox code="leg.form.label.draftMode" path="draftMode" readonly="true"/>
     
-     <acme:submit code="leg.form.label.button.update" action="/manager/leg/update"/>
-            <acme:submit code="leg.form.label.button.delete" action="/manager/leg/delete"/>
-            <acme:submit code="leg.form.label.button.publish" action="/manager/leg/publish"/>
 
     <jstl:choose>
-        <jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draft == true}">
+        <jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true}">
             <acme:submit code="leg.form.label.button.update" action="/manager/leg/update"/>
             <acme:submit code="leg.form.label.button.delete" action="/manager/leg/delete"/>
             <acme:submit code="leg.form.label.button.publish" action="/manager/leg/publish"/>

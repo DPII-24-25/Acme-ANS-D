@@ -13,6 +13,7 @@ manager.leg.list.label.scheduleDeparture=Departure Schedule
 manager.leg.list.label.scheduleArrival=Arrival Schedule
 manager.leg.list.label.status=Status
 manager.leg.form.title=Leg
+manager.leg.list.title = Legs of this flight
 
 leg.form.label.flightNumber=Flight Number
 leg.form.label.scheduleDeparture=Departure Time
@@ -33,3 +34,4 @@ leg.form.label.button.publish=Publish
 leg.form.validation.update.incompatible = Leg incompatible with the flight
 leg.form.validation.update.iataCodeCorrect = Iata code incompatible with the airline
 leg.form.validation.update.fligthNull = Flight necessary to assigned your leg
+leg.form.validation.any.date = Leg date should be after current moment

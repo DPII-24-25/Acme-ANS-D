@@ -14,16 +14,19 @@ import acme.realms.Manager;
 public class ManagerLegController extends AbstractGuiController<Manager, Leg> {
 
 	@Autowired
-	private ManagerLegListService	listService;
+	private ManagerLegListService		listService;
 
 	@Autowired
-	private ManagerLegShowService	showService;
+	private ManagerLegShowService		showService;
 
 	@Autowired
-	private ManagerLegUpdateService	updateService;
+	private ManagerLegUpdateService		updateService;
 
 	@Autowired
-	private ManagerLegCreateService	createService;
+	private ManagerLegCreateService		createService;
+
+	@Autowired
+	private ManagerLegPublishService	publishService;
 
 
 	@PostConstruct
@@ -32,6 +35,7 @@ public class ManagerLegController extends AbstractGuiController<Manager, Leg> {
 		super.addBasicCommand("create", this.createService);
 		super.addBasicCommand("show", this.showService);
 		super.addBasicCommand("update", this.updateService);
+		super.addCustomCommand("publish", "update", this.publishService);
 	}
 
 }
