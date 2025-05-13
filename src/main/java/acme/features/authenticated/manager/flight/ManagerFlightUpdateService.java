@@ -23,24 +23,43 @@ public class ManagerFlightUpdateService extends AbstractGuiService<Manager, Flig
 
 	@Override
 	public void authorise() {
+		boolean status;
 		int masterId;
-		int airlineId;
-		boolean isOwner = true;
-		boolean editable;
-		Airline airline;
 		Flight flight;
 
-		if (this.getRequest().getData().containsKey("airline")) {
-			airlineId = this.getRequest().getData("airline", int.class);
-			airline = this.repository.findAirlineById(airlineId);
-			isOwner = super.getRequest().getPrincipal().getActiveRealm().getId() == airline.getManager().getId();
-		}
 		masterId = super.getRequest().getData("id", int.class);
 		flight = this.repository.findFlightId(masterId);
-		editable = flight.isDraft();
+		status = flight != null && flight.isDraft();
 
-		super.getResponse().setAuthorised(isOwner && editable);
+		if (status) {
 
+			Airline airline = flight.getAirline();
+			Manager manager = airline != null ? airline.getManager() : null;
+			status = manager != null && super.getRequest().getPrincipal().getActiveRealm().getId() == manager.getId();
+
+			if (status) {
+				String method;
+				int airlineId;
+				Airline requestedAirline;
+
+				method = super.getRequest().getMethod();
+
+				if (method.equals("GET"))
+					status = true;
+				else {
+					status = false;
+
+					if (super.getRequest().getData().containsKey("airline")) {
+						airlineId = super.getRequest().getData("airline", int.class);
+						requestedAirline = this.repository.findAirlineById(airlineId);
+
+						status = requestedAirline != null && requestedAirline.getManager().getId() == manager.getId();
+					}
+				}
+			}
+		}
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override

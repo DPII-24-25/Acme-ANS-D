@@ -23,19 +23,38 @@ public class ManagerFlightPublishService extends AbstractGuiService<Manager, Fli
 
 	@Override
 	public void authorise() {
-		int masterId;
 		boolean status;
-		boolean isOwner;
-		boolean editable;
+		int masterId;
 		Flight flight;
 
 		masterId = super.getRequest().getData("id", int.class);
 		flight = this.repository.findFlightId(masterId);
-		status = super.getRequest().getPrincipal().hasRealmOfType(Manager.class);
-		isOwner = super.getRequest().getPrincipal().getActiveRealm().getId() == flight.getAirline().getManager().getId();
-		editable = flight.isDraft();
+		status = flight != null && flight.isDraft();
 
-		super.getResponse().setAuthorised(status && isOwner && editable);
+		if (status) {
+			Airline airline = flight.getAirline();
+			Manager manager = airline != null ? airline.getManager() : null;
+			status = manager != null && super.getRequest().getPrincipal().getActiveRealm().getId() == manager.getId();
+
+			if (status) {
+				String method;
+				int airlineId;
+				Airline requestedAirline;
+
+				method = super.getRequest().getMethod();
+
+				if (method.equals("GET"))
+					status = true;
+				else if (super.getRequest().getData().containsKey("airline")) {
+					airlineId = super.getRequest().getData("airline", int.class);
+					requestedAirline = this.repository.findAirlineById(airlineId);
+
+					status = requestedAirline != null && requestedAirline.getManager().getId() == manager.getId();
+				}
+			}
+		}
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
