@@ -76,7 +76,8 @@ public class Claim extends AbstractEntity {
 	public TypeStatus getIndicator() {
 		ClaimRepository repository = SpringHelper.getBean(ClaimRepository.class);
 		Collection<TypeStatus> statusTL = repository.findTrackingLogStatusByClaimId(this.getId());
-
+		// ESTO SE DEBERA MODIFICAR EN CASO SE PERMITA QUE LOS TL DE 100 PUEDAN TENER DIFERENTE ESTATUS
+		// PUEDO COGER EN CASO SOLO EXISTA UN VALOR DE 100 COJO SU STATUS Y SI HAY MAS COGO EL QUE TENGA LA FECHA MAS RECIENTE
 		if (statusTL.contains(TypeStatus.ACCEPTED))
 			return TypeStatus.ACCEPTED;
 		if (statusTL.contains(TypeStatus.REJECTED))

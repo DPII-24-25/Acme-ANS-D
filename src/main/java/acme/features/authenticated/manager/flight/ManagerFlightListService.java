@@ -10,7 +10,7 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.authenticated.manager;
+package acme.features.authenticated.manager.flight;
 
 import java.util.Collection;
 import java.util.Date;
@@ -61,6 +61,7 @@ public class ManagerFlightListService extends AbstractGuiService<Manager, Flight
 		duration = flight.getScheduleArrivals();
 		dataset = super.unbindObject(flight, "tag", "selfTransfer", "description", "airline.iataCode", "cost", "draft");
 		dataset.put("scheduleArrival", duration);
+		dataset.put("label", flight.getLabel().toString());
 
 		super.getResponse().addData(dataset);
 	}

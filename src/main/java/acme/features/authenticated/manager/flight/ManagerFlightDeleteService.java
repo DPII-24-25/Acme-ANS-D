@@ -1,5 +1,5 @@
 
-package acme.features.authenticated.manager;
+package acme.features.authenticated.manager.flight;
 
 import java.util.Collection;
 import java.util.Date;
@@ -12,38 +12,47 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.airline.Airline;
 import acme.entities.flight.Flight;
+import acme.entities.flight.Leg;
+import acme.features.authenticated.manager.leg.ManagerLegRepository;
 import acme.realms.Manager;
 
 @GuiService
-public class ManagerFlightPublishService extends AbstractGuiService<Manager, Flight> {
+public class ManagerFlightDeleteService extends AbstractGuiService<Manager, Flight> {
 
 	@Autowired
-	private ManagerFlightRepository repository;
+	private ManagerFlightRepository	flightRepository;
+
+	@Autowired
+	private ManagerLegRepository	legRepository;
 
 
 	@Override
 	public void authorise() {
-		int masterId;
 		boolean status;
-		boolean isOwner;
-		boolean editable;
+		int masterId;
 		Flight flight;
+		Airline airline;
+		Manager manager;
 
 		masterId = super.getRequest().getData("id", int.class);
-		flight = this.repository.findFlightId(masterId);
-		status = super.getRequest().getPrincipal().hasRealmOfType(Manager.class);
-		isOwner = super.getRequest().getPrincipal().getActiveRealm().getId() == flight.getAirline().getManager().getId();
-		editable = flight.isDraft();
+		flight = this.flightRepository.findFlightId(masterId);
+		status = flight != null;
 
-		super.getResponse().setAuthorised(status && isOwner && editable);
+		if (status) {
+			airline = flight.getAirline();
+			manager = airline != null ? airline.getManager() : null;
+			status = manager != null && super.getRequest().getPrincipal().getActiveRealm().getId() == manager.getId() && flight.isDraft();
+
+		}
+
+		super.getResponse().setAuthorised(status);
 	}
-
 	@Override
 	public void load() {
 		Flight flight;
 		int masterId = this.getRequest().getData("id", int.class);
 
-		flight = this.repository.findFlightId(masterId);
+		flight = this.flightRepository.findFlightId(masterId);
 
 		super.getBuffer().addData(flight);
 	}
@@ -54,29 +63,32 @@ public class ManagerFlightPublishService extends AbstractGuiService<Manager, Fli
 		Airline airline;
 
 		airlineId = super.getRequest().getData("airline", int.class);
-		airline = this.repository.findAirlineById(airlineId);
+		airline = this.flightRepository.findAirlineById(airlineId);
 
-		super.bindObject(flight, "tag", "selfTransfer", "description", "cost", "draft");
+		super.bindObject(flight, "tag", "selfTransfer", "description", "cost");
 		flight.setAirline(airline);
 
 	}
 
 	@Override
 	public void perform(final Flight flight) {
-		flight.setDraft(false);
-		this.repository.save(flight);
+		Collection<Leg> allMyLegs;
+		allMyLegs = this.legRepository.findAllLegsByFlightId(flight.getId());
+		//		allMyLegs.stream().forEach(x -> {
+		//			Collection<ActivityLog> allMyActivityLogs = this.legRepository.findAllActivityLogsByLegId(x.getId());
+		//			Collection<FlightAssignment> allMyFlightAssigment = this.legRepository.findAllFlightAssignmentByLegId(x.getId());
+		//			this.legRepository.deleteAll(allMyActivityLogs);
+		//			this.legRepository.deleteAll(allMyFlightAssigment);
+		//		});
+		//
+		this.legRepository.deleteAll(allMyLegs);
+		this.flightRepository.delete(flight);
 	}
 
 	@Override
 	public void validate(final Flight flight) {
-		boolean oneLeg;
-		boolean allLegsPublished;
+		;
 
-		oneLeg = this.repository.findNumberLegsByFlightId(flight.getId()) >= 1 ? true : false;
-		allLegsPublished = this.repository.findAllLegsByFLightId(flight.getId()).stream().allMatch(x -> x.isDraftMode() == false);
-
-		super.state(!allLegsPublished, "*", "flight.form.validation.legs");
-		super.state(!oneLeg, "*", "flight.form.validation.oneLeg");
 	}
 
 	@Override
@@ -92,7 +104,7 @@ public class ManagerFlightPublishService extends AbstractGuiService<Manager, Fli
 		String departureCity;
 
 		manager = (Manager) super.getRequest().getPrincipal().getActiveRealm();
-		airlines = this.repository.findAirlinesByManager(manager.getId());
+		airlines = this.flightRepository.findAirlinesByManager(manager.getId());
 
 		choices = SelectChoices.from(airlines, "iataCode", flight.getAirline());
 		scheduleArrival = flight.getScheduleArrivals();

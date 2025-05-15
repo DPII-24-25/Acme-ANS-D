@@ -1,5 +1,5 @@
 
-package acme.features.authenticated.manager;
+package acme.features.authenticated.manager.flight;
 
 import javax.annotation.PostConstruct;
 
@@ -23,7 +23,7 @@ public class ManagerFlightController extends AbstractGuiController<Manager, Flig
 	private ManagerFlightCreateService	createService;
 
 	@Autowired
-	private ManagerFlightCreateService	updateService;
+	private ManagerFlightUpdateService	updateService;
 
 	@Autowired
 	private ManagerFlightPublishService	publishService;

@@ -1,30 +1,41 @@
-# messages-es.i18n
-#
-# Copyright (C) 2012-2025 Rafael Corchuelo.
-#
-# In keeping with the traditional purpose of furthering education and research, it is
-# the policy of the copyright owner to permit non-commercial use and redistribution of
-# this software. It has been tested carefully, but it is not guaranteed for any particular
-# purposes.  The copyright owner does not offer any warranties or representations, nor do
-# they accept any liabilities with respect to them.
-
-manager.flight.list.label.airline = Aerolinea	
+# Flight List
+manager.flight.list.label.airline = Aerolínea
 manager.flight.list.label.tag = Etiqueta
-manager.flight.list.label.cost= Coste
+manager.flight.list.label.cost = Costo
 manager.flight.list.title = Vuelos
-manager.flight.list.label.scheduleArrival = Fecha de llegada estimada
+manager.flight.list.label.scheduleArrival = Fecha de Llegada
+manager.flight.list.label.scheduleDeparture = Fecha de Salida
+manager.flight.list.label.arrivalCity = Ciudad de Llegada
+manager.flight.list.label.departureCity = Ciudad de Salida
+manager.flight.list.label.draftMode = Estado
 
-manager.flight.form.title = Detalles del vuelo
+# Flight Form
+manager.flight.form.title = Detalles del Vuelo
 flight.form.label.tag = Etiqueta
-flight.form.label.selfTransfer = Auto Transferencia
+flight.form.label.selfTransfer = Autotransferencia
 flight.form.label.description = Descripción
 flight.form.label.airline = Aerolínea
 flight.form.label.cost = Costo
-flight.form.label.draftMode = Modo borrador
-flight.form.label.scheduleArrival = Fecha programada de llegada
-flight.form.label.scheduleDeparture = Fecha programada de salida
-flight.form.label.arrivalCity = Ciudad de llegada
-flight.form.label.departureCity = Ciudad de salida
+flight.form.label.draftMode = Modo Borrador
+flight.form.label.scheduleArrival = Fecha de Llegada
+flight.form.label.scheduleDeparture = Fecha de Salida
+flight.form.label.arrivalCity = Ciudad de Llegada
+flight.form.label.departureCity = Ciudad de Salida
 flight.form.label.layovers = Escalas
-flight.form.validation.legs = Todos los tramos de un vuelo deben estar publicados
-flight.form.validation.oneLeg = El vuelo tiene que tener al menos un tramo para ser publicado
+
+# Flight Buttons
+flight.form.label.button.create = Crear
+flight.form.label.button.update = Actualizar
+flight.form.label.button.delete = Eliminar
+flight.form.label.button.publish = Publicar
+flight.form.label.button.legs = Ver Tramos
+
+# Flight Validations
+flight.form.validation.legs = Todos los tramos del vuelo deben estar publicados
+flight.form.validation.oneLeg = El vuelo necesita tener al menos un tramo para ser publicado
+flight.form.validation.tag.blank = La etiqueta no puede estar vacía
+flight.form.validation.description.blank = La descripción no puede estar vacía
+flight.form.validation.airline.blank = La aerolínea no puede estar vacía
+flight.form.validation.cost.negative = El costo no puede ser negativo
+flight.form.validation.schedule.consistency = La fecha de llegada debe ser posterior a la de salida
+flight.form.validation.airline.owner = La aerolínea procesada no pertenece al mismo manager

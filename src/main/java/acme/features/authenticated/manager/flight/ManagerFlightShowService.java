@@ -10,7 +10,7 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.authenticated.manager;
+package acme.features.authenticated.manager.flight;
 
 import java.util.Collection;
 import java.util.Date;
@@ -34,11 +34,23 @@ public class ManagerFlightShowService extends AbstractGuiService<Manager, Flight
 
 	@Override
 	public void authorise() {
-		int masterId = this.getRequest().getData("id", int.class);
-		int managerId = this.getRequest().getPrincipal().getActiveRealm().getId();
+		boolean status;
+		int masterId;
+		Flight flight;
+		Airline airline;
+		Manager manager;
 
-		boolean isOwner = this.repository.findFlightId(masterId).getAirline().getManager().getId() == managerId;
-		super.getResponse().setAuthorised(isOwner);
+		masterId = super.getRequest().getData("id", int.class);
+		flight = this.repository.findFlightId(masterId);
+		status = flight != null;
+
+		if (status) {
+			airline = flight.getAirline();
+			manager = airline != null ? airline.getManager() : null;
+			status = manager != null && super.getRequest().getPrincipal().getActiveRealm().getId() == manager.getId();
+		}
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override

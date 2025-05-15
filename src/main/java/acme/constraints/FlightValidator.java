@@ -1,8 +1,7 @@
 
 package acme.constraints;
 
-import java.util.Collection;
-import java.util.List;
+import java.util.stream.Stream;
 
 import javax.validation.ConstraintValidatorContext;
 
@@ -12,7 +11,6 @@ import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
 import acme.entities.flight.Flight;
 import acme.entities.flight.FlightRepository;
-import acme.entities.flight.Leg;
 
 @Validator
 public class FlightValidator extends AbstractValidator<ValidFlight, Flight> {
@@ -35,36 +33,18 @@ public class FlightValidator extends AbstractValidator<ValidFlight, Flight> {
 			return false;
 		}
 
-		Collection<Leg> legs = this.repository.getLegsOrderedByDeparture(flight.getId());
-
-		// Validar que los tramos sean compatibles
-		boolean incompatible = this.hasIncompatibleLegs(legs);
-		super.state(context, !incompatible, "*", "acme.validation.flight.legs.departure");
-
-		//		if (flight.getLayovers() < 0)
-		//			super.state(context, false, "*", "acme.validation.flight.legs.empty");
-
-		return !super.hasErrors(context);
-	}
-
-	public boolean hasIncompatibleLegs(final Collection<Leg> legs) {
-		if (legs.size() <= 1)
-			return false;
-
-		List<Leg> legList = List.copyOf(legs);
-
-		for (int i = 1; i < legList.size(); i++) {
-			Leg previous = legList.get(i - 1);
-			Leg current = legList.get(i);
-
-			if (!current.getScheduleDeparture().after(previous.getScheduleArrival()))
-				return true;
-
-			if (previous.getDepartureAirport().getId() != current.getArrivalAirport().getId())
-				return true;
+		enum acceptedCurrencies {
+			EUR, USD, GBP
 		}
 
-		return false;
+		if (flight.getCost() != null) {
+			String currency = flight.getCost().getCurrency();
+			boolean isAccepted = Stream.of(acceptedCurrencies.values()).anyMatch(c -> c.name().equals(currency));
+
+			if (!isAccepted)
+				super.state(context, false, "cost", "acme.validation.flight.currency");
+		}
+		return !super.hasErrors(context);
 	}
 
 }

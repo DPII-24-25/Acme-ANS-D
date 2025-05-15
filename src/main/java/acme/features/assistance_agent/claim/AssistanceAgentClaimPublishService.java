@@ -64,9 +64,11 @@ public class AssistanceAgentClaimPublishService extends AbstractGuiService<Assis
 		assert object != null;
 		final Date cMoment = MomentHelper.getCurrentMoment();
 		Collection<Leg> legs = this.repository.findLegsByAirlineId(object.getAssistanceAgent().getAirline().getId(), cMoment);
-		boolean correctlyLeg = legs.stream().anyMatch(x -> x.getId() == object.getLeg().getId());
-		if (!correctlyLeg)
-			throw new IllegalStateException("It is not possible to create a claim with this leg.");
+		if (object.getLeg() != null) {
+			boolean correctlyLeg = legs.stream().anyMatch(x -> x.getId() == object.getLeg().getId());
+			if (!correctlyLeg)
+				throw new IllegalStateException("It is not possible to assign this leg to the claim.");
+		}
 	}
 
 	@Override
@@ -80,7 +82,8 @@ public class AssistanceAgentClaimPublishService extends AbstractGuiService<Assis
 		choicesLegs = SelectChoices.from(legs, "flightNumber", claim.getLeg());
 		choicesIssuesType = SelectChoices.from(IssuesType.class, claim.getType());
 
-		dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "type");
+		dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "type", "draftMode");
+		dataset.put("indicator", claim.getIndicator().toString());
 		dataset.put("leg", choicesLegs.getSelected().getKey());
 		dataset.put("legs", choicesLegs);
 		dataset.put("types", choicesIssuesType);

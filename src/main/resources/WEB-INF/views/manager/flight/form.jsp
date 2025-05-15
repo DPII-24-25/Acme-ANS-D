@@ -15,7 +15,8 @@
 
 
 
-	<acme:input-checkbox code="flight.form.label.draftMode" path="draft" readonly="true" />
+	<acme:input-checkbox code="flight.form.label.draftMode" path="draft"
+		readonly="true" />
 	<jstl:if test="${acme:anyOf(_command, 'show|update|publish|delete')}">
 		<acme:input-moment code="flight.form.label.scheduleArrival"
 			path="scheduleArrival" readonly="true" />
@@ -39,6 +40,8 @@
 				action="/manager/flight/delete" />
 			<acme:submit code="flight.form.label.button.publish"
 				action="/manager/flight/publish" />
+
+			<acme:button code="flight.form.label.button.legs" action="/manager/leg/list?flightId=${id}" />
 		</jstl:when>
 		<jstl:when test="${_command == 'create'}">
 			<acme:submit code="flight.form.label.button.create"
