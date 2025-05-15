@@ -28,7 +28,7 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 		else {
 			LegRepository repository = SpringHelper.getBean(LegRepository.class);
 			FlightRepository flightRepository = SpringHelper.getBean(FlightRepository.class);
-			String airlineCode = flightRepository.getIataCodeFromLegId(leg.getId());
+			String airlineCode = flightRepository.getIataCodeFromFlightId(leg.getFlight().getId());
 
 			if (!leg.getFlightNumber().isBlank() && leg.getFlight() != null) {
 				String legCode = leg.getFlightNumber().substring(0, 3);

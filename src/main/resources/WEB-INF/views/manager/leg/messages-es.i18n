@@ -37,3 +37,4 @@ leg.form.validation.update.incompatible = Leg incompatible con el fligth que se 
 leg.form.validation.update.iataCodeCorrect = Iata code incompatible con la aerolinea
 leg.form.validation.update.fligthNull = Necesitas asignar un vuelo a tu tramo
 leg.form.validation.any.date = La fecha del tramo debe ser posterior a la fecha actual
+leg.form.validation.publish.status = No es posible publicar ningún tramo con estado cancelado o aterrizado

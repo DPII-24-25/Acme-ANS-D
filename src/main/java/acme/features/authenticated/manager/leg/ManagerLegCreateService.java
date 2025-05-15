@@ -39,7 +39,7 @@ public class ManagerLegCreateService extends AbstractGuiService<Manager, Leg> {
 		int flightId = this.getRequest().getData("flightId", int.class);
 
 		leg = new Leg();
-		leg.setDraftMode(false);
+		leg.setDraftMode(true);
 		leg.setFlight(this.repository.findFlightById(flightId));
 
 		super.getBuffer().addData(leg);

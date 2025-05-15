@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
@@ -70,6 +71,17 @@ public class ManagerLegPublishService extends AbstractGuiService<Manager, Leg> {
 
 	@Override
 	public void validate(final Leg leg) {
+		if (leg.getFlight() != null && leg.getScheduleArrival() != null && leg.getScheduleDeparture() != null) {
+			Collection<Leg> existingLegs = this.repository.getLegsOrderedByDeparture(leg.getFlight().getId());
+			boolean hasIncompatible = new Auxiliary().hasOverlappingLegs(existingLegs, leg);
+			super.state(!hasIncompatible, "*", "acme.validation.leg.overlapping.message");
+		}
+		if (leg.getScheduleDeparture() != null && leg.getScheduleArrival() != null)
+			if (leg.getScheduleArrival().before(MomentHelper.getCurrentMoment()) || leg.getScheduleDeparture().before(MomentHelper.getCurrentMoment()))
+				super.state(false, "*", "leg.form.validation.any.date");
+
+		if (leg.getStatus() != null)
+			super.state(leg.getStatus() == Status.ONTIME || leg.getStatus() == Status.DELAYED, "status", "leg.form.validation.publish.status");
 	}
 
 	@Override
