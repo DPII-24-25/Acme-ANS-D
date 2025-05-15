@@ -18,6 +18,7 @@ import acme.client.components.validation.ValidString;
 import acme.client.helpers.SpringHelper;
 import acme.constraints.ValidFlight;
 import acme.entities.airline.Airline;
+import acme.entities.airports.Airport;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -48,7 +49,7 @@ public class Flight extends AbstractEntity {
 
 	@Automapped
 	@Optional
-	@ValidString
+	@ValidString(max = 255)
 	private String				description;
 
 	//	Legs attributes derivative
@@ -60,61 +61,70 @@ public class Flight extends AbstractEntity {
 
 
 	@Transient
-	private Date getScheduleDeparture() {
+	public Date getScheduleDeparture() {
 		FlightRepository repository;
 		Date wraper;
 
 		repository = SpringHelper.getBean(FlightRepository.class);
-		wraper = repository.getScheduleDeparture(this.getId());
+		wraper = repository.getScheduleDeparture(this.getId()).orNull();
 
 		return wraper;
 	}
 
 	@Transient
-	private Date getScheduleArrivals() {
+	public Date getScheduleArrivals() {
 		FlightRepository repository;
 		Date wraper;
 
 		repository = SpringHelper.getBean(FlightRepository.class);
-		wraper = repository.getScheduleArrivals(this.getId());
+		wraper = repository.getScheduleArrivals(this.getId()).orNull();
 
 		return wraper;
 
 	}
 
 	@Transient
-	private String getDepartureCity() {
+	public String getDepartureCity() {
 		FlightRepository repository;
-		String wraper;
+		Airport wraper;
 
 		repository = SpringHelper.getBean(FlightRepository.class);
-		wraper = repository.getDepartureCity(this.getId());
+		wraper = repository.getDepartureCity(this.getId()).orNull();
 
-		return wraper;
-
+		return wraper != null ? wraper.getCity() : null;
 	}
 
 	@Transient
-	private String arrivalCity() {
+	public String getArrivalCity() {
 		FlightRepository repository;
-		String wraper;
+		Airport wraper;
 
 		repository = SpringHelper.getBean(FlightRepository.class);
-		wraper = repository.getArrivalCity(this.getId());
+		wraper = repository.getArrivalCity(this.getId()).orNull();
 
-		return wraper;
+		return wraper != null ? wraper.getCity() : null;
 
 	}
 
 	@Transient
-	private Integer getLayovers() {
+	public Integer getLayovers() {
 		FlightRepository repository;
 		Integer wraper;
 
 		repository = SpringHelper.getBean(FlightRepository.class);
-		wraper = repository.getLayovers(this.getId());
+		wraper = repository.getLayovers(this.getId()).orNull();
 
 		return wraper;
 	}
 
+	@Transient
+	public String getLabel() {
+		return String
+			.valueOf(this.getAirline().getIataCode() + this.getDepartureCity() != null ? this.getDepartureCity() : "" + this.getArrivalCity() != null ? this.getArrivalCity() : "" + this.getScheduleArrivals() != null ? this.getScheduleDeparture() : "");
+	}
+
+
+	@Mandatory
+	@Automapped
+	private boolean isDraft;
 }

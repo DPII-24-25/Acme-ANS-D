@@ -1,6 +1,8 @@
 
 package acme.constraints;
 
+import java.util.stream.Stream;
+
 import javax.validation.ConstraintValidatorContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,16 +27,24 @@ public class FlightValidator extends AbstractValidator<ValidFlight, Flight> {
 	@Override
 	public boolean isValid(final Flight flight, final ConstraintValidatorContext context) {
 		assert context != null;
-		boolean result;
-		if (flight == null)
+
+		if (flight == null) {
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
-		else {
-
-			//Validaciones futuras
-
+			return false;
 		}
-		result = !super.hasErrors(context);
-		return result;
+
+		enum acceptedCurrencies {
+			EUR, USD, GBP
+		}
+
+		if (flight.getCost() != null) {
+			String currency = flight.getCost().getCurrency();
+			boolean isAccepted = Stream.of(acceptedCurrencies.values()).anyMatch(c -> c.name().equals(currency));
+
+			if (!isAccepted)
+				super.state(context, false, "cost", "acme.validation.flight.currency");
+		}
+		return !super.hasErrors(context);
 	}
 
 }

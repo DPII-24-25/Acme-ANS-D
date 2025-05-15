@@ -1,0 +1,51 @@
+# messages-en.i18n
+#
+# Copyright (C) 2012-2025 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+# Flight List
+manager.flight.list.label.airline = Airline
+manager.flight.list.label.tag = Tag
+manager.flight.list.label.cost = Cost
+manager.flight.list.title = Flights
+manager.flight.list.label.scheduleArrival = Arrival Schedule Date
+manager.flight.list.label.scheduleDeparture = Departure Schedule Date
+manager.flight.list.label.arrivalCity = Arrival City
+manager.flight.list.label.departureCity = Departure City
+manager.flight.list.label.draftMode = Status
+
+# Flight Form
+manager.flight.form.title = Flight Details
+flight.form.label.tag = Tag
+flight.form.label.selfTransfer = Self Transfer
+flight.form.label.description = Description
+flight.form.label.airline = Airline
+flight.form.label.cost = Cost
+flight.form.label.draftMode = Draft Mode
+flight.form.label.scheduleArrival = Arrival Schedule Date
+flight.form.label.scheduleDeparture = Departure Schedule Date
+flight.form.label.arrivalCity = Arrival City
+flight.form.label.departureCity = Departure City
+flight.form.label.layovers = Layovers
+
+# Flight Buttons
+flight.form.label.button.create = Create
+flight.form.label.button.update = Update
+flight.form.label.button.delete = Delete
+flight.form.label.button.publish = Publish
+flight.form.label.button.legs = View Legs
+
+# Flight Validations
+flight.form.validation.legs = All legs from a flight should be published
+flight.form.validation.oneLeg = The flight needs to have at least one leg to be published
+flight.form.validation.tag.blank = Tag cannot be blank
+flight.form.validation.description.blank = Description cannot be blank
+flight.form.validation.airline.blank = Airline cannot be blank
+flight.form.validation.cost.negative = Cost cannot be negative
+flight.form.validation.schedule.consistency = Arrival date must be after departure date
+flight.form.validation.airline.owner = The Airline processed is not of the same Manager

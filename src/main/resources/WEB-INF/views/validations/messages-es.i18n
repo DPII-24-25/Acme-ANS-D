@@ -10,6 +10,13 @@
 
 acme.validation.flight.identifierNumber.message = El identificador numerico no concuerda con las iniciales
 acme.validation.leg.flightNumber.message = El identificador no corresponde con el codigo IATA
+acme.validation.flight.legs.departure = Existe incompatibilidad de despegues en los tramos del vuelo. 
+acme.validation.flight.legs.arrival = Existe incompatibilidad de llegadas en los tramos del vuelo.
+acme.validation.leg.arrivalDeparture.message = El scheduleDeparture debe ser anterior al scheduleArrival
+acme.validation.leg.airports.message = El aeropuerto de despegue y aterrizaje no puede ser el mismo
+acme.validation.leg.aircraft.message = El aeronave asignado a este vuelo actualmente se encuentra en mantenimiento
+acme.validation.flight.legs.empty = No es posible que un vuelo no tenga ningún leg asignado
 acme.validation.airline.nameLength.message = Nombre no debe exceder los 50 characteres
 acme.validation.airline.momentIsInPast.message = El momento de fundación no puede ser en el futuro
 acme.validation.airline.uniqueIataCode.message = Código IATA debe ser único
+acme.validation.flight.currency = Esta moneda no esta soportada

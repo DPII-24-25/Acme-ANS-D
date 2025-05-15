@@ -88,4 +88,8 @@ public class Leg extends AbstractEntity {
 	@Mandatory
 	@ManyToOne(optional = false)
 	private Flight		flight;
+
+	@Mandatory
+	@Automapped
+	private boolean		draftMode;
 }
