@@ -49,7 +49,7 @@ public class ManagerFlightPublishService extends AbstractGuiService<Manager, Fli
 					airlineId = super.getRequest().getData("airline", int.class);
 					requestedAirline = this.repository.findAirlineById(airlineId);
 
-					status = requestedAirline != null && requestedAirline.getManager().getId() == manager.getId();
+					status = requestedAirline == null || requestedAirline.getManager().getId() == manager.getId();
 				}
 			}
 		}
@@ -94,8 +94,8 @@ public class ManagerFlightPublishService extends AbstractGuiService<Manager, Fli
 		oneLeg = this.repository.findNumberLegsByFlightId(flight.getId()) >= 1 ? true : false;
 		allLegsPublished = this.repository.findAllLegsByFLightId(flight.getId()).stream().allMatch(x -> x.isDraftMode() == false);
 
-		super.state(!allLegsPublished, "*", "flight.form.validation.legs");
-		super.state(!oneLeg, "*", "flight.form.validation.oneLeg");
+		super.state(allLegsPublished, "*", "flight.form.validation.legs");
+		super.state(oneLeg, "*", "flight.form.validation.oneLeg");
 	}
 
 	@Override

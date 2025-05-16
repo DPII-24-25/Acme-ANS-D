@@ -28,12 +28,15 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 		else {
 			LegRepository repository = SpringHelper.getBean(LegRepository.class);
 			FlightRepository flightRepository = SpringHelper.getBean(FlightRepository.class);
-			String airlineCode = flightRepository.getIataCodeFromLegId(leg.getId());
+			String airlineCode = flightRepository.getIataCodeFromFlightId(leg.getFlight().getId());
 
 			if (!leg.getFlightNumber().isBlank() && leg.getFlight() != null) {
 				String legCode = leg.getFlightNumber().substring(0, 3);
-				if (!airlineCode.equals(legCode))
+				if (airlineCode != null && !airlineCode.equals(legCode))
 					super.state(context, false, "flightNumber", "acme.validation.leg.flightNumber.message");
+
+				boolean isFlightNumberUnique = flightRepository.isFlightNumberUnique(leg.getFlightNumber(), leg.getId());
+				super.state(context, isFlightNumberUnique, "flightNumber", "acme.validation.leg.flightNumber.unique.message");
 			}
 
 			if (leg.getScheduleArrival() != null && leg.getScheduleDeparture() != null)
@@ -44,8 +47,8 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 				if (leg.getArrivalAirport().equals(leg.getDepartureAirport()))
 					super.state(context, false, "arrivalAirport", "acme.validation.leg.airports.message");
 
-			if (leg.getStatus() != null)
-				if (leg.getAircraft().getStatus().equals(AircraftStatus.MAINTENANCE))
+			if (leg.getStatus() != null && (leg.getStatus().equals(Leg.Status.ONTIME) || leg.getStatus().equals(Leg.Status.DELAYED)))
+				if (leg.getAircraft() != null && leg.getAircraft().getStatus().equals(AircraftStatus.MAINTENANCE))
 					super.state(context, false, "aircraft", "acme.validation.leg.aircraft.message");
 
 		}

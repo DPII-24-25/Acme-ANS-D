@@ -16,10 +16,10 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:list>
-	<acme:list-column code="manager.leg.list.label.flightNumber" path="flightNumber" width="10%"/>
-	<acme:list-column code="manager.leg.list.label.scheduleDeparture" path="scheduleDeparture" width="20%"/>
-	<acme:list-column code="manager.leg.list.label.scheduleArrival" path="scheduleArrival" width="10%"/>
-	<acme:list-column code="manager.leg.list.label.status" path="status" width="20%"/>
+	<acme:list-column code="manager.leg.list.label.flightNumber" path="flightNumber" width="10%" sortable="false"/>
+	<acme:list-column code="manager.leg.list.label.scheduleDeparture" path="scheduleDeparture" width="20%" sortable="true"/>
+	<acme:list-column code="manager.leg.list.label.scheduleArrival" path="scheduleArrival" width="10%" sortable="true"/>
+	<acme:list-column code="manager.leg.list.label.status" path="status" width="20%" sortable="false"/>
 	
 	<acme:list-payload path="payload"/>
 	

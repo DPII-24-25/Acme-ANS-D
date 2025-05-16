@@ -2,30 +2,25 @@
 package acme.features.authenticated.manager.leg;
 
 import java.util.Collection;
-import java.util.List;
 
 import acme.entities.flight.Leg;
 
 public class Auxiliary {
 
-	public boolean hasIncompatibleLegs(final Collection<Leg> legs, final Leg leg) {
-		if (legs.size() <= 1)
+	public boolean hasOverlappingLegs(final Collection<Leg> existingLegs, final Leg legToCheck) {
+		if (existingLegs == null || legToCheck == null)
 			return false;
 
-		List<Leg> legList = List.copyOf(legs);
-
-		for (int i = 1; i < legList.size(); i++) {
-			Leg previous = leg.getId() == legList.get(i - 1).getId() ? leg : legList.get(i - 1);
-			Leg current = leg.getId() == legList.get(i).getId() ? leg : legList.get(i);
-
-			if (!current.getScheduleDeparture().after(previous.getScheduleArrival()))
+		for (Leg existingLeg : existingLegs)
+			if (!existingLeg.equals(legToCheck) && this.isOverlapping(legToCheck, existingLeg))
 				return true;
-
-			if (previous.getDepartureAirport().getId() != current.getArrivalAirport().getId())
-				return true;
-		}
-
 		return false;
 	}
 
+	private boolean isOverlapping(final Leg leg1, final Leg leg2) {
+		if (leg1.getScheduleDeparture().equals(leg2.getScheduleDeparture()) && leg1.getScheduleArrival().equals(leg2.getScheduleArrival()))
+			return true;
+
+		return leg1.getScheduleDeparture().before(leg2.getScheduleArrival()) && leg1.getScheduleArrival().after(leg2.getScheduleDeparture());
+	}
 }

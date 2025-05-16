@@ -19,7 +19,7 @@ import acme.features.authenticated.manager.flight.ManagerFlightRepository;
 import acme.realms.Manager;
 
 @GuiService
-public class ManagerLegUpdateService extends AbstractGuiService<Manager, Leg> {
+public class ManagerLegPublishService extends AbstractGuiService<Manager, Leg> {
 
 	@Autowired
 	private ManagerFlightRepository	flightRepository;
@@ -48,7 +48,7 @@ public class ManagerLegUpdateService extends AbstractGuiService<Manager, Leg> {
 				leg = this.repository.findLegId(masterId);
 				managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
 
-				status = leg.isDraftMode() && leg.getFlight().getAirline().getManager().getId() == managerId;
+				status = leg.isDraftMode() && leg.getFlight().isDraft() && leg.getFlight().getAirline().getManager().getId() == managerId;
 			}
 		}
 
@@ -77,14 +77,47 @@ public class ManagerLegUpdateService extends AbstractGuiService<Manager, Leg> {
 
 	@Override
 	public void perform(final Leg leg) {
+		leg.setDraftMode(false);
 		this.repository.save(leg);
 	}
 
 	@Override
 	public void validate(final Leg leg) {
+		if (leg.getFlight() != null && leg.getScheduleArrival() != null && leg.getScheduleDeparture() != null) {
+			Collection<Leg> existingLegs = this.repository.getLegsOrderedByDeparture(leg.getFlight().getId());
+			boolean hasIncompatible = new Auxiliary().hasOverlappingLegs(existingLegs, leg);
+			super.state(!hasIncompatible, "*", "acme.validation.leg.overlapping.message");
+		}
 		if (leg.getScheduleDeparture() != null && leg.getScheduleArrival() != null)
 			if (leg.getScheduleArrival().before(MomentHelper.getCurrentMoment()) || leg.getScheduleDeparture().before(MomentHelper.getCurrentMoment()))
 				super.state(false, "*", "leg.form.validation.any.date");
+
+		if (leg.getStatus() != null)
+			super.state(leg.getStatus() == Status.ONTIME || leg.getStatus() == Status.DELAYED, "status", "leg.form.validation.publish.status");
+
+		if (leg.getAircraft() != null) {
+			boolean inUse = this.isAircraftInUse(leg);
+			super.state(!inUse, "aircraft", "leg.form.validation.publish.aircraft");
+		}
+	}
+
+	private boolean isAircraftInUse(final Leg newLeg) {
+		if (newLeg.getAircraft() == null)
+			return false;
+
+		Collection<Leg> existingLegs = this.repository.findActiveLegsByAircraft(newLeg.getAircraft().getId());
+
+		for (Leg existing : existingLegs) {
+			if (newLeg.getId() != 0 && newLeg.getId() == existing.getId())
+				continue;
+
+			boolean overlaps = existing.getScheduleDeparture().before(newLeg.getScheduleArrival()) && existing.getScheduleArrival().after(newLeg.getScheduleDeparture());
+
+			if (overlaps)
+				return true;
+		}
+
+		return false;
 	}
 
 	@Override
