@@ -29,18 +29,30 @@ public class ManagerLegUpdateService extends AbstractGuiService<Manager, Leg> {
 
 	@Override
 	public void authorise() {
-		int masterId;
 		boolean status;
-		boolean isOwner;
-		boolean editable;
-		Leg leg;
 
-		masterId = super.getRequest().getData("id", int.class);
-		leg = this.repository.findLegId(masterId);
-		isOwner = super.getRequest().getPrincipal().getActiveRealm().getId() == leg.getFlight().getAirline().getManager().getId();
-		editable = leg.isDraftMode();
+		status = true;
 
-		super.getResponse().setAuthorised(isOwner && editable);
+		if (status) {
+			String method;
+			int masterId;
+			Leg leg;
+			int managerId;
+
+			method = super.getRequest().getMethod();
+
+			if (method.equals("GET"))
+				status = true;
+			else {
+				masterId = super.getRequest().getData("id", int.class);
+				leg = this.repository.findLegId(masterId);
+				managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+
+				status = leg.isDraftMode() && leg.getFlight().getAirline().getManager().getId() == managerId;
+			}
+		}
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override

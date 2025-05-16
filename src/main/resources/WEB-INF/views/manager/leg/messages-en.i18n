@@ -36,3 +36,4 @@ leg.form.validation.update.iataCodeCorrect = Iata code incompatible with the air
 leg.form.validation.update.fligthNull = Flight necessary to assigned your leg
 leg.form.validation.any.date = Leg date should be after current moment
 leg.form.validation.publish.status = It is not possible to publish any leg with canceled or landed status
+leg.form.validation.publish.aircraft = The aircraft selected is now in use

@@ -29,18 +29,30 @@ public class ManagerLegPublishService extends AbstractGuiService<Manager, Leg> {
 
 	@Override
 	public void authorise() {
-		int masterId;
 		boolean status;
-		boolean isOwner;
-		boolean editable;
-		Leg leg;
 
-		masterId = super.getRequest().getData("id", int.class);
-		leg = this.repository.findLegId(masterId);
-		isOwner = super.getRequest().getPrincipal().getActiveRealm().getId() == leg.getFlight().getAirline().getManager().getId();
-		editable = leg.isDraftMode();
+		status = true;
 
-		super.getResponse().setAuthorised(isOwner && editable);
+		if (status) {
+			String method;
+			int masterId;
+			Leg leg;
+			int managerId;
+
+			method = super.getRequest().getMethod();
+
+			if (method.equals("GET"))
+				status = true;
+			else {
+				masterId = super.getRequest().getData("id", int.class);
+				leg = this.repository.findLegId(masterId);
+				managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+
+				status = leg.isDraftMode() && leg.getFlight().isDraft() && leg.getFlight().getAirline().getManager().getId() == managerId;
+			}
+		}
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -82,6 +94,30 @@ public class ManagerLegPublishService extends AbstractGuiService<Manager, Leg> {
 
 		if (leg.getStatus() != null)
 			super.state(leg.getStatus() == Status.ONTIME || leg.getStatus() == Status.DELAYED, "status", "leg.form.validation.publish.status");
+
+		if (leg.getAircraft() != null) {
+			boolean inUse = this.isAircraftInUse(leg);
+			super.state(!inUse, "aircraft", "leg.form.validation.publish.aircraft");
+		}
+	}
+
+	private boolean isAircraftInUse(final Leg newLeg) {
+		if (newLeg.getAircraft() == null)
+			return false;
+
+		Collection<Leg> existingLegs = this.repository.findActiveLegsByAircraft(newLeg.getAircraft().getId());
+
+		for (Leg existing : existingLegs) {
+			if (newLeg.getId() != 0 && newLeg.getId() == existing.getId())
+				continue;
+
+			boolean overlaps = existing.getScheduleDeparture().before(newLeg.getScheduleArrival()) && existing.getScheduleArrival().after(newLeg.getScheduleDeparture());
+
+			if (overlaps)
+				return true;
+		}
+
+		return false;
 	}
 
 	@Override
