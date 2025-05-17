@@ -89,6 +89,7 @@ public class TechnicianMaintenanceRecordPublishService extends AbstractGuiServic
 
 		super.state(totalTasks >= 1, "*", "technician.maintenance-record.form.error.not-enough-tasks");
 
+		super.state(record1.getStatus().equals(MaintenanceStatus.COMPLETED), "status", "technician.maintenance-record.form.error.to-publish-must-be-completed");
 		//super.state(allTasksPublished, "*", "technician.maintenance-record.form.error.not-tasks-published");
 	}
 

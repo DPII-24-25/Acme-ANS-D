@@ -19,7 +19,6 @@ technician.maintenance-record.form.label.moreInfo = Más información: (Opcional
 technician.maintenance-record.form.label.aircraft = Aeronave:
 technician.maintenance-record.form.label.draftMode = Es borrador:
 
-		
 technician.maintenance-record.form.button.task-association = Tareas Asociadas
 technician.maintenance-record.form.button.update = Actualizar
 technician.maintenance-record.form.button.delete = Borrar
@@ -33,6 +32,8 @@ technician.maintenance-record.list.label.draftMode = Es borrador
 
 technician.maintenance-record.list.button.create = Crear
 
+technician.maintenance-record.form.error.to-create-must-not-be-completed = No se puede crear un nuevo registro con estado COMPLETED 
+technician.maintenance-record.form.error.to-publish-must-be-completed = Para publicar marque el estado como COMPLETED
 technician.maintenance-record.form.error.not-enough-tasks = Para que se pueda públicar este registro se necesita como mínimo una tarea asociada a ella
 acme.validation.maintenance-record.inspectDueDate-is-before-moment.message = La próxima inspección no puede ser antes que el momento
 acme.validation.maintenance-record.moment-is-null-dueDate-is-not.message = antes de introducir la próxima inspección debe rellenar el momento
