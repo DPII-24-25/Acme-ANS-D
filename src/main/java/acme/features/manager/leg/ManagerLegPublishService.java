@@ -1,5 +1,5 @@
 
-package acme.features.authenticated.manager.leg;
+package acme.features.manager.leg;
 
 import java.util.Collection;
 
@@ -15,7 +15,7 @@ import acme.entities.airports.Airport;
 import acme.entities.flight.Flight;
 import acme.entities.flight.Leg;
 import acme.entities.flight.Leg.Status;
-import acme.features.authenticated.manager.flight.ManagerFlightRepository;
+import acme.features.manager.flight.ManagerFlightRepository;
 import acme.realms.Manager;
 
 @GuiService

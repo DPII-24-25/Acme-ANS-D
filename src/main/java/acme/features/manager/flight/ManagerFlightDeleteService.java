@@ -1,5 +1,5 @@
 
-package acme.features.authenticated.manager.flight;
+package acme.features.manager.flight;
 
 import java.util.Collection;
 import java.util.Date;
@@ -13,7 +13,7 @@ import acme.client.services.GuiService;
 import acme.entities.airline.Airline;
 import acme.entities.flight.Flight;
 import acme.entities.flight.Leg;
-import acme.features.authenticated.manager.leg.ManagerLegRepository;
+import acme.features.manager.leg.ManagerLegRepository;
 import acme.realms.Manager;
 
 @GuiService
@@ -29,20 +29,25 @@ public class ManagerFlightDeleteService extends AbstractGuiService<Manager, Flig
 	@Override
 	public void authorise() {
 		boolean status;
-		int masterId;
+		int flightId;
 		Flight flight;
-		Airline airline;
-		Manager manager;
 
-		masterId = super.getRequest().getData("id", int.class);
-		flight = this.flightRepository.findFlightId(masterId);
-		status = flight != null;
+		flightId = super.getRequest().getData("id", int.class);
+		flight = this.legRepository.findFlightById(flightId);
+		status = flight != null && flight.isDraft();
 
 		if (status) {
-			airline = flight.getAirline();
-			manager = airline != null ? airline.getManager() : null;
-			status = manager != null && super.getRequest().getPrincipal().getActiveRealm().getId() == manager.getId() && flight.isDraft();
+			Airline airline = flight.getAirline();
+			Manager manager = airline != null ? airline.getManager() : null;
 
+			status = manager != null && super.getRequest().getPrincipal().getActiveRealm().getId() == manager.getId();
+
+			if (status && super.getRequest().getData().containsKey("airline")) {
+				int airlineId = super.getRequest().getData("airline", int.class);
+				Airline requestedAirline = this.flightRepository.findAirlineById(airlineId);
+
+				status = requestedAirline != null && requestedAirline.getManager().getId() == manager.getId();
+			}
 		}
 
 		super.getResponse().setAuthorised(status);
@@ -74,13 +79,6 @@ public class ManagerFlightDeleteService extends AbstractGuiService<Manager, Flig
 	public void perform(final Flight flight) {
 		Collection<Leg> allMyLegs;
 		allMyLegs = this.legRepository.findAllLegsByFlightId(flight.getId());
-		//		allMyLegs.stream().forEach(x -> {
-		//			Collection<ActivityLog> allMyActivityLogs = this.legRepository.findAllActivityLogsByLegId(x.getId());
-		//			Collection<FlightAssignment> allMyFlightAssigment = this.legRepository.findAllFlightAssignmentByLegId(x.getId());
-		//			this.legRepository.deleteAll(allMyActivityLogs);
-		//			this.legRepository.deleteAll(allMyFlightAssigment);
-		//		});
-		//
 		this.legRepository.deleteAll(allMyLegs);
 		this.flightRepository.delete(flight);
 	}
