@@ -27,13 +27,19 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 
 	@Override
 	public void authorise() {
-		boolean status;
 		int flightCrewMemberId = super.getRequest().getPrincipal().getActiveRealm().getId();
 
-		status = super.getRequest().getPrincipal().hasRealmOfType(FlightCrewMember.class);
+		boolean isFlightCrewMember = super.getRequest().getPrincipal().hasRealmOfType(FlightCrewMember.class);
 		FlightCrewMember member = this.repository.findFlightCrewMemberById(flightCrewMemberId);
-		boolean available = member.getAvailabilityStatus() == FlightCrewAvailability.AVAILABLE;
-		super.getResponse().setAuthorised(status && available);
+		boolean isAvailable = member.getAvailabilityStatus() == FlightCrewAvailability.AVAILABLE;
+
+		if (!isFlightCrewMember)
+			super.getResponse().setAuthorised(false);
+		else if (!isAvailable) {
+			super.getResponse().setAuthorised(false);
+			super.getResponse().addGlobal("errorMessage", "No puede crear asignaciones mientras su estado sea '" + member.getAvailabilityStatus().name().replace("_", " ").toLowerCase() + "'.");
+		} else
+			super.getResponse().setAuthorised(true);
 	}
 
 	@Override
@@ -74,7 +80,11 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 		// Validar que el member no tenga asignado otro leg con las mimas horas.
 		// Verificar que los leg sean solo los que se permiten.
 		// Verificar que el member este en AVAILABLE.
-		// 
+		//
+
+		FlightCrewAvailability status = object.getFlightCrewMember().getAvailabilityStatus();
+		super.state(status == FlightCrewAvailability.AVAILABLE, "*", "flight-assignment.error.member-not-available");
+
 		assert object != null;
 	}
 
