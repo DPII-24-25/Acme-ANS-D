@@ -1,5 +1,5 @@
 /*
- * AdministratorAirportListService.java
+ * AdministratorAirportShowService.java
  *
  * Copyright (C) 2012-2025 Rafael Corchuelo.
  *
@@ -10,27 +10,23 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.administrator.airlines;
-
-import java.util.Collection;
+package acme.features.administrator.airports;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.principals.Administrator;
-import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
-import acme.entities.airline.Airline;
-import acme.entities.airline.AirlineType;
+import acme.entities.airports.Airport;
 
 @GuiService
-public class AdministratorAirlineListService extends AbstractGuiService<Administrator, Airline> {
+public class AdministratorAirportShowService extends AbstractGuiService<Administrator, Airport> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AdministratorAirlineRepository repository;
+	private AdministratorAirportRepository repository;
 
 	// AbstractGuiService interface -------------------------------------------
 
@@ -42,21 +38,21 @@ public class AdministratorAirlineListService extends AbstractGuiService<Administ
 
 	@Override
 	public void load() {
-		Collection<Airline> airlines;
+		Airport airport;
+		int id;
 
-		airlines = this.repository.findAllAirlines();
+		id = super.getRequest().getData("id", int.class);
+		airport = this.repository.findAirportById(id);
 
-		super.getBuffer().addData(airlines);
+		super.getBuffer().addData(airport);
 	}
 
 	@Override
-	public void unbind(final Airline airline) {
-		Dataset dataset;
-		SelectChoices choices;
+	public void unbind(final Airport airport) {
 
-		choices = SelectChoices.from(AirlineType.class, airline.getType());
-		dataset = super.unbindObject(airline, "name", "type", "iataCode");
-		dataset.put("types", choices);
+		Dataset dataset;
+
+		dataset = super.unbindObject(airport, "name", "iataCode", "operationalScope", "website", "city", "country", "emailAdress", "phoneNumber");
 
 		super.getResponse().addData(dataset);
 	}
