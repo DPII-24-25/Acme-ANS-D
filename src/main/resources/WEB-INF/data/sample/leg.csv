@@ -14,3 +14,5 @@ leg-12,QTR6669,2199/02/09 00:00,2199/02/09 01:00,LANDED,flight-04,airport-10,air
 leg-13,QTR6670,2199/02/09 00:00,2199/02/09 01:00,LANDED,flight-05,airport-10,airport-09,aircraft-01,false
 leg-14,QTR6671,2199/02/09 00:00,2199/02/09 01:00,LANDED,flight-09,airport-10,airport-09,aircraft-01,false
 leg-15,BZX1111,2023/02/04 00:00,2023/02/06 01:00,ONTIME,flight-01,airport-01,airport-02,aircraft-01,true
+leg-16,QTR6672,2024/01/09 00:00,2024/08/09 01:00,LANDED,flight-02,airport-06,airport-05,aircraft-01,false
+leg-17,QTR6692,2024/01/19 00:00,2024/09/19 01:00,LANDED,flight-03,airport-05,airport-07,aircraft-02,false
