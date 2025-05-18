@@ -1,5 +1,5 @@
 
-package acme.features.authenticated.manager.flight;
+package acme.features.manager.leg;
 
 import javax.annotation.PostConstruct;
 
@@ -7,38 +7,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.controllers.AbstractGuiController;
 import acme.client.controllers.GuiController;
-import acme.entities.flight.Flight;
+import acme.entities.flight.Leg;
 import acme.realms.Manager;
 
 @GuiController
-public class ManagerFlightController extends AbstractGuiController<Manager, Flight> {
+public class ManagerLegController extends AbstractGuiController<Manager, Leg> {
 
 	@Autowired
-	private ManagerFlightListService	listService;
+	private ManagerLegListService		listService;
 
 	@Autowired
-	private ManagerFlightShowService	showService;
+	private ManagerLegShowService		showService;
 
 	@Autowired
-	private ManagerFlightCreateService	createService;
+	private ManagerLegUpdateService		updateService;
 
 	@Autowired
-	private ManagerFlightUpdateService	updateService;
+	private ManagerLegCreateService		createService;
 
 	@Autowired
-	private ManagerFlightPublishService	publishService;
-
-	@Autowired
-	private ManagerFlightDeleteService	deleteService;
+	private ManagerLegPublishService	publishService;
 
 
 	@PostConstruct
 	protected void initialise() {
 		super.addBasicCommand("list", this.listService);
-		super.addBasicCommand("show", this.showService);
 		super.addBasicCommand("create", this.createService);
+		super.addBasicCommand("show", this.showService);
 		super.addBasicCommand("update", this.updateService);
-		super.addBasicCommand("delete", this.deleteService);
 		super.addCustomCommand("publish", "update", this.publishService);
 	}
 

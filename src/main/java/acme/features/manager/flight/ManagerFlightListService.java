@@ -1,5 +1,5 @@
 /*
- * ManagerLegListService.java
+ * ManagerFlightListService.java
  *
  * Copyright (C) 2012-2025 Rafael Corchuelo.
  *
@@ -10,25 +10,26 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.authenticated.manager.leg;
+package acme.features.manager.flight;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
-import acme.entities.flight.Leg;
+import acme.entities.flight.Flight;
 import acme.realms.Manager;
 
 @GuiService
-public class ManagerLegListService extends AbstractGuiService<Manager, Leg> {
+public class ManagerFlightListService extends AbstractGuiService<Manager, Flight> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private ManagerLegRepository repository;
+	private ManagerFlightRepository repository;
 
 	// AbstractGuiService interface -------------------------------------------
 
@@ -42,33 +43,27 @@ public class ManagerLegListService extends AbstractGuiService<Manager, Leg> {
 
 	@Override
 	public void load() {
-		Collection<Leg> legs;
-		int flightId;
+		Collection<Flight> flights;
+		int managerId;
 
-		flightId = super.getRequest().getData("flightId", int.class);
+		managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
 
-		legs = this.repository.findAllLegsByFlightId(flightId);
+		flights = this.repository.findFlightsByManagerId(managerId);
 
-		super.getBuffer().addData(legs);
-
+		super.getBuffer().addData(flights);
 	}
 
 	@Override
-	public void unbind(final Leg leg) {
+	public void unbind(final Flight flight) {
 		Dataset dataset;
+		Date duration;
 
-		dataset = super.unbindObject(leg, "flightNumber", "scheduleDeparture", "scheduleArrival", "status", "departureAirport", "arrivalAirport", "aircraft", "flight", "draftMode");
+		duration = flight.getScheduleArrivals();
+		dataset = super.unbindObject(flight, "tag", "selfTransfer", "description", "airline.iataCode", "cost", "draft");
+		dataset.put("scheduleArrival", duration);
+		dataset.put("label", flight.getLabel().toString());
 
 		super.getResponse().addData(dataset);
-
-	}
-
-	@Override
-	public void unbind(final Collection<Leg> legs) {
-		int flightId;
-		flightId = super.getRequest().getData("flightId", int.class);
-
-		super.getResponse().addGlobal("flightId", flightId);
 	}
 
 }

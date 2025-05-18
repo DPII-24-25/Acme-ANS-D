@@ -1,5 +1,5 @@
 
-package acme.features.authenticated.manager.flight;
+package acme.features.manager.flight;
 
 import java.util.Collection;
 import java.util.Date;
@@ -15,7 +15,7 @@ import acme.entities.flight.Flight;
 import acme.realms.Manager;
 
 @GuiService
-public class ManagerFlightUpdateService extends AbstractGuiService<Manager, Flight> {
+public class ManagerFlightPublishService extends AbstractGuiService<Manager, Flight> {
 
 	@Autowired
 	private ManagerFlightRepository repository;
@@ -32,7 +32,6 @@ public class ManagerFlightUpdateService extends AbstractGuiService<Manager, Flig
 		status = flight != null && flight.isDraft();
 
 		if (status) {
-
 			Airline airline = flight.getAirline();
 			Manager manager = airline != null ? airline.getManager() : null;
 			status = manager != null && super.getRequest().getPrincipal().getActiveRealm().getId() == manager.getId();
@@ -76,19 +75,27 @@ public class ManagerFlightUpdateService extends AbstractGuiService<Manager, Flig
 		airlineId = super.getRequest().getData("airline", int.class);
 		airline = this.repository.findAirlineById(airlineId);
 
-		super.bindObject(flight, "tag", "selfTransfer", "description", "cost");
+		super.bindObject(flight, "tag", "selfTransfer", "description", "cost", "draft");
 		flight.setAirline(airline);
 
 	}
 
 	@Override
 	public void perform(final Flight flight) {
+		flight.setDraft(false);
 		this.repository.save(flight);
 	}
 
 	@Override
 	public void validate(final Flight flight) {
+		boolean oneLeg;
+		boolean allLegsPublished;
 
+		oneLeg = this.repository.findNumberLegsByFlightId(flight.getId()) >= 1 ? true : false;
+		allLegsPublished = this.repository.findAllLegsByFLightId(flight.getId()).stream().allMatch(x -> x.isDraftMode() == false);
+
+		super.state(allLegsPublished, "*", "flight.form.validation.legs");
+		super.state(oneLeg, "*", "flight.form.validation.oneLeg");
 	}
 
 	@Override
