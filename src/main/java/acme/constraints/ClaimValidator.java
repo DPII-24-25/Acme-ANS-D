@@ -29,7 +29,8 @@ public class ClaimValidator extends AbstractValidator<ValidClaim, Claim> {
 		if (claim == null)
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
 		else if (claim.getLeg() != null)
-			super.state(context, !claim.getLeg().isDraftMode(), "leg", "javax.validation.claim.leg");
+			if (claim.getLeg().getFlight() != null)
+				super.state(context, !claim.getLeg().isDraftMode() && !claim.getLeg().getFlight().isDraft(), "leg", "javax.validation.claim.leg");
 
 		return !super.hasErrors(context);
 	}

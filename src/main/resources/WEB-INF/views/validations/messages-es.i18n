@@ -26,3 +26,6 @@ acme.validation.leg.overlapping.message = No es posible la creación de un tramo
 =======
 acme.validation.claim.leg = El tramo asociada debe publicarse
 >>>>>>> Stashed changes
+
+acme.validation.assignment.leg = El tramo asociada debe publicarse
+

@@ -23,6 +23,9 @@ public class ManagerLegController extends AbstractGuiController<Manager, Leg> {
 	private ManagerLegUpdateService		updateService;
 
 	@Autowired
+	private ManagerLegDeleteService		deleteService;
+
+	@Autowired
 	private ManagerLegCreateService		createService;
 
 	@Autowired
@@ -35,6 +38,7 @@ public class ManagerLegController extends AbstractGuiController<Manager, Leg> {
 		super.addBasicCommand("create", this.createService);
 		super.addBasicCommand("show", this.showService);
 		super.addBasicCommand("update", this.updateService);
+		super.addBasicCommand("delete", this.deleteService);
 		super.addCustomCommand("publish", "update", this.publishService);
 	}
 

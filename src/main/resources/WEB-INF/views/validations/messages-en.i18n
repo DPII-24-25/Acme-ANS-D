@@ -26,3 +26,5 @@ acme.validation.leg.overlapping.message = It is not possible to create a new Leg
 =======
 acme.validation.claim.leg = The leg associated should be published
 >>>>>>> Stashed changes
+
+acme.validation.assignment.leg = The leg associated should be published
