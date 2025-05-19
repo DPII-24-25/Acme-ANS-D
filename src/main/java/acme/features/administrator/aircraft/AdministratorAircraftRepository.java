@@ -10,7 +10,7 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.administrator.aircrafts;
+package acme.features.administrator.aircraft;
 
 import java.util.Collection;
 

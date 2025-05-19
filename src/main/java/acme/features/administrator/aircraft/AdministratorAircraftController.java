@@ -1,5 +1,5 @@
 
-package acme.features.administrator.aircrafts;
+package acme.features.administrator.aircraft;
 
 import javax.annotation.PostConstruct;
 
