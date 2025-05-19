@@ -16,9 +16,9 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form>
-	<acme:input-select code="customer.booking.form.label.flight" path="flight" choices="${flight}"/>
+	<acme:input-select code="customer.booking.form.label.flight" path="flight" choices="${publishedFlights}"/>
 	<acme:input-textbox code="customer.booking.form.label.locatorcode" path="locatorCode"/>
-	<acme:input-select code="customer.booking.form.label.travelclass" path="travelClass" choices="${travelClass}"/>
+	<acme:input-select code="customer.booking.form.label.travelclass" path="travelClass" choices="${travelClasss}"/>
 	<acme:input-moment code="customer.booking.form.label.purchasemoment" path="purchaseMoment" readonly="true"/>
 	<acme:input-money code="customer.booking.form.label.price" path="price"/>
 	<acme:input-textbox code="customer.booking.form.label.creditcard" path="creditCard"/>

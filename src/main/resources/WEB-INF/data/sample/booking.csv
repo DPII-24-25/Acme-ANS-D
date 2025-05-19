@@ -1,16 +1,16 @@
-key,locatorCode,purchaseMoment,travelClass,price,creditCard,key:customer,key:flight,draftMode
-booking-01,XYZ789,2003/05/10 14:30,ECONOMY,EUR 55.00,2222,customer-01,flight-10,true
-booking-02,LMN6543,2010/06/30 21:45,BUSINESS,EUR 750.00,null,customer-02,flight-11,true
-booking-03,OPQ98765,2008/09/12 10:15,ECONOMY,EUR 29.99,3333,customer-02,flight-13,true
-booking-04,RST543,2005/08/05 19:20,BUSINESS,EUR 210.00,5555,customer-03,flight-10,true
-booking-05,ABC123,2011/01/15 09:00,ECONOMY,EUR 45.00,,customer-01,flight-11,true
-booking-06,DEF456,2012/02/20 16:30,BUSINESS,EUR 800.00,null,customer-02,flight-13,true
-booking-07,GHI789,2013/03/25 11:15,ECONOMY,EUR 35.50,4444,customer-01,flight-10,true
-booking-08,JKL012,2014/04/10 08:45,BUSINESS,EUR 900.00,6666,customer-03,flight-11,true
-booking-09,MNO345,2015/05/05 14:00,ECONOMY,EUR 50.00,7777,customer-02,flight-13,true
-booking-10,PQR678,2016/06/15 19:30,BUSINESS,EUR 750.00,8888,customer-01,flight-10,true
-booking-11,STU901,2017/07/20 12:00,ECONOMY,EUR 40.00,9999,customer-03,flight-11,true
-booking-12,VWX234,2018/08/30 15:45,BUSINESS,EUR 950.00,null,customer-02,flight-13,true
-booking-13,YZA567,2019/09/10 10:30,ECONOMY,EUR 60.00,1010,customer-01,flight-13,true
-booking-14,BCD890,2020/10/25 17:00,BUSINESS,EUR 700.00,2020,customer-03,flight-10,true
-booking-15,EFG123,2021/11/05 13:15,ECONOMY,EUR 55.00,3030,customer-02,flight-11,true
+key,locatorCode,purchaseMoment,travelClass,creditCard,key:customer,key:flight,draftMode
+booking-01,XYZ789,2003/05/10 14:30,ECONOMY,2222,customer-01,flight-10,true
+booking-02,LMN6543,2010/06/30 21:45,BUSINESS,null,customer-02,flight-11,true
+booking-03,OPQ98765,2008/09/12 10:15,ECONOMY,3333,customer-02,flight-13,true
+booking-04,RST543,2005/08/05 19:20,BUSINESS,5555,customer-03,flight-10,true
+booking-05,ABC123,2011/01/15 09:00,ECONOMY,,customer-01,flight-11,true
+booking-06,DEF456,2012/02/20 16:30,BUSINESS,null,customer-02,flight-13,true
+booking-07,GHI789,2013/03/25 11:15,ECONOMY,4444,customer-01,flight-10,true
+booking-08,JKL012,2014/04/10 08:45,BUSINESS,6666,customer-03,flight-11,true
+booking-09,MNO345,2015/05/05 14:00,ECONOMY,7777,customer-02,flight-13,true
+booking-10,PQR678,2016/06/15 19:30,BUSINESS,8888,customer-01,flight-10,true
+booking-11,STU901,2017/07/20 12:00,ECONOMY,9999,customer-03,flight-11,true
+booking-12,VWX234,2018/08/30 15:45,BUSINESS,null,customer-02,flight-13,true
+booking-13,YZA567,2019/09/10 10:30,ECONOMY,1010,customer-01,flight-13,true
+booking-14,BCD890,2020/10/25 17:00,BUSINESS,2020,customer-03,flight-10,true
+booking-15,EFG123,2021/11/05 13:15,ECONOMY,3030,customer-02,flight-11,true
