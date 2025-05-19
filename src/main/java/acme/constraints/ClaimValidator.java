@@ -32,6 +32,8 @@ public class ClaimValidator extends AbstractValidator<ValidClaim, Claim> {
 			super.state(context, !claim.getLeg().isDraftMode() && !claim.getLeg().getFlight().isDraft(), "leg", "javax.validation.claim.leg");
 			super.state(context, claim.getLeg().getFlight().getAirline().getId() == claim.getAssistanceAgent().getAirline().getId(), "leg", "javax.validation.claim.leg2");
 			super.state(context, claim.getRegistrationMoment().after(claim.getLeg().getScheduleArrival()), "leg", "javax.validation.claim.leg3");
+			if (claim.isDraftMode())
+				super.state(context, this.repository.findTrackingLogsByClaimId(claim.getId()).isEmpty(), "leg", "javax.validation.claim.leg4");
 		}
 		return !super.hasErrors(context);
 	}
