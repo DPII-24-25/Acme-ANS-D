@@ -10,7 +10,7 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.administrator.airlines;
+package acme.features.administrator.airports;
 
 import java.util.Collection;
 
@@ -18,19 +18,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.principals.Administrator;
-import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
-import acme.entities.airline.Airline;
-import acme.entities.airline.AirlineType;
+import acme.entities.airports.Airport;
 
 @GuiService
-public class AdministratorAirlineListService extends AbstractGuiService<Administrator, Airline> {
+public class AdministratorAirportListService extends AbstractGuiService<Administrator, Airport> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AdministratorAirlineRepository repository;
+	private AdministratorAirportRepository repository;
 
 	// AbstractGuiService interface -------------------------------------------
 
@@ -42,21 +40,18 @@ public class AdministratorAirlineListService extends AbstractGuiService<Administ
 
 	@Override
 	public void load() {
-		Collection<Airline> airlines;
+		Collection<Airport> airports;
 
-		airlines = this.repository.findAllAirlines();
+		airports = this.repository.findAllAirports();
 
-		super.getBuffer().addData(airlines);
+		super.getBuffer().addData(airports);
 	}
 
 	@Override
-	public void unbind(final Airline airline) {
+	public void unbind(final Airport airport) {
 		Dataset dataset;
-		SelectChoices choices;
 
-		choices = SelectChoices.from(AirlineType.class, airline.getType());
-		dataset = super.unbindObject(airline, "name", "type", "iataCode");
-		dataset.put("types", choices);
+		dataset = super.unbindObject(airport, "name", "city", "iataCode");
 
 		super.getResponse().addData(dataset);
 	}

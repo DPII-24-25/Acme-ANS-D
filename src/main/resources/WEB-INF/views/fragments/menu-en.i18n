@@ -21,7 +21,8 @@ master.menu.anonymous.mohabu2= Y5061984C: Abulatifa, Mohanad JD
 # master.menu.administrator ###################################################
 
 master.menu.administrator = Administrator
-master.menu.administrator.list-airlines = List airlines 
+master.menu.administrator.list-airlines = List airlines
+master.menu.administrator.list-airport = List airports 
 master.menu.administrator.list-user-accounts = List user accounts
 master.menu.administrator.populate-db-initial = Populate DB (initial)
 master.menu.administrator.populate-db-sample = Populate DB (samples)

@@ -10,7 +10,7 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.administrator.airlines;
+package acme.features.administrator.airports;
 
 import javax.annotation.PostConstruct;
 
@@ -19,24 +19,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import acme.client.components.principals.Administrator;
 import acme.client.controllers.AbstractGuiController;
 import acme.client.controllers.GuiController;
-import acme.entities.airline.Airline;
+import acme.entities.airports.Airport;
 
 @GuiController
-public class AdministratorAirlineController extends AbstractGuiController<Administrator, Airline> {
+public class AdministratorAirportController extends AbstractGuiController<Administrator, Airport> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AdministratorAirlineListService		listService;
+	private AdministratorAirportListService		listService;
 
 	@Autowired
-	private AdministratorAirlineShowService		showService;
+	private AdministratorAirportShowService		showService;
 
 	@Autowired
-	private AdministratorAirlineCreateService	createService;
+	private AdministratorAirportCreateService	createService;
 
 	@Autowired
-	private AdministratorAirlineUpdateService	updateService;
+	private AdministratorAirportUpdateService	updateService;
 
 	// Constructors -----------------------------------------------------------
 

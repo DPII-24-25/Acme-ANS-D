@@ -10,7 +10,7 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.administrator.airlines;
+package acme.features.administrator.airports;
 
 import java.util.Collection;
 
@@ -19,9 +19,10 @@ import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
 import acme.entities.airline.Airline;
+import acme.entities.airports.Airport;
 
 @Repository
-public interface AdministratorAirlineRepository extends AbstractRepository {
+public interface AdministratorAirportRepository extends AbstractRepository {
 
 	@Query("select a from Airline a where a.id = :id")
 	Airline findAirlineById(int id);
@@ -31,6 +32,12 @@ public interface AdministratorAirlineRepository extends AbstractRepository {
 
 	@Query("select a from Airline a where a.iataCode = :code")
 	Airline findAirlineByIataCode(String code);
+
+	@Query("select a from Airport a")
+	Collection<Airport> findAllAirports();
+
+	@Query("select a from Airport a WHERE a.id =:id")
+	Airport findAirportById(int id);
 
 	//	@Query("select a from Airline a where a.moment > :deadline")
 	//Collection<Airline> findAnnouncementsByMoment(Date deadline);
