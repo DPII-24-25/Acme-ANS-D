@@ -1,0 +1,30 @@
+# Aircraft labels
+administrator.aircraft.list.title=Aircraft List
+administrator.aircraft.list.label.registrationNumber=Registration Number
+administrator.aircraft.list.label.model=Model
+administrator.aircraft.list.label.capacity=Passenger Capacity
+administrator.aircraft.list.label.cargoWeight=Cargo Weight (kg)
+administrator.aircraft.list.label.status=Status
+administrator.aircraft.list.label.airline=Airline
+administrator.aircraft.list.button.create=Create New Aircraft
+
+administrator.aircraft.form.label.registrationNumber=Registration Number
+administrator.aircraft.form.label.model=Model
+administrator.aircraft.form.label.capacity=Passenger Capacity
+administrator.aircraft.form.label.cargoWeight=Cargo Weight (kg)
+administrator.aircraft.form.label.status=Status
+administrator.aircraft.form.label.optionalDetails=Optional Details
+administrator.aircraft.form.label.airline=Airline
+administrator.aircraft.form.label.confirmation=I confirm the data is correct
+administrator.aircraft.form.button.create=Create
+administrator.aircraft.form.button.update=Update
+
+# Status values
+aircraft.status.AVAILABLE=Available
+aircraft.status.IN_MAINTENANCE=In Maintenance
+aircraft.status.RETIRED=Retired
+
+# Validation messages
+administrator.aircraft.form.error.duplicate=This registration number already exists
+administrator.aircraft.form.error.negative-capacity=Capacity must be positive
+administrator.aircraft.form.error.invalid-cargo-weight=Cargo weight must be between 2000 and 50000 kg
