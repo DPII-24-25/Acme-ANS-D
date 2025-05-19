@@ -28,10 +28,11 @@ public class ClaimValidator extends AbstractValidator<ValidClaim, Claim> {
 
 		if (claim == null)
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
-		else if (claim.getLeg() != null)
-			if (claim.getLeg().getFlight() != null)
-				super.state(context, !claim.getLeg().isDraftMode() && !claim.getLeg().getFlight().isDraft(), "leg", "javax.validation.claim.leg");
-
+		else if (claim.getLeg() != null && claim.getLeg().getFlight() != null) {
+			super.state(context, !claim.getLeg().isDraftMode() && !claim.getLeg().getFlight().isDraft(), "leg", "javax.validation.claim.leg");
+			super.state(context, claim.getLeg().getFlight().getAirline().getId() == claim.getAssistanceAgent().getAirline().getId(), "leg", "javax.validation.claim.leg2");
+			super.state(context, claim.getRegistrationMoment().after(claim.getLeg().getScheduleArrival()), "leg", "javax.validation.claim.leg3");
+		}
 		return !super.hasErrors(context);
 	}
 
