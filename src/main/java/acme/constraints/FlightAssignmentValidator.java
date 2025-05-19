@@ -28,9 +28,11 @@ public class FlightAssignmentValidator extends AbstractValidator<ValidFlightAssi
 
 		if (assignment == null)
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
-		else if (assignment.getLeg() != null)
-			if (assignment.getLeg().getFlight() != null)
-				super.state(context, !assignment.getLeg().isDraftMode() && !assignment.getLeg().getFlight().isDraft(), "leg", "javax.validation.assignment.leg");
+		else if (assignment.getLeg() != null && assignment.getLeg().getFlight() != null) {
+			super.state(context, !assignment.getLeg().isDraftMode() && !assignment.getLeg().getFlight().isDraft(), "leg", "javax.validation.assignment.leg");
+			super.state(context, assignment.getFlightCrewMember().getAirline().getId() == assignment.getLeg().getFlight().getAirline().getId(), "leg", "javax.validation.assignment.leg2");
+			super.state(context, assignment.getLastUpdate().before(assignment.getLeg().getScheduleDeparture()), "leg", "javax.validation.assignment.leg3");
+		}
 		return !super.hasErrors(context);
 	}
 }
