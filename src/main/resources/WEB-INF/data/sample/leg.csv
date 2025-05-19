@@ -20,3 +20,4 @@ leg-18,QTR5550,2016/01/01 00:00,2016/01/02 01:00,ONTIME,flight-13,airport-05,air
 leg-19,QTR5551,2017/01/01 00:00,2017/01/02 01:00,ONTIME,flight-15,airport-05,airport-07,aircraft-02,false
 leg-20,QTR5552,2018/01/01 00:00,2018/01/02 01:00,LANDED,flight-16,airport-05,airport-07,aircraft-03,false
 leg-21,QTR5553,2019/01/01 00:00,2019/01/02 01:00,CANCELLED,flight-11,airport-05,airport-07,aircraft-04,false
+leg-22,TNX0001,2025/01/01 00:15,2025/01/02 15:00,ONTIME,flight-01,airport-02,airport-01,aircraft-01,true
