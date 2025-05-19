@@ -18,10 +18,11 @@ administrator.airport.form.label.website=Website
 administrator.airport.form.label.emailAdress=Email Address
 administrator.airport.form.label.phoneNumber=Phone Number
 administrator.airport.form.label.confirmation=I confirm the data is correct
-
+administrator.airport.form.title = Airports
 # Other texts
 administrator.airport.list.label.city = City
 administrator.airport.list.title = Airports
 administrator.airport.form.title.create = Create Airport
 administrator.airport.form.title.update = Update Airport
 administrator.airport.form.button.update = Update
+administrator.airport.form.button.create = Create

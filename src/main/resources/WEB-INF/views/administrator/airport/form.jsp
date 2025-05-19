@@ -30,12 +30,11 @@
     <acme:input-textbox code="administrator.airport.form.label.city" path="city"/>
     <acme:input-textbox code="administrator.airport.form.label.country" path="country"/>
     <acme:input-url code="administrator.airport.form.label.website" path="website"/>
+ 	<acme:input-select code="administrator.airport.form.label.operationalScope" path="operationalScope" choices="${scope}"/>
     <acme:input-email code="administrator.airport.form.label.emailAdress" path="emailAdress"/>
     <acme:input-textbox code="administrator.airport.form.label.phoneNumber" path="phoneNumber"/>
+    <acme:input-checkbox code="administrator.airline.form.label.confirmation" path="confirmation"/>
     
-    <jstl:if test="${_command == 'create'}">
-        <acme:input-checkbox code="administrator.airport.form.label.confirmation" path="confirmation"/>
-    </jstl:if>
 
     <jstl:choose>
         <jstl:when test="${_command == 'create'}">

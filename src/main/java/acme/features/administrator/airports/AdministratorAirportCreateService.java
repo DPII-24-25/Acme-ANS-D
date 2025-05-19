@@ -16,9 +16,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.principals.Administrator;
+import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.airports.Airport;
+import acme.entities.airports.Scope;
 
 @GuiService
 public class AdministratorAirportCreateService extends AbstractGuiService<Administrator, Airport> {
@@ -67,9 +69,12 @@ public class AdministratorAirportCreateService extends AbstractGuiService<Admini
 	@Override
 	public void unbind(final Airport airport) {
 		Dataset dataset;
+		SelectChoices choices;
 
+		choices = SelectChoices.from(Scope.class, airport.getOperationalScope());
 		dataset = super.unbindObject(airport, "name", "iataCode", "operationalScope", "website", "city", "country", "emailAdress", "phoneNumber");
-
+		dataset.put("scope", choices);
+		dataset.put("confirmation", false);
 		super.getResponse().addData(dataset);
 	}
 
