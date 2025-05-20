@@ -34,4 +34,7 @@ public interface BookingRepository extends AbstractRepository {
 	@Query("SELECT COUNT(f) > 0 FROM Flight f WHERE f.id = :flightId AND f.isDraft = false")
 	boolean isFlightPublished(int flightId);
 
+	@Query("Select COUNT(b) > 0 from Booking b WHERE b.locatorCode = :locatorCode")
+	boolean existsByLocatorCode(String locatorCode);
+
 }

@@ -64,27 +64,19 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 
 	@Override
 	public void bind(final Booking booking) {
+		int flightId;
+		Flight flight;
 
-		super.bindObject(booking, "locatorCode", "creditCard", "travelClass");
-		if (booking.getPurchaseMoment() == null)
-			booking.setPurchaseMoment(MomentHelper.getCurrentMoment());
+		flightId = super.getRequest().getData("flight", int.class);
+		flight = this.repository.findFlightById(flightId);
+		Date purchaseMoment;
+		purchaseMoment = MomentHelper.getCurrentMoment();
 
-		// Obtener el valor del formulario
-		String travelClassString = super.getRequest().getData("travelClass", String.class);
-		if (travelClassString != null)
-			try {
-				// Convertir el String a Enum
-				booking.setTravelClass(TravelClass.valueOf(travelClassString));
-			} catch (IllegalArgumentException e) {
-				super.state(false, "travelClass", "customer.booking.form.error.invalid-travel-class");
-			}
+		super.bindObject(booking, "locatorCode", "travelClass", "creditCard");
 
-		int flightId = super.getRequest().getData("flight", int.class);
-		if (flightId > 0) {
-			Flight flight = this.repository.findFlightById(flightId);
-			booking.setFlight(flight);
-		} else
-			super.state(false, "flight", "customer.booking.form.error.flight-required");
+		booking.setPurchaseMoment(purchaseMoment);
+
+		booking.setFlight(flight);
 	}
 
 	@Override
@@ -99,6 +91,13 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 			String initials = name.substring(0, 1).toUpperCase() + surname.substring(0, 1).toUpperCase();
 			boolean startsWithInitials = identifier.startsWith(initials);
 			super.state(startsWithInitials, "identifier", "customer.booking.form.error.mismatched-initials");
+		}
+		if (!super.getBuffer().getErrors().hasErrors("locatorCode")) {
+			String locatorCode = booking.getLocatorCode();
+
+			boolean exists = this.repository.existsByLocatorCode(locatorCode);
+
+			super.state(!exists, "locatorCode", "customer.booking.form.error.duplicateLocator");
 		}
 
 	}

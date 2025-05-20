@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
-import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.customers.Booking;
@@ -53,27 +52,15 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 
 	@Override
 	public void bind(final Booking booking) {
+		int flightId;
+		Flight flight;
 
-		super.bindObject(booking, "locatorCode", "creditCard", "travelClass");
-		if (booking.getPurchaseMoment() == null)
-			booking.setPurchaseMoment(MomentHelper.getCurrentMoment());
+		flightId = super.getRequest().getData("flight", int.class);
+		flight = this.repository.findFlightById(flightId);
 
-		// Obtener el valor del formulario
-		String travelClassString = super.getRequest().getData("travelClass", String.class);
-		if (travelClassString != null)
-			try {
-				// Convertir el String a Enum
-				booking.setTravelClass(TravelClass.valueOf(travelClassString));
-			} catch (IllegalArgumentException e) {
-				super.state(false, "travelClass", "customer.booking.form.error.invalid-travel-class");
-			}
+		super.bindObject(booking, "locatorCode", "travelClass", "creditCard");
 
-		int flightId = super.getRequest().getData("flight", int.class);
-		if (flightId > 0) {
-			Flight flight = this.repository.findFlightById(flightId);
-			booking.setFlight(flight);
-		} else
-			super.state(false, "flight", "customer.booking.form.error.flight-required");
+		booking.setFlight(flight);
 	}
 	@Override
 	public void perform(final Booking booking) {

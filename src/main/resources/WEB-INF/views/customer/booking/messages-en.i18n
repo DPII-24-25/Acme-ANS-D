@@ -19,3 +19,4 @@ customer.booking.list.label.scheduleDeparture = Departure Date
 customer.booking.form.label.flight = Flight
 customer.booking.form.error.flight-required = You have to assign a Flight
 customer.booking.form.error.noPassengers = It must have some passenger associated to be published
+customer.booking.form.error.duplicateLocator = Locator Code already exists

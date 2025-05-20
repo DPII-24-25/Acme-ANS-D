@@ -22,3 +22,4 @@ customer.passenger.form.title = Pasajeros
 customer.passenger.form.button.update = Actualizar
 customer.passenger.form.button.publish = Publicar
 customer.booking.form.error.noPassengers = No se puede publicar ya que no tiene pasajeros asociados
+customer.booking.form.error.duplicateLocator = Codigo de Reserva ya en uso
