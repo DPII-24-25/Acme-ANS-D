@@ -2,6 +2,7 @@
 package acme.constraints;
 
 import java.util.Date;
+import java.util.stream.Stream;
 
 import javax.validation.ConstraintValidatorContext;
 
@@ -45,6 +46,18 @@ public class MaintenanceRecordValidator extends AbstractValidator<ValidMaintenac
 				super.state(context, dueDateAfterMoment, "inspectDueDate", "acme.validation.maintenance-record.inspectDueDate-is-before-moment.message");
 			} else
 				super.state(context, false, "inspectDueDate", "acme.validation.maintenance-record.moment-is-null-dueDate-is-not.message");
+		}
+
+		enum acceptedCurrencies {
+			EUR, USD, GBP
+		}
+
+		if (mRecord.getEstCost() != null) {
+			String currency = mRecord.getEstCost().getCurrency();
+			boolean isAccepted = Stream.of(acceptedCurrencies.values()).anyMatch(c -> c.name().equals(currency));
+
+			if (!isAccepted)
+				super.state(context, false, "estCost", "acme.validation.maintenance-record.currency");
 		}
 
 		result = !super.hasErrors(context);
