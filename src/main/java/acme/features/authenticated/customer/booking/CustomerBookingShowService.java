@@ -24,11 +24,17 @@ public class CustomerBookingShowService extends AbstractGuiService<Customer, Boo
 
 	@Override
 	public void authorise() {
-		int masterId = this.getRequest().getData("id", int.class);
-		int customerId = this.getRequest().getPrincipal().getActiveRealm().getId();
-		boolean isOwner = this.repository.findBookingById(masterId).getCustomer().getId() == customerId;
-		super.getResponse().setAuthorised(isOwner);
+		boolean status;
+		int customerId;
+		Booking booking;
 
+		customerId = super.getRequest().getData("id", int.class);
+		booking = this.repository.findBookingById(customerId);
+
+		Customer current = (Customer) super.getRequest().getPrincipal().getActiveRealm();
+		status = booking != null && booking.getCustomer().equals(current);
+
+		super.getResponse().setAuthorised(status);
 	}
 	@Override
 	public void load() {
@@ -46,7 +52,7 @@ public class CustomerBookingShowService extends AbstractGuiService<Customer, Boo
 		Collection<Flight> publishedFlights = this.repository.findAllPublishedFlights();
 		choices2 = SelectChoices.from(publishedFlights, "label", booking.getFlight());
 		choices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
-		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "price", "creditCard", "draftMode");
+		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "price", "creditCard", "draftMode", "flight");
 		dataset.put("flight", choices2.getSelected().getKey());
 		dataset.put("publishedFlights", choices2);
 		dataset.put("travelClass", choices.getSelected().getKey());

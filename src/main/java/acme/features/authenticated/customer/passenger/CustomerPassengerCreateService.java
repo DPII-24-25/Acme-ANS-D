@@ -19,8 +19,9 @@ public class CustomerPassengerCreateService extends AbstractGuiService<Customer,
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		Customer customer = (Customer) super.getRequest().getPrincipal().getActiveRealm();
 
+		super.getResponse().setAuthorised(super.getRequest().getPrincipal().hasRealm(customer));
 	}
 
 	@Override
@@ -43,7 +44,7 @@ public class CustomerPassengerCreateService extends AbstractGuiService<Customer,
 
 	@Override
 	public void bind(final Passenger passenger) {
-		super.bindObject(passenger, "fullName", "email", "passportNumber", "dateBirth", "specialNeeds", "draftMode");
+		super.bindObject(passenger, "fullName", "email", "passportNumber", "dateBirth", "specialNeeds");
 		Integer masterId = super.getRequest().getData("masterId", Integer.class);
 		if (masterId != null) {
 			Booking booking = this.repository.findBookingById(masterId);

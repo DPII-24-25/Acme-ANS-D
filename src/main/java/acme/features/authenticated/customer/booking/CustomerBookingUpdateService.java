@@ -27,20 +27,31 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 
 	@Override
 	public void authorise() {
-		int masterId;
 		boolean status;
-		boolean isOwner;
-		boolean editable;
 		Booking booking;
 
-		masterId = super.getRequest().getData("id", int.class);
-		booking = this.repository.findBookingById(masterId);
-		status = super.getRequest().getPrincipal().hasRealmOfType(Customer.class);
-		isOwner = super.getRequest().getPrincipal().getActiveRealm().getId() == booking.getCustomer().getId();
-		editable = booking.isDraftMode();
+		int bookingId = super.getRequest().getData("id", int.class);
+		booking = this.repository.findBookingById(bookingId);
 
-		super.getResponse().setAuthorised(status && isOwner && editable);
+		boolean hasFlightId = super.getRequest().hasData("flight", int.class);
+		boolean isFlightAccessible = false;
 
+		if (hasFlightId) {
+			int flightId = super.getRequest().getData("flight", int.class);
+
+			if (flightId != 0)
+				isFlightAccessible = this.repository.isFlightPublished(flightId);
+			else
+
+				isFlightAccessible = true;
+		} else
+
+			isFlightAccessible = true;
+
+		Customer current = (Customer) super.getRequest().getPrincipal().getActiveRealm();
+		status = booking != null && booking.getCustomer().equals(current) && booking.isDraftMode() && isFlightAccessible;
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -55,7 +66,7 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 	@Override
 	public void bind(final Booking booking) {
 
-		super.bindObject(booking, "locatorCode", "purchaseMoment", "price", "creditCard", "draftMode");
+		super.bindObject(booking, "locatorCode", "creditCard", "draftMode");
 		if (booking.getPurchaseMoment() == null)
 			booking.setPurchaseMoment(MomentHelper.getCurrentMoment());
 
@@ -109,7 +120,7 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 		choices2 = SelectChoices.from(publishedFlights, "label", booking.getFlight());
 
 		choices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
-		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "price", "creditCard", "draftMode");
+		dataset = super.unbindObject(booking, "locatorCode", "travelClass", "creditCard", "draftMode");
 		dataset.put("flight", choices2.getSelected().getKey());
 		dataset.put("publishedFlights", choices2);
 		dataset.put("travelClass", choices.getSelected().getKey());

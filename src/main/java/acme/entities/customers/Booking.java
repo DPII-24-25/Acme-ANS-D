@@ -80,7 +80,7 @@ public class Booking extends AbstractEntity {
 		if (this.flight == null)
 			return new Money();
 		BookingRepository repo = SpringHelper.getBean(BookingRepository.class);
-		result = repo.findCostByFlight(this.flight.getId());
+		result = repo.findCostByFlightBooking(this.flight.getId());
 		Collection<Passenger> passengers = repo.findAllPassengerByBookingId(this.getId());
 		double amount = result.getAmount() * passengers.size();
 		result.setAmount(amount);

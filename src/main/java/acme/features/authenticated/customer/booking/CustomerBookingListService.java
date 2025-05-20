@@ -36,8 +36,9 @@ public class CustomerBookingListService extends AbstractGuiService<Customer, Boo
 
 	@Override
 	public void authorise() {
-		boolean status;
-		super.getResponse().setAuthorised(true);
+		Customer customer = (Customer) super.getRequest().getPrincipal().getActiveRealm();
+
+		super.getResponse().setAuthorised(super.getRequest().getPrincipal().hasRealm(customer));
 	}
 
 	@Override
