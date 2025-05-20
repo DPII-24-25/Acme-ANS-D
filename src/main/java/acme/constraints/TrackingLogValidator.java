@@ -26,9 +26,6 @@ public class TrackingLogValidator extends AbstractValidator<ValidTrackingLog, Tr
 
 		if (trackingLog == null)
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
-		else {
-			// Aquí irán las validaciones futuras.
-		}
 
 		return !super.hasErrors(context);
 	}
