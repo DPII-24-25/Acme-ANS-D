@@ -27,8 +27,8 @@ public class CreditCardValidator extends AbstractValidator<ValidDigitsCreditCard
 		if (this.booking == null || this.booking.getCreditCard() == null)
 			return !super.hasErrors(context);
 
-		String codeCC = this.repository.findCreditCardByBookingId(this.booking.getId());
-		boolean isValidLastDigits = value.equals(codeCC) || codeCC.length() == 4;
+		String code = this.repository.findCreditCardByBookingId(this.booking.getId());
+		boolean isValidLastDigits = value.equals(code) || code.length() == 4;
 
 		super.state(context, isValidLastDigits, "Cuatro digitos", "acme.validaton.booking.nibble.message");
 

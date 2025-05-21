@@ -10,6 +10,9 @@
 
 acme.validation.flight.identifierNumber.message = The identifier do not correspond with the initials
 acme.validation.leg.flightNumber.message = The identifier do not correspond with the IATA code
+acme.validation.flight.legs.departure = There is a departure incompatibility in the flight legs.
+acme.validation.flight.legs.arrival = There is an arrival incompatibility in the flight legs.
+acme.validation.leg.arrivalDeparture.message = The scheduleDeparture should be before the scheduleArrival.
 acme.validation.flight.legs.departure = There is a departure incompatibility in the flight legs
 acme.validation.flight.legs.arrival = There is an arrival incompatibility in the flight leg
 acme.validation.leg.arrivalDeparture.message = The scheduleDeparture should be before the scheduleArrival
@@ -20,11 +23,10 @@ acme.validation.airline.nameLength.message = Name must not exceed 50 characters
 acme.validation.airline.momentIsInPast.message = Foundation moment can't be placed in the future
 acme.validation.airline.uniqueIataCode.message = IATA code must be unique
 acme.validation.flight.currency = The currency is not supported
-<<<<<<< Updated upstream
+
 acme.validation.leg.flightNumber.unique.message = The code inserted is just in use
 acme.validation.leg.overlapping.message = It is not possible to create a new Leg with these departure and arrival dates
-=======
 acme.validation.claim.leg = The leg associated should be published
->>>>>>> Stashed changes
 
 acme.validation.assignment.leg = The leg associated should be published
+
