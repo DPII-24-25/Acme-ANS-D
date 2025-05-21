@@ -67,6 +67,20 @@ public class FlightCrewMemberActivityLogCreateService extends AbstractGuiService
 	@Override
 	public void validate(final ActivityLog activityLog) {
 		assert activityLog != null;
+
+		FlightAssignment assignment = activityLog.getFlightAssignment();
+
+		// Validar que el assignment esté confirmado
+		boolean isConfirmed = assignment.getStatus().name().equals("CONFIRMED");
+		super.state(isConfirmed, "*", "acme.validation.activitylog.assignmentNotConfirmed");
+
+		// Validar que el leg esté completado (fecha de llegada en el pasado)
+		boolean legCompleted = MomentHelper.isPast(assignment.getLeg().getScheduleArrival());
+		super.state(legCompleted, "*", "acme.validation.activitylog.legNotCompleted");
+
+		// Validar que registrationMoment sea >= scheduleArrival
+		boolean registrationAfterArrival = MomentHelper.isAfterOrEqual(activityLog.getRegistrationMoment(), assignment.getLeg().getScheduleArrival());
+		super.state(registrationAfterArrival, "registrationMoment", "acme.validation.activitylog.registrationmoment.tooEarly");
 	}
 
 	@Override
