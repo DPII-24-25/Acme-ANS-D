@@ -69,7 +69,8 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 
 	@Override
 	public void validate(final MaintenanceRecord record1) {
-		super.state(!record1.getStatus().equals(MaintenanceStatus.COMPLETED), "status", "technician.maintenance-record.form.error.to-create-must-not-be-completed");
+		if (record1.getStatus() != null)
+			super.state(!record1.getStatus().equals(MaintenanceStatus.COMPLETED), "status", "technician.maintenance-record.form.error.to-create-must-not-be-completed");
 
 		;
 	}

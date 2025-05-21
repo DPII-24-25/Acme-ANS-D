@@ -37,3 +37,4 @@ technician.maintenance-record.form.error.to-publish-must-be-completed = Para pub
 technician.maintenance-record.form.error.not-enough-tasks = Para que se pueda públicar este registro se necesita como mínimo una tarea asociada a ella
 acme.validation.maintenance-record.inspectDueDate-is-before-moment.message = La próxima inspección no puede ser antes que el momento
 acme.validation.maintenance-record.moment-is-null-dueDate-is-not.message = antes de introducir la próxima inspección debe rellenar el momento
+acme.validation.maintenance-record.currency= La moneda debe ser EUR, USD o GBP
