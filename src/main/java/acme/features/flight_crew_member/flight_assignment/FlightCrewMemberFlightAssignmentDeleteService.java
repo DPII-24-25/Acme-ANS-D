@@ -64,6 +64,22 @@ public class FlightCrewMemberFlightAssignmentDeleteService extends AbstractGuiSe
 	@Override
 	public void validate(final FlightAssignment object) {
 		assert object != null;
+
+		// Validación 1: Asegurarse de que está en modo borrador
+		super.state(object.isDraftMode(), "*", "acme.validation.flightAssignment.mustBeDraftToDelete");
+
+		// Validación 2: El estado debe ser PENDING (no se elimina si está confirmado)
+		super.state(object.getStatus() == FlightAssignmentStatus.PENDING, "status", "acme.validation.flightAssignment.mustBePendingToDelete");
+
+		// Validación 3: El lastUpdate debe estar en el pasado
+		if (object.getLastUpdate() != null) {
+			boolean isPast = MomentHelper.isPast(object.getLastUpdate());
+			super.state(isPast, "lastUpdate", "acme.validation.flightAssignment.lastUpdate.mustBePast");
+		}
+
+		// Validación 4: remarks no debe exceder 255 caracteres
+		if (object.getRemarks() != null)
+			super.state(object.getRemarks().length() <= 255, "remarks", "acme.validation.flightAssignment.remarks.tooLong");
 	}
 
 	@Override

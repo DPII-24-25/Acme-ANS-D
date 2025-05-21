@@ -49,6 +49,7 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 		FlightCrewMember flightCrewMember;
 		flightCrewMember = this.repository.findFlightCrewMemberById(super.getRequest().getPrincipal().getActiveRealm().getId());
 		flightAssignment.setDraftMode(true);
+		flightAssignment.setStatus(FlightAssignmentStatus.PENDING);
 		flightAssignment.setFlightCrewMember(flightCrewMember);
 		super.getBuffer().addData(flightAssignment);
 	}
@@ -60,7 +61,7 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 
 		legId = super.getRequest().getData("leg", int.class);
 		leg = this.repository.findLegById(legId);
-		super.bindObject(object, "duty", "status", "remarks");
+		super.bindObject(object, "duty", "remarks");
 		final Date cMoment = MomentHelper.getCurrentMoment();
 		object.setLastUpdate(cMoment);
 		object.setLeg(leg);
@@ -75,23 +76,23 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 	public void validate(final FlightAssignment object) {
 		assert object != null;
 
-		// Validación 1: Miembro debe estar disponible
 		boolean isAvailable = object.getFlightCrewMember().getAvailabilityStatus() == FlightCrewAvailability.AVAILABLE;
 		super.state(isAvailable, "*", "acme.validation.flightAssignment.memberNotAvailable");
 
-		// Validación 2: El Leg no debe ser pasado
 		if (object.getLeg() != null) {
 			boolean isFutureLeg = !MomentHelper.isPast(object.getLeg().getScheduleArrival());
 			super.state(isFutureLeg, "leg", "acme.validation.flightAssignment.legInPast");
 
 			boolean legIsPublished = !object.getLeg().isDraftMode();
 			super.state(legIsPublished, "leg", "acme.validation.flightAssignment.legNotPublished");
+
+			Collection<Leg> allowedLegs = this.repository.findLegsAfterCurrentDateByAirlineId(object.getFlightCrewMember().getAirline().getId(), MomentHelper.getCurrentMoment());
+			super.state(allowedLegs.contains(object.getLeg()), "leg", "acme.validation.flightAssignment.legNotInAirline");
 		}
 
-		// Validación 3: No debe haber solapamiento de horarios
 		if (object.getLeg() != null) {
 			Collection<FlightAssignment> existingAssignments = this.repository.findFlightAssignmentByFlightCrewMemberId(object.getFlightCrewMember().getId());
-			for (FlightAssignment fa : existingAssignments)
+			for (FlightAssignment fa : existingAssignments) {
 				if (fa.getId() != object.getId() && !fa.getLeg().isDraftMode()) {
 					boolean overlaps = MomentHelper.isInRange(object.getLeg().getScheduleDeparture(), fa.getLeg().getScheduleDeparture(), fa.getLeg().getScheduleArrival())
 						|| MomentHelper.isInRange(object.getLeg().getScheduleArrival(), fa.getLeg().getScheduleDeparture(), fa.getLeg().getScheduleArrival());
@@ -99,9 +100,13 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 					if (overlaps)
 						break;
 				}
+				if (fa.getLeg().equals(object.getLeg()) && fa.getFlightCrewMember().equals(object.getFlightCrewMember()) && fa.getId() != object.getId()) {
+					super.state(false, "*", "acme.validation.flightAssignment.memberDuplicatedOnLeg");
+					break;
+				}
+			}
 		}
 
-		// Validación 4: Solo un piloto/copiloto por vuelo
 		if (object.getLeg() != null && object.getDuty() != null) {
 			List<FlightAssignment> assignmentsByLeg = this.repository.findFlightAssignmentByLegId(object.getLeg().getId());
 
@@ -115,25 +120,20 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 
 	@Override
 	public void unbind(final FlightAssignment object) {
-
 		SelectChoices choicesLegs;
 		SelectChoices choicesDuty;
-		SelectChoices choicesStatus;
 		Collection<Leg> legs;
 		Dataset dataset;
 		final Date cMoment = MomentHelper.getCurrentMoment();
 		legs = this.repository.findLegsAfterCurrentDateByAirlineId(object.getFlightCrewMember().getAirline().getId(), cMoment);
 		choicesLegs = SelectChoices.from(legs, "flightNumber", object.getLeg());
 		choicesDuty = SelectChoices.from(FlightCrewDuty.class, object.getDuty());
-		choicesStatus = SelectChoices.from(FlightAssignmentStatus.class, object.getStatus());
 
-		dataset = super.unbindObject(object, "duty", "lastUpdate", "status", "remarks", "draftMode");
+		dataset = super.unbindObject(object, "duty", "lastUpdate", "remarks", "draftMode");
 		dataset.put("leg", choicesLegs.getSelected().getKey());
 		dataset.put("legs", choicesLegs);
 		dataset.put("duties", choicesDuty);
-		dataset.put("statutes", choicesStatus);
 
 		super.getResponse().addData(dataset);
 	}
-
 }
