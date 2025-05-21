@@ -1,6 +1,7 @@
 
 package acme.realms;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 import acme.client.components.basis.AbstractRealm;
@@ -21,7 +22,8 @@ public class Customer extends AbstractRealm {
 
 	@Automapped
 	@Mandatory   // Esto puede ser que sea custom pero hay que leerse el entregable 3
-	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$") //Hay que hacer una custom
+	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$")
+	@Column(unique = true)//Hay que hacer una custom
 
 	private String				identifier;
 

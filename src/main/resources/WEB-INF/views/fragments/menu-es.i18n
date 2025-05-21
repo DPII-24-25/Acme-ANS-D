@@ -34,7 +34,8 @@ master.menu.provider = Proveedor
 master.menu.provider.favourite-link = Enlace favorito
 
 # master.menu.consumer ##########################################################
-
+master.menu.customer.list.booking = Mis reservas
+master.menu.customer = Cliente
 master.menu.consumer = Consumidor
 master.menu.consumer.favourite-link = Enlace favorito
 

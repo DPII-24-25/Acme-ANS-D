@@ -1,4 +1,4 @@
 key,identifier,phoneNumber,physicalAddress,city,country,earnedPoints,key:user-account
-customer-01,AG345123,616458999,Calle San Juan Bosco 61,Sevilla,España,20000,user-account-customer-01
-customer-02,AB985634,699359973,Calle Alcala 120,Madrid,España,0,user-account-customer-02
-customer-03,MP876490,645789345,Avenida Diagonal 5,Barcelona,Cataluña,,user-account-customer-03
+customer-01,LG345123,616458999,Calle San Juan Bosco 61,Sevilla,España,20000,user-account-customer-01
+customer-02,PP985634,699359973,Calle Alcala 120,Madrid,España,0,user-account-customer-02
+customer-03,VJ876490,645789345,Avenida Diagonal 5,Barcelona,Cataluña,,user-account-customer-03
