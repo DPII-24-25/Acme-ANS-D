@@ -29,29 +29,21 @@ public class ManagerLegCreateService extends AbstractGuiService<Manager, Leg> {
 
 	@Override
 	public void authorise() {
-		boolean status;
+		boolean status = false;
+		final String method = super.getRequest().getMethod();
 
-		status = true;
+		if (method.equals("GET"))
+			status = true;
+		else if (method.equals("POST"))
+			status = super.getRequest().getData("id", int.class) == 0;
+		else if (super.getRequest().getData().containsKey("flightId")) {
+			final int managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+			final int flightId = super.getRequest().getData("flightId", int.class);
+			final Flight flight = this.repository.findFlightById(flightId);
 
-		if (status) {
-			String method;
-			int flightId;
-			Flight flight;
-			int managerId;
-
-			method = super.getRequest().getMethod();
-
-			if (method.equals("GET"))
-				status = true;
-			else if (super.getRequest().getData().containsKey("flightId")) {
-				flightId = super.getRequest().getData("flightId", int.class);
-				flight = this.repository.findFlightById(flightId);
-				managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-
-				status = flight != null && flight.isDraft() && flight.getAirline().getManager().getId() == managerId;
-			} else
-				status = false;
-		}
+			status = flight != null && flight.isDraft() && flight.getAirline().getManager().getId() == managerId;
+		} else
+			status = false;
 
 		super.getResponse().setAuthorised(status);
 	}
