@@ -7,7 +7,7 @@
 	<acme:input-textbox code="flight.form.label.tag" path="tag" />
 	<acme:input-checkbox code="flight.form.label.selfTransfer"
 		path="selfTransfer" />
-	<acme:input-textbox code="flight.form.label.description"
+	<acme:input-textarea code="flight.form.label.description"
 		path="description" />
 	<acme:input-select code="flight.form.label.airline" path="airline"
 		choices="${airlines}" />

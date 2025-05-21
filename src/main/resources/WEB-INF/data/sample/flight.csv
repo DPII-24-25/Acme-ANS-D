@@ -15,3 +15,38 @@ flight-13,CustomTag13,true,EUR3442.42,<blink>Compromised</blink>,airline-01,0
 flight-14,CustomTag14,true,EUR342.34,<script>alert('Warning');</script>,airline-01,1
 flight-15,CustomTag15,true,EUR 342.34,<script>alert('Warning');</script>,airline-02,0
 flight-16,CustomTag16,true,EUR 342.34,<script>alert('Warning');</script>,airline-02,0
+# ============ TAG TESTING (1-50 chars) ============
+# Min length (1 char)
+flight-17,B,true,EUR500.00,Standard description,airline-04,1
+# Max length (50 chars)
+flight-18,abcdefghijabcdefghijabcdefghijabcdefghijabcdefghij,true,EUR500.00,Standard description,airline-04,1
+# Near min (2 chars)
+flight-19,BC,true,EUR500.00,Standard description,airline-04,1
+# Near max (49 chars)
+flight-20,abcdefghijabcdefghijabcdefghijabcdefghijabcdefghi,true,EUR500.00,Standard description,airline-04,1
+# ============ COST TESTING (0-1000000 EUR) ============
+# Min value (0)
+flight-21,CostTag,true,EUR0.00,Standard description,airline-04,1
+# Max value (1000000)
+flight-22,CostTag,true,EUR1000000.00,Standard description,airline-04,1
+# Near min (0.01)
+flight-23,CostTag,true,EUR0.01,Standard description,airline-04,1
+# Near max (999999.99)
+flight-24,CostTag,true,EUR999999.99,Standard description,airline-04,1
+# Format testing (space)
+flight-25,CostTag,true,EUR 500.00,Standard description,airline-04,1
+# ============ DESCRIPTION TESTING (max 255 chars) ============
+# Empty
+flight-26,DescTag,true,EUR500.00,,airline-04,1
+# Max length (255 chars)
+flight-27,DescTag,true,EUR500.00,abcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabc,airline-04,1
+# SQL injection
+flight-28,DescTag,true,EUR500.00,'OR'1'='1--,airline-04,1
+# XSS attempt
+flight-29,DescTag,true,EUR500.00,<script>alert('XSS');</script>,airline-04,1
+# ============ SELF TRANSFER TESTING ============
+flight-30,SelfTag,true,EUR500.00,Standard description,airline-04,1
+flight-31,SelfTag,false,EUR500.00,Standard description,airline-04,1
+# ============ DRAFT STATUS TESTING ============
+flight-32,DraftTag,true,EUR500.00,Standard description,airline-04,1
+flight-33,DraftTag,true,EUR500.00,Standard description,airline-04,0

@@ -21,3 +21,29 @@ leg-19,BZX5551,2017/01/01 00:00,2017/01/02 01:00,ONTIME,flight-15,airport-05,air
 leg-20,BZX5552,2018/01/01 00:00,2018/01/02 01:00,LANDED,flight-16,airport-05,airport-07,aircraft-03,false
 leg-21,QTR5553,2019/01/01 00:00,2019/01/02 01:00,CANCELLED,flight-11,airport-05,airport-07,aircraft-04,false
 leg-22,BZX0001,2025/01/01 00:15,2025/01/02 15:00,ONTIME,flight-01,airport-02,airport-01,aircraft-01,true
+# ============ FLIGHT NUMBER TESTING ============
+leg-23,TEX0001,2001/06/01 12:00,2001/06/01 14:00,ONTIME,flight-17,airport-01,airport-02,aircraft-09,true  
+leg-24,TEX0000,2001/06/01 12:00,2001/06/01 14:00,ONTIME,flight-17,airport-01,airport-02,aircraft-09,true
+leg-25,TEX9999,2001/06/01 12:00,2001/06/01 14:00,ONTIME,flight-17,airport-01,airport-02,aircraft-09,true
+
+# ============ SCHEDULE TESTING ============
+leg-26,TEX1000,2000/09/01 00:00,2000/09/01 01:00,ONTIME,flight-17,airport-01,airport-02,aircraft-09,true  
+leg-27,TEX1001,2199/12/31 23:59,2200/01/01 00:59,LANDED,flight-17,airport-01,airport-02,aircraft-09,false
+leg-28,TEX1002,2024/12/31 23:59,2025/01/01 00:59,ONTIME,flight-17,airport-01,airport-02,aircraft-09,true
+leg-29,TEX1003,2025/01/01 00:00,2025/01/01 01:00,ONTIME,flight-17,airport-01,airport-02,aircraft-09,true
+leg-30,TEX1004,2000/09/01 00:00,2000/09/01 00:01,ONTIME,flight-17,airport-01,airport-02,aircraft-09,true  
+leg-31,TEX1005,2001/01/01 00:00,2004/01/01 00:00,LANDED,flight-17,airport-01,airport-02,aircraft-09,false 
+
+# ============ STATUS TESTING ============
+leg-32,TEX2000,2001/06/01 12:00,2001/06/01 14:00,ONTIME,flight-17,airport-01,airport-02,aircraft-09,true
+leg-33,TEX2001,2001/06/01 12:00,2001/06/01 14:00,DELAYED,flight-17,airport-01,airport-02,aircraft-09,true
+leg-34,TEX2002,2001/06/01 12:00,2001/06/01 14:00,CANCELLED,flight-17,airport-01,airport-02,aircraft-09,true
+leg-35,TEX2003,2001/06/01 12:00,2001/06/01 14:00,LANDED,flight-17,airport-01,airport-02,aircraft-09,false
+
+# ============ DRAFT MODE TESTING ============
+leg-36,TEX3000,2001/06/01 12:00,2001/06/01 14:00,ONTIME,flight-17,airport-01,airport-02,aircraft-09,true
+leg-37,TEX3001,2001/06/01 12:00,2001/06/01 14:00,ONTIME,flight-17,airport-01,airport-02,aircraft-09,false
+
+# ============ SPECIAL VALID CASES ============
+leg-38,TEX9001,2200/01/01 00:00,2200/01/01 01:00,LANDED,flight-17,airport-01,airport-02,aircraft-09,false
+leg-39,TEX9002,2000/09/01 23:00,2000/09/02 06:00,ONTIME,flight-17,airport-01,airport-02,aircraft-09,true  

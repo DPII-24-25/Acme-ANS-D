@@ -35,9 +35,12 @@ public class ManagerLegListService extends AbstractGuiService<Manager, Leg> {
 
 	@Override
 	public void authorise() {
-		boolean status;
+		int masterId = this.getRequest().getData("flightId", int.class);
+		int managerId = this.getRequest().getPrincipal().getActiveRealm().getId();
 
-		super.getResponse().setAuthorised(true);
+		boolean isOwner = this.repository.findFlightById(masterId).getAirline().getManager().getId() == managerId;
+
+		super.getResponse().setAuthorised(isOwner);
 	}
 
 	@Override
