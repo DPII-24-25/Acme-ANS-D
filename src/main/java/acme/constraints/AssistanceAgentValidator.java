@@ -1,6 +1,8 @@
 
 package acme.constraints;
 
+import java.util.stream.Stream;
+
 import javax.validation.ConstraintValidatorContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +28,16 @@ public class AssistanceAgentValidator extends AbstractValidator<ValidAssistanceA
 	public boolean isValid(final AssistanceAgent asistanceAgent, final ConstraintValidatorContext context) {
 		assert context != null;
 
+		enum acceptedCurrencies {
+			EUR, USD, GBP
+		}
+
 		if (asistanceAgent == null)
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
 		else {
-			// Aquí irán las validaciones futuras.
+			String currency = asistanceAgent.getSalary().getCurrency();
+			boolean isAccepted = Stream.of(acceptedCurrencies.values()).anyMatch(c -> c.name().equals(currency));
+			super.state(context, isAccepted, "cost", "acme.validation.assistanceAgent.currency");
 		}
 
 		return !super.hasErrors(context);
