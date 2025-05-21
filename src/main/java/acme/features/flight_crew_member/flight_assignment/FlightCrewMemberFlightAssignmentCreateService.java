@@ -3,6 +3,7 @@ package acme.features.flight_crew_member.flight_assignment;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -72,20 +73,44 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 
 	@Override
 	public void validate(final FlightAssignment object) {
-		//if (!super.getBuffer().getErrors().hasErrors("")) {
-		//FlightCrewMember flightCrewMember = object.getFlightCrewMember();
-
-		// Validar que no exista otro flightAssignment con el mismo flighCrewMember
-		// Validar que no exista otro flightAssignment con otro pilot, copilot, etc.
-		// Validar que el member no tenga asignado otro leg con las mimas horas.
-		// Verificar que los leg sean solo los que se permiten.
-		// Verificar que el member este en AVAILABLE.
-		//
-
-		FlightCrewAvailability status = object.getFlightCrewMember().getAvailabilityStatus();
-		super.state(status == FlightCrewAvailability.AVAILABLE, "*", "flight-assignment.error.member-not-available");
-
 		assert object != null;
+
+		// Validación 1: Miembro debe estar disponible
+		boolean isAvailable = object.getFlightCrewMember().getAvailabilityStatus() == FlightCrewAvailability.AVAILABLE;
+		super.state(isAvailable, "*", "acme.validation.flightAssignment.memberNotAvailable");
+
+		// Validación 2: El Leg no debe ser pasado
+		if (object.getLeg() != null) {
+			boolean isFutureLeg = !MomentHelper.isPast(object.getLeg().getScheduleArrival());
+			super.state(isFutureLeg, "leg", "acme.validation.flightAssignment.legInPast");
+
+			boolean legIsPublished = !object.getLeg().isDraftMode();
+			super.state(legIsPublished, "leg", "acme.validation.flightAssignment.legNotPublished");
+		}
+
+		// Validación 3: No debe haber solapamiento de horarios
+		if (object.getLeg() != null) {
+			Collection<FlightAssignment> existingAssignments = this.repository.findFlightAssignmentByFlightCrewMemberId(object.getFlightCrewMember().getId());
+			for (FlightAssignment fa : existingAssignments)
+				if (fa.getId() != object.getId() && !fa.getLeg().isDraftMode()) {
+					boolean overlaps = MomentHelper.isInRange(object.getLeg().getScheduleDeparture(), fa.getLeg().getScheduleDeparture(), fa.getLeg().getScheduleArrival())
+						|| MomentHelper.isInRange(object.getLeg().getScheduleArrival(), fa.getLeg().getScheduleDeparture(), fa.getLeg().getScheduleArrival());
+					super.state(!overlaps, "*", "acme.validation.flightAssignment.overlappingLegs");
+					if (overlaps)
+						break;
+				}
+		}
+
+		// Validación 4: Solo un piloto/copiloto por vuelo
+		if (object.getLeg() != null && object.getDuty() != null) {
+			List<FlightAssignment> assignmentsByLeg = this.repository.findFlightAssignmentByLegId(object.getLeg().getId());
+
+			boolean hasPilot = assignmentsByLeg.stream().anyMatch(fa -> fa.getDuty() == FlightCrewDuty.PILOT && fa.getId() != object.getId());
+			boolean hasCoPilot = assignmentsByLeg.stream().anyMatch(fa -> fa.getDuty() == FlightCrewDuty.CO_PILOT && fa.getId() != object.getId());
+
+			super.state(!(hasPilot && object.getDuty() == FlightCrewDuty.PILOT), "duty", "acme.validation.flightAssignment.onlyOnePilot");
+			super.state(!(hasCoPilot && object.getDuty() == FlightCrewDuty.CO_PILOT), "duty", "acme.validation.flightAssignment.onlyOneCoPilot");
+		}
 	}
 
 	@Override
