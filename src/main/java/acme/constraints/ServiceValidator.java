@@ -1,14 +1,17 @@
 
 package acme.constraints;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.validation.ConstraintValidatorContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
+import acme.components.ServiceRepository;
 import acme.entities.service.Service;
-import acme.entities.service.ServiceRepository;
 
 @Validator
 public class ServiceValidator extends AbstractValidator<ValidService, Service> {
@@ -25,11 +28,16 @@ public class ServiceValidator extends AbstractValidator<ValidService, Service> {
 	@Override
 	public boolean isValid(final Service service, final ConstraintValidatorContext context) {
 		assert context != null;
+		boolean result = false;
 
 		if (service == null)
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
 		else {
-			// Aquí irán las validaciones futuras.
+			Date fechaActual = new Date();
+			SimpleDateFormat formato = new SimpleDateFormat("yy");
+			String ultimosDosNumerosDelAnyo = formato.format(fechaActual);
+			String ultimosDosDigitosDePromotionCode = service.getPromotionCode().substring(service.getPromotionCode().length() - 2);
+			super.state(context, ultimosDosDigitosDePromotionCode.equals(ultimosDosNumerosDelAnyo), "promotionalCode", "acme.validation.service.promotionalCode.message");
 		}
 
 		return !super.hasErrors(context);

@@ -41,7 +41,7 @@ public class Service extends AbstractEntity {
 	@Mandatory
 	@ValidNumber(min = 1)
 	@Automapped
-	private Integer				averageDwellTime;
+	private Double				averageDwellTime;
 
 	@Column(unique = true)
 	@Optional

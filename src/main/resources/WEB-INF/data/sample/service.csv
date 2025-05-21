@@ -1,0 +1,8 @@
+key,averageDwellTime,money,name,picture,promotion_code,key:airport
+# base
+service-01,10.00,100.0EUR,"servicio de wi-fi","https://imgs.search.brave.com/24NiDHE3eHLKskcBhOW15vDs_MmhlvGjSbHTWtDu0t0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/aWNvbnNjb3V0LmNv/bS9pY29uLXBhY2sv/cHJldmlldy1tb2Nr/dXAvYWVyb3B1ZXJ0/by0yODktMjc5MDg0/LnBuZz9mPXdlYnAm/aD0yNDAmbW9kaWZp/ZWRfYXQ9MTcyMDEy/Mzk0Ng",EFGH-25,airport-01
+# variación average dwell time
+service-02,1.0,100.0EUR,"servicio de wi-fi","https://imgs.search.brave.com/24NiDHE3eHLKskcBhOW15vDs_MmhlvGjSbHTWtDu0t0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/aWNvbnNjb3V0LmNv/bS9pY29uLXBhY2sv/cHJldmlldy1tb2Nr/dXAvYWVyb3B1ZXJ0/by0yODktMjc5MDg0/LnBuZz9mPXdlYnAm/aD0yNDAmbW9kaWZp/ZWRfYXQ9MTcyMDEy/Mzk0Ng",EFGI-25,airport-01
+service-03,1.1,100.0EUR,"servicio de wi-fi","https://imgs.search.brave.com/24NiDHE3eHLKskcBhOW15vDs_MmhlvGjSbHTWtDu0t0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/aWNvbnNjb3V0LmNv/bS9pY29uLXBhY2sv/cHJldmlldy1tb2Nr/dXAvYWVyb3B1ZXJ0/by0yODktMjc5MDg0/LnBuZz9mPXdlYnAm/aD0yNDAmbW9kaWZp/ZWRfYXQ9MTcyMDEy/Mzk0Ng",EFGJ-25,airport-01
+service-04,100.0,100.0EUR,"servicio de wi-fi","https://imgs.search.brave.com/P5v-QCHC7vYmBqRXyKWmga1C2RVAhfDAffAth6JroZU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4t/aWNvbnMtcG5nLmZy/ZWVwaWsuY29tLzI1/Ni85NzgxLzk3ODEz/NDEucG5nP3NlbXQ9/YWlzX2h5YnJpZA",EFGK-25,airport-01
+service-05,99.0,100.0EUR,"servicio de wi-fi","https://imgs.search.brave.com/aBY5X4j9G3qsYKsyE0n7yMlEiuWEBdIPb0Pe6YihXrA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9hc3Nl/dHMuaG90c2FsZS5j/b20uYXIvdXBsb2Fk/cy9vZmZlcnMvNDc5/MzEyLzY4MWUyMTg5/MDI0MjguanBnP3c9/NTAwJmg9Mzc1",EFGL-25,airport-01

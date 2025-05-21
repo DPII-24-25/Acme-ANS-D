@@ -1,5 +1,5 @@
 
-package acme.features.authenticated.manager.flight;
+package acme.features.manager.flight;
 
 import java.util.Collection;
 import java.util.Date;
@@ -46,15 +46,11 @@ public class ManagerFlightUpdateService extends AbstractGuiService<Manager, Flig
 
 				if (method.equals("GET"))
 					status = true;
-				else {
-					status = false;
+				else if (super.getRequest().getData().containsKey("airline")) {
+					airlineId = super.getRequest().getData("airline", int.class);
+					requestedAirline = this.repository.findAirlineById(airlineId);
 
-					if (super.getRequest().getData().containsKey("airline")) {
-						airlineId = super.getRequest().getData("airline", int.class);
-						requestedAirline = this.repository.findAirlineById(airlineId);
-
-						status = requestedAirline != null && requestedAirline.getManager().getId() == manager.getId();
-					}
+					status = requestedAirline == null || requestedAirline.getManager().getId() == manager.getId();
 				}
 			}
 		}

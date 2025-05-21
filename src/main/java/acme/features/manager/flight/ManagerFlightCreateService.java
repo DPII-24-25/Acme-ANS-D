@@ -1,5 +1,5 @@
 
-package acme.features.authenticated.manager.flight;
+package acme.features.manager.flight;
 
 import java.util.Collection;
 
@@ -38,13 +38,12 @@ public class ManagerFlightCreateService extends AbstractGuiService<Manager, Flig
 			else {
 
 				managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-				status = false;
 
 				if (super.getRequest().getData().containsKey("airline")) {
 					airlineId = super.getRequest().getData("airline", int.class);
 					airline = this.repository.findAirlineById(airlineId);
 
-					status = airline != null && airline.getManager().getId() == managerId;
+					status = airline == null || airline.getManager().getId() == managerId;
 				}
 			}
 		}

@@ -1,16 +1,5 @@
-/*
- * WorkerJobShowService.java
- *
- * Copyright (C) 2012-2025 Rafael Corchuelo.
- *
- * In keeping with the traditional purpose of furthering education and research, it is
- * the policy of the copyright owner to permit non-commercial use and redistribution of
- * this software. It has been tested carefully, but it is not guaranteed for any particular
- * purposes. The copyright owner does not offer any warranties or representations, nor do
- * they accept any liabilities with respect to them.
- */
 
-package acme.features.authenticated.manager.flight;
+package acme.features.manager.flight;
 
 import java.util.Collection;
 import java.util.Date;
@@ -23,44 +12,81 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.airline.Airline;
 import acme.entities.flight.Flight;
+import acme.entities.flight.Leg;
+import acme.features.manager.leg.ManagerLegRepository;
 import acme.realms.Manager;
 
 @GuiService
-public class ManagerFlightShowService extends AbstractGuiService<Manager, Flight> {
+public class ManagerFlightDeleteService extends AbstractGuiService<Manager, Flight> {
 
 	@Autowired
-	private ManagerFlightRepository repository;
+	private ManagerFlightRepository	flightRepository;
+
+	@Autowired
+	private ManagerLegRepository	legRepository;
 
 
 	@Override
 	public void authorise() {
 		boolean status;
-		int masterId;
+		int flightId;
 		Flight flight;
-		Airline airline;
-		Manager manager;
 
-		masterId = super.getRequest().getData("id", int.class);
-		flight = this.repository.findFlightId(masterId);
-		status = flight != null;
+		flightId = super.getRequest().getData("id", int.class);
+		flight = this.legRepository.findFlightById(flightId);
+		status = flight != null && flight.isDraft();
 
 		if (status) {
-			airline = flight.getAirline();
-			manager = airline != null ? airline.getManager() : null;
+			Airline airline = flight.getAirline();
+			Manager manager = airline != null ? airline.getManager() : null;
+
 			status = manager != null && super.getRequest().getPrincipal().getActiveRealm().getId() == manager.getId();
+
+			if (status && super.getRequest().getData().containsKey("airline")) {
+				int airlineId = super.getRequest().getData("airline", int.class);
+				Airline requestedAirline = this.flightRepository.findAirlineById(airlineId);
+
+				status = requestedAirline != null && requestedAirline.getManager().getId() == manager.getId();
+			}
 		}
 
 		super.getResponse().setAuthorised(status);
 	}
-
 	@Override
 	public void load() {
 		Flight flight;
 		int masterId = this.getRequest().getData("id", int.class);
 
-		flight = this.repository.findFlightId(masterId);
+		flight = this.flightRepository.findFlightId(masterId);
 
 		super.getBuffer().addData(flight);
+	}
+
+	@Override
+	public void bind(final Flight flight) {
+		int airlineId;
+		Airline airline;
+
+		airlineId = super.getRequest().getData("airline", int.class);
+		airline = this.flightRepository.findAirlineById(airlineId);
+
+		super.bindObject(flight, "tag", "selfTransfer", "description", "cost");
+		flight.setAirline(airline);
+
+	}
+
+	@Override
+	public void perform(final Flight flight) {
+		Collection<Leg> allMyLegs;
+		allMyLegs = this.legRepository.findAllLegsByFlightId(flight.getId());
+		this.legRepository.deleteAll(allMyLegs);
+		this.flightRepository.delete(flight);
+	}
+
+	@Override
+	public void validate(final Flight flight) {
+		;
+
 	}
 
 	@Override
@@ -76,7 +102,7 @@ public class ManagerFlightShowService extends AbstractGuiService<Manager, Flight
 		String departureCity;
 
 		manager = (Manager) super.getRequest().getPrincipal().getActiveRealm();
-		airlines = this.repository.findAirlinesByManager(manager.getId());
+		airlines = this.flightRepository.findAirlinesByManager(manager.getId());
 
 		choices = SelectChoices.from(airlines, "iataCode", flight.getAirline());
 		scheduleArrival = flight.getScheduleArrivals();
@@ -98,5 +124,4 @@ public class ManagerFlightShowService extends AbstractGuiService<Manager, Flight
 
 		super.getResponse().addData(dataset);
 	}
-
 }
