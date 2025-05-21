@@ -40,3 +40,9 @@
 		<acme:footer-copyright code="master.company.name"/>
 	</acme:footer-logo>
 </acme:footer-panel>
+
+<jstl:if test="${service != null}">
+	<div class="rounded" style="text-align:center;">
+		<img src="${service.picture}">
+	</div>
+</jstl:if>
