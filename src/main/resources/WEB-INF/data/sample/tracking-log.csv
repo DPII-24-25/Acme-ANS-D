@@ -1,21 +1,21 @@
 key,lastUpdateMoment,stepUndergoing,resolutionPorcentage,status,resolution,draftMode,key:claim
-trackinglog-01,2021/05/15 10:30,Initial review,10.0,PENDING,,true,claim-01
-trackinglog-02,2021/06/20 11:15,Under review,50.0,PENDING,,false,claim-01
-trackinglog-03,2022/01/10 09:00,Claim rejected due to insufficient evidence,100.0,REJECTED,Claim rejected due to lack of evidence,true,claim-01
+trackinglog-01,2021/05/15 10:30,Initial review,10.0,PENDING,,false,claim-02
+trackinglog-02,2021/06/20 11:15,Under review,50.0,PENDING,,false,claim-02
+trackinglog-03,2022/01/10 09:00,Claim rejected due to insufficient evidence,100.0,ACCEPTED,Claim rejected due to lack of evidence,true,claim-02
 trackinglog-04,2020/12/22 12:00,Claim accepted by agent,100.0,ACCEPTED,Claim resolved and accepted,false,claim-02
 trackinglog-05,2021/08/10 14:40,Under investigation,30.0,PENDING,,false,claim-02
-trackinglog-06,2022/03/02 17:30,Claim rejected due to non-compliance,100.0,REJECTED,Claim rejected due to violation of policy,true,claim-03
-trackinglog-07,2020/10/12 08:25,Claim received,5.0,PENDING,,false,claim-03
-trackinglog-08,2022/03/25 13:20,Claim accepted after verification,100.0,ACCEPTED,Compensation granted as per policy,true,claim-04
-trackinglog-09,2021/04/07 10:00,Investigation in progress,25.0,PENDING,,false,claim-04
-trackinglog-10,2021/06/10 12:15,Claim rejected due to false information,100.0,REJECTED,Claim rejected,true,claim-05
-trackinglog-11,2022/02/20 16:40,Final review complete,100.0,ACCEPTED,Compensation granted,false,claim-05
-trackinglog-12,2020/09/17 10:30,Claim under assessment,50.0,PENDING,,true,claim-06
-trackinglog-13,2021/11/21 14:05,Claim processing started,25.0,PENDING,,false,claim-06
-trackinglog-14,2022/04/05 13:25,Claim resolved and accepted,100.0,ACCEPTED,Claim resolved successfully,true,claim-06
+trackinglog-06,2022/03/02 17:30,Claim rejected due to non-compliance,100.0,REJECTED,Claim rejected due to violation of policy,false,claim-05
+trackinglog-07,2020/10/12 08:25,Claim received,5.0,PENDING,,false,claim-05
+trackinglog-08,2022/03/25 13:20,Claim accepted after verification,100.0,REJECTED,Compensation granted as per policy,true,claim-05
+trackinglog-09,2021/04/07 10:00,Investigation in progress,25.0,PENDING,,false,claim-05
+trackinglog-10,2021/06/10 12:15,Claim rejected due to false information,50.0,PENDING,Claim rejected,false,claim-05
+trackinglog-11,2022/02/20 16:40,Final review complete,75.0,PENDING,Compensation granted,false,claim-05
+trackinglog-12,2020/09/17 10:30,Claim under assessment,50.0,PENDING,,true,claim-07
+trackinglog-13,2021/11/21 14:05,Claim processing started,25.0,PENDING,,false,claim-07
+trackinglog-14,2022/04/05 13:25,Claim resolved and accepted,100.0,ACCEPTED,Claim resolved successfully,true,claim-07
 trackinglog-15,2019/08/23 09:30,Claim investigation pending,40.0,PENDING,,false,claim-07
 trackinglog-16,2021/03/04 11:40,Claim received and processing,20.0,PENDING,,true,claim-07
-trackinglog-17,2020/06/05 14:20,Claim accepted,100.0,ACCEPTED,Claim processed,false,claim-08
-trackinglog-18,2020/11/29 13:55,Review completed,80.0,PENDING,,true,claim-08
-trackinglog-19,2022/01/02 15:10,Claim rejected after review,100.0,REJECTED,Claim rejected,false,claim-09
+trackinglog-17,2020/06/05 14:20,Claim accepted,100.0,ACCEPTED,Claim processed,false,claim-09
+trackinglog-18,2020/11/29 13:55,Review completed,80.0,PENDING,,false,claim-09
+trackinglog-19,2022/01/02 15:10,Claim rejected after review,70.0,PENDING,Claim rejected,false,claim-09
 trackinglog-20,2022/03/22 12:50,Final decision made,100.0,ACCEPTED,Claim accepted and closed,true,claim-09

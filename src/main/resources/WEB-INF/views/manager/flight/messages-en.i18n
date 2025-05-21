@@ -49,3 +49,4 @@ flight.form.validation.airline.blank = Airline cannot be blank
 flight.form.validation.cost.negative = Cost cannot be negative
 flight.form.validation.schedule.consistency = Arrival date must be after departure date
 flight.form.validation.airline.owner = The Airline processed is not of the same Manager
+flight.form.validation.oneLegPublished = The flight has more than one leg published

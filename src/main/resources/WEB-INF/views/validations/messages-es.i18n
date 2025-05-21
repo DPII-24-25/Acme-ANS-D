@@ -20,3 +20,13 @@ acme.validation.airline.nameLength.message = Nombre no debe exceder los 50 chara
 acme.validation.airline.momentIsInPast.message = El momento de fundación no puede ser en el futuro
 acme.validation.airline.uniqueIataCode.message = Código IATA debe ser único
 acme.validation.flight.currency = Esta moneda no esta soportada
+
+acme.validation.leg.flightNumber.unique.message = El código insertado ya se ha asignado a otro tramo
+acme.validation.leg.overlapping.message = No es posible la creación de un tramo con esas fechas de salida y llegada
+
+acme.validation.claim.leg = El tramo asociada debe publicarse
+
+
+acme.validation.assignment.leg = El tramo asociada debe publicarse
+
+

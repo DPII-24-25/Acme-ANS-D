@@ -85,7 +85,7 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 		else if (lsTL100.isEmpty())
 			availableToCreate = true; // Si no hay ninguno de 100 se debe permitir seguir creando
 
-		if (availableToCreate)
+		if (!availableToCreate)
 			throw new IllegalStateException("It is not possible to create more trackinglog for this claim.");
 
 		/*

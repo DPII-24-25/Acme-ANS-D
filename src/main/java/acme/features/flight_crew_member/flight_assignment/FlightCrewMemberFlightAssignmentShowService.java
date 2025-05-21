@@ -58,7 +58,10 @@ public class FlightCrewMemberFlightAssignmentShowService extends AbstractGuiServ
 
 		final Date cMoment = MomentHelper.getCurrentMoment();
 		legs = this.repository.findLegsAfterCurrentDateByAirlineId(object.getFlightCrewMember().getAirline().getId(), cMoment);
-
+		if (!object.isDraftMode() && object.getLeg().getScheduleArrival().before(cMoment)) {
+			legs.clear();
+			legs.add(object.getLeg());
+		}
 		choicesLegs = SelectChoices.from(legs, "flightNumber", object.getLeg());
 		choicesDuty = SelectChoices.from(FlightCrewDuty.class, object.getDuty());
 		choicesStatus = SelectChoices.from(FlightAssignmentStatus.class, object.getStatus());
@@ -67,7 +70,7 @@ public class FlightCrewMemberFlightAssignmentShowService extends AbstractGuiServ
 		dataset.put("leg", choicesLegs.getSelected().getKey());
 		dataset.put("legs", choicesLegs);
 		dataset.put("duties", choicesDuty);
-		dataset.put("statutes", choicesStatus);
+		dataset.put("statuts", choicesStatus);
 		dataset.put("estado", available);
 
 		super.getResponse().addData(dataset);

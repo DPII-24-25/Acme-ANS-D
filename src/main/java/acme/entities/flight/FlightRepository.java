@@ -33,10 +33,16 @@ public interface FlightRepository extends AbstractRepository {
 	@Query("SELECT a.iataCode FROM Airline a WHERE a.id = (SELECT l.flight.airline.id FROM Leg l WHERE l.id = :id)")
 	String getIataCodeFromLegId(int id);
 
+	@Query("SELECT a.iataCode FROM Airline a WHERE a.id = (SELECT f.airline.id FROM Flight f WHERE f.id = :id)")
+	String getIataCodeFromFlightId(int id);
+
 	@Query("SELECT l FROM Leg l WHERE l.flight.id = :id ORDER BY l.scheduleDeparture ASC")
 	Collection<Leg> getLegsOrderedByDeparture(int id);
 
 	@Query("SELECT l FROM Leg l WHERE l.flight.id = :id ORDER BY l.scheduleDeparture ASC")
 	Collection<Leg> getLegsOrderedByArrival(int id);
+
+	@Query("SELECT COUNT(l) = 0 FROM Leg l WHERE l.flightNumber = :flightNumber AND l.id != :legId")
+	boolean isFlightNumberUnique(String flightNumber, int legId);
 
 }

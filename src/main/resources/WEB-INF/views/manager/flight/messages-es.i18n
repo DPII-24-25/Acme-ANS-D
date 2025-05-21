@@ -39,3 +39,4 @@ flight.form.validation.airline.blank = La aerolínea no puede estar vacía
 flight.form.validation.cost.negative = El costo no puede ser negativo
 flight.form.validation.schedule.consistency = La fecha de llegada debe ser posterior a la de salida
 flight.form.validation.airline.owner = La aerolínea procesada no pertenece al mismo manager
+flight.form.validation.oneLegPublished = El vuelo tiene al menos un tramo publicado
