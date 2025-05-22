@@ -10,7 +10,11 @@
             <acme:input-moment code="flight-crew-member.flight-assignment.form.label.lastUpdate" path="lastUpdate" readonly="true"/>
         </jstl:when>        
     </jstl:choose>
+    <jstl:choose>
+        <jstl:when test="${_command != 'create'}">
      <acme:input-select code="flight-crew-member.flight-assignment.form.label.status" path="status" choices="${statuts}"/>
+      </jstl:when>        
+    </jstl:choose>
     <acme:input-textbox code="flight-crew-member.flight-assignment.form.label.remarks" path="remarks"/>
     <acme:input-select code="flight-crew-member.flight-assignment.form.label.leg" path="leg" choices="${legs}"/>
 

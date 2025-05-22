@@ -77,7 +77,7 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 		assert object != null;
 
 		boolean isAvailable = object.getFlightCrewMember().getAvailabilityStatus() == FlightCrewAvailability.AVAILABLE;
-		super.state(isAvailable, "*", "acme.validation.flightAssignment.memberNotAvailable");
+		super.state(isAvailable, "flightCrewMember", "acme.validation.flightAssignment.memberNotAvailable");
 
 		if (object.getLeg() != null) {
 			boolean isFutureLeg = !MomentHelper.isPast(object.getLeg().getScheduleArrival());

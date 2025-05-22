@@ -133,7 +133,7 @@ public class FlightCrewMemberFlightAssignmentUpdateService extends AbstractGuiSe
 		dataset.put("leg", choicesLegs.getSelected().getKey());
 		dataset.put("legs", choicesLegs);
 		dataset.put("duties", choicesDuty);
-		dataset.put("statutes", choicesStatus);
+		dataset.put("statuts", choicesStatus);
 
 		super.getResponse().addData(dataset);
 	}

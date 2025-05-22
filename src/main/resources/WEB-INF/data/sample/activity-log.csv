@@ -1,11 +1,11 @@
 key,registrationMoment,typeOfIncident,description,severityLevel,draftMode,key:flightAssignment
-log-01,2016/07/10 14:30,Turbulence,"Moderate turbulence encountered over the Atlantic.",5.0,false,assignment-09
-log-02,2017/09/15 08:20,Medical Emergency,"Passenger required medical attention due to heart condition.",8.5,false,assignment-10
-log-03,2018/11/05 22:10,Technical Issue,"Minor issue with cabin pressurization system, resolved in-flight.",4.0,true,assignment-09
-log-04,2019/03/18 12:45,Security Concern,"Unattended baggage found in cabin, investigated by crew.",6.5,true,assignment-10
-log-05,2020/06/25 17:30,Bird Strike,"Minor bird strike on descent, no significant damage.",3.0,false,assignment-08
-log-06,2021/02/12 10:10,Passenger Misconduct,"Passenger refused to follow safety instructions, required intervention.",7.0,true,assignment-08
-log-07,2020/05/30 19:50,Fuel Imbalance,"Detected imbalance in fuel tanks, adjusted mid-flight.",5.5,false,assignment-03
-log-08,2020/01/22 06:40,Severe Weather,"Severe thunderstorms caused minor flight delays.",6.0,false,assignment-03
-log-09,2020/03/14 11:15,Engine Anomaly,"Temporary fluctuation in engine performance, closely monitored.",7.5,true,assignment-06
-log-10,2020/03/05 15:20,Communication Failure,"Brief loss of communication with air traffic control.",4.5,false,assignment-06
+log-01,2016/07/10 14:30,Turbulence,"Moderate turbulence encountered over the Atlantic.",5.0,false,assignment-01
+log-02,2017/09/15 08:20,Medical Emergency,"Passenger required medical attention due to heart condition.",8.5,false,assignment-02
+log-03,2018/11/05 22:10,Technical Issue,"Minor issue with cabin pressurization system, resolved in-flight.",4.0,true,assignment-01
+log-04,2019/03/18 12:45,Security Concern,"Unattended baggage found in cabin, investigated by crew.",6.5,true,assignment-04
+log-05,2020/06/25 17:30,Bird Strike,"Minor bird strike on descent, no significant damage.",3.0,false,assignment-04
+log-06,2021/02/12 10:10,Passenger Misconduct,"Passenger refused to follow safety instructions, required intervention.",7.0,true,assignment-02
+log-07,2020/05/30 19:50,Fuel Imbalance,"Detected imbalance in fuel tanks, adjusted mid-flight.",5.5,false,assignment-05
+log-08,2020/01/22 06:40,Severe Weather,"Severe thunderstorms caused minor flight delays.",6.0,false,assignment-05
+log-09,2020/03/14 11:15,Engine Anomaly,"Temporary fluctuation in engine performance, closely monitored.",7.5,true,assignment-01
+log-10,2020/03/05 15:20,Communication Failure,"Brief loss of communication with air traffic control.",4.5,false,assignment-02
