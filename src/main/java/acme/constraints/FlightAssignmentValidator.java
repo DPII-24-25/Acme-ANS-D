@@ -48,7 +48,7 @@ public class FlightAssignmentValidator extends AbstractValidator<ValidFlightAssi
 			if (!flightAssignment.getLeg().isDraftMode())
 				for (FlightAssignment fa : flightAssignmentByMember)
 					if (!fa.getLeg().isDraftMode() && !this.legIsCompatible(flightAssignment.getLeg(), fa.getLeg()) && fa.getId() != flightAssignment.getId()) {
-						super.state(context, false, "member", "acme.validation.FlightAssignment.memberHasIncompatibleLegs.message");
+						super.state(context, false, "flightCrewMember", "acme.validation.FlightAssignment.memberHasIncompatibleLegs.message");
 						break;
 					}
 			if (flightAssignment.getDuty() != null && flightAssignment.getLeg() != null && !flightAssignment.getLeg().isDraftMode()) {

@@ -72,7 +72,7 @@ public class FlightCrewMemberFlightAssignmentUpdateService extends AbstractGuiSe
 		super.state(isAvailable, "flightCrewMember", "acme.validation.flightAssignment.memberNotAvailable");
 
 		// 2. Validación: lastUpdate debe estar en el pasado
-		boolean isLastUpdateInPast = MomentHelper.isPast(object.getLastUpdate());
+		boolean isLastUpdateInPast = !MomentHelper.isFuture(object.getLastUpdate());
 		super.state(isLastUpdateInPast, "lastUpdate", "acme.validation.flightAssignment.lastUpdate.past");
 
 		// 3. Validación: El leg no puede ser en el pasado
@@ -125,6 +125,9 @@ public class FlightCrewMemberFlightAssignmentUpdateService extends AbstractGuiSe
 		final Date cMoment = MomentHelper.getCurrentMoment();
 		legs = this.repository.findLegsAfterCurrentDateByAirlineId(object.getFlightCrewMember().getAirline().getId(), cMoment);
 
+		int flightCrewMemberId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		FlightCrewMember member = this.repository.findFlightCrewMemberById(flightCrewMemberId);
+		boolean available = member.getAvailabilityStatus() == FlightCrewAvailability.AVAILABLE;
 		choicesLegs = SelectChoices.from(legs, "flightNumber", object.getLeg());
 		choicesDuty = SelectChoices.from(FlightCrewDuty.class, object.getDuty());
 		choicesStatus = SelectChoices.from(FlightAssignmentStatus.class, object.getStatus());
@@ -134,6 +137,7 @@ public class FlightCrewMemberFlightAssignmentUpdateService extends AbstractGuiSe
 		dataset.put("legs", choicesLegs);
 		dataset.put("duties", choicesDuty);
 		dataset.put("statuts", choicesStatus);
+		dataset.put("estado", available);
 
 		super.getResponse().addData(dataset);
 	}

@@ -76,7 +76,7 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 		super.state(isAvailable, "flightCrewMember", "acme.validation.flightAssignment.memberNotAvailable");
 
 		// 3. lastUpdate en el pasado
-		boolean isLastUpdateInPast = MomentHelper.isPast(object.getLastUpdate());
+		boolean isLastUpdateInPast = !MomentHelper.isFuture(object.getLastUpdate());
 		super.state(isLastUpdateInPast, "lastUpdate", "acme.validation.flightAssignment.lastUpdate.past");
 
 		// 4. Leg debe estar en el futuro
@@ -128,6 +128,10 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 		final Date cMoment = MomentHelper.getCurrentMoment();
 		legs = this.repository.findLegsAfterCurrentDateByAirlineId(object.getFlightCrewMember().getAirline().getId(), cMoment);
 
+		int flightCrewMemberId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		FlightCrewMember member = this.repository.findFlightCrewMemberById(flightCrewMemberId);
+		boolean available = member.getAvailabilityStatus() == FlightCrewAvailability.AVAILABLE;
+
 		choicesLegs = SelectChoices.from(legs, "flightNumber", object.getLeg());
 		choicesDuty = SelectChoices.from(FlightCrewDuty.class, object.getDuty());
 		choicesStatus = SelectChoices.from(FlightAssignmentStatus.class, object.getStatus());
@@ -137,6 +141,7 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 		dataset.put("legs", choicesLegs);
 		dataset.put("duties", choicesDuty);
 		dataset.put("statuts", choicesStatus);
+		dataset.put("estado", available);
 
 		super.getResponse().addData(dataset);
 	}

@@ -6,7 +6,7 @@
 <acme:form>
     <acme:input-select code="flight-crew-member.flight-assignment.form.label.duty" path="duty" choices="${duties}"/>
     <jstl:choose>
-        <jstl:when test="${acme:anyOf(_command, 'show')}">
+        <jstl:when test="${acme:anyOf(_command, 'show|update|publish|delete')}">
             <acme:input-moment code="flight-crew-member.flight-assignment.form.label.lastUpdate" path="lastUpdate" readonly="true"/>
         </jstl:when>        
     </jstl:choose>
@@ -19,7 +19,7 @@
     <acme:input-select code="flight-crew-member.flight-assignment.form.label.leg" path="leg" choices="${legs}"/>
 
     <jstl:choose>
-        <jstl:when test="${_command == 'show' && draftMode == true && estado}">
+        <jstl:when test="${acme:anyOf(_command, 'show|update|publish|delete') && draftMode == true && estado}">
             <acme:submit code="flight-crew-member.flight-assignment.form.label.button.update"
                 action="/flight-crew-member/flight-assignment/update" />
             <acme:submit code="flight-crew-member.flight-assignment.form.label.button.delete"
