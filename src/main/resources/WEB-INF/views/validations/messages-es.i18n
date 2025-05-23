@@ -28,5 +28,5 @@ acme.validation.claim.leg = El tramo asociada debe publicarse
 
 
 acme.validation.assignment.leg = El tramo asociada debe publicarse
-
+acme.validation.leg.date.foundation.message = La fecha de fundación de la aerolinea debe ser anterior
 

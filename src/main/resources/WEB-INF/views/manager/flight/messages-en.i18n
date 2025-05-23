@@ -18,6 +18,7 @@ manager.flight.list.label.scheduleDeparture = Departure Schedule Date
 manager.flight.list.label.arrivalCity = Arrival City
 manager.flight.list.label.departureCity = Departure City
 manager.flight.list.label.draftMode = Status
+manager.leg.list.label.label = Label
 
 # Flight Form
 manager.flight.form.title = Flight Details

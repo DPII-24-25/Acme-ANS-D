@@ -40,6 +40,11 @@ master.menu.consumer = Consumidor
 master.menu.consumer.favourite-link = Enlace favorito
 
 
+# master.menu.manager ##########################################################
+
+master.menu.manager = Manager
+master.menu.manager.list.flight = Vuelos
+
 # master.menu.technician ##########################################################
 
 master.menu.technician = Técnico
