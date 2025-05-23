@@ -19,3 +19,16 @@ flight-crew-member.flight-assignment.form.label.button.delete = Eliminar
 flight-crew-member.flight-assignment.form.label.button.publish = Publicar
 flight-crew-member.flight-assignment.form.label.button.create = Crear
 flight-crew-member.flight-assignment.form.label.button.activityLogs = Registros de actividad
+
+# FlightAssignment validations
+acme.validation.flightAssignment.memberNotAvailable = El tripulante seleccionado no está disponible.
+acme.validation.flightAssignment.legInPast = No puedes asignarte a un tramo de vuelo pasado.
+acme.validation.flightAssignment.legNotPublished = El tramo de vuelo debe estar publicado.
+acme.validation.flightAssignment.overlappingLegs = Ya tienes otro tramo asignado en este horario.
+acme.validation.flightAssignment.onlyOnePilot = Este tramo ya tiene un piloto asignado.
+acme.validation.flightAssignment.onlyOneCoPilot = Este tramo ya tiene un copiloto asignado.
+acme.validation.FlightAssignment.memberHasIncompatibleLegs.message = Este tripulante ya tiene un tramo asignado que se solapa.
+acme.validation.FlightAssignment.memberNotAvailable.message = Este tripulante no está disponible.
+acme.validation.flightAssignment.mustBeConfirmedToPublish = Debes establecer el estado como CONFIRMADO antes de publicar.
+acme.validation.flightAssignment.remarks.length = Las observaciones no deben superar los 255 caracteres.
+acme.validation.flightAssignment.lastUpdate.past = La última actualización debe estar en el pasado.
