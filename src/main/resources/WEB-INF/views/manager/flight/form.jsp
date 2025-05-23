@@ -30,6 +30,9 @@
 			readonly="true" />
 	</jstl:if>
 
+	<acme:button code="flight.form.label.button.legs"
+		action="/manager/leg/list?flightId=${id}" />
+
 
 	<jstl:choose>
 		<jstl:when
@@ -41,7 +44,7 @@
 			<acme:submit code="flight.form.label.button.publish"
 				action="/manager/flight/publish" />
 
-			<acme:button code="flight.form.label.button.legs" action="/manager/leg/list?flightId=${id}" />
+
 		</jstl:when>
 		<jstl:when test="${_command == 'create'}">
 			<acme:submit code="flight.form.label.button.create"

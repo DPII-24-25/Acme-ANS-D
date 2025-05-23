@@ -31,17 +31,21 @@ public class ManagerLegCreateService extends AbstractGuiService<Manager, Leg> {
 	public void authorise() {
 		boolean status = false;
 		final String method = super.getRequest().getMethod();
-
-		if (method.equals("GET"))
-			status = true;
-		else if (method.equals("POST"))
-			status = super.getRequest().getData("id", int.class) == 0;
-		else if (super.getRequest().getData().containsKey("flightId")) {
-			final int managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		if (super.getRequest().getData().containsKey("flightId")) {
 			final int flightId = super.getRequest().getData("flightId", int.class);
 			final Flight flight = this.repository.findFlightById(flightId);
+			if (!flight.isDraft())
+				status = false;
+			else if (method.equals("GET"))
+				status = true;
+			else if (method.equals("POST")) {
+				status = super.getRequest().getData("id", int.class) == 0;
 
-			status = flight != null && flight.isDraft() && flight.getAirline().getManager().getId() == managerId;
+				final int managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+
+				status = status && flight != null && flight.isDraft() && flight.getAirline().getManager().getId() == managerId;
+
+			}
 		} else
 			status = false;
 
@@ -62,13 +66,9 @@ public class ManagerLegCreateService extends AbstractGuiService<Manager, Leg> {
 
 	@Override
 	public void bind(final Leg leg) {
+		leg.setStatus(Status.ONTIME);
+		super.bindObject(leg, "flightNumber", "scheduleDeparture", "scheduleArrival", "aircraft", "arrivalAirport", "departureAirport");
 
-		super.bindObject(leg, "status", "flightNumber", "scheduleDeparture", "scheduleArrival", "aircraft", "arrivalAirport", "departureAirport");
-		//		leg.setAircraft(this.repository.findAircraftById(super.getRequest().getData("aircraftSelected", int.class)));
-		//		leg.setArrivalAirport(this.repository.findAirportById(super.getRequest().getData("arrivalAirportSelected", int.class)));
-		//		leg.setDepartureAirport(this.repository.findAirportById(super.getRequest().getData("departureAirportSelected", int.class)));
-		//
-		//		leg.setFlight(this.flightRepository.findFlightId(super.getRequest().getData("flightSelected", int.class)));
 	}
 
 	@Override
@@ -109,7 +109,7 @@ public class ManagerLegCreateService extends AbstractGuiService<Manager, Leg> {
 		airportDepartureChoices = SelectChoices.from(airports, "iataCode", leg.getDepartureAirport());
 		aircraftChoices = SelectChoices.from(aircrafts, "registrationNumber", leg.getAircraft());
 
-		dataset = super.unbindObject(leg, "flightNumber", "scheduleDeparture", "scheduleArrival", "status", "draftMode");
+		dataset = super.unbindObject(leg, "flightNumber", "scheduleDeparture", "scheduleArrival", "draftMode");
 
 		dataset.put("statusOptions", statusChoices);
 		dataset.put("flightOptions", flightsChoices);

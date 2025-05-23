@@ -27,14 +27,15 @@ public class ManagerFlightCreateService extends AbstractGuiService<Manager, Flig
 
 		if (method.equals("GET"))
 			status = true;
-		else if (method.equals("POST"))
+		else if (method.equals("POST")) {
 			status = super.getRequest().getData("id", int.class) == 0;
-		else if (super.getRequest().getData().containsKey("airline")) {
-			final int managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-			final int airlineId = super.getRequest().getData("airline", int.class);
-			final Airline airline = this.repository.findAirlineById(airlineId);
+			if (super.getRequest().getData().containsKey("airline")) {
+				final int managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+				final int airlineId = super.getRequest().getData("airline", int.class);
+				final Airline airline = this.repository.findAirlineById(airlineId);
 
-			status = airline != null && airline.getManager().getId() == managerId;
+				status = airline != null && airline.getManager().getId() == managerId;
+			}
 		}
 
 		super.getResponse().setAuthorised(status);

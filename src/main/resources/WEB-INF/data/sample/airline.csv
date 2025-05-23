@@ -1,5 +1,4 @@
 key,name,iataCode,website,type,foundationMoment,emailAdress,phoneNumber,key:manager
-
 airline-01,aeromax,QTR,http://aeromax.com/aeromax,STANDARD,2003/04/15 09:30,aeromax@gmail.com,612345678,manager-01
 airline-02,skyjet,BZX,http://skyjet.com/skyjet,LUXURY,2001/06/18 22:45,skyjet@hotmail.com,689745123,manager-01
 airline-03,flygo,TNX,http://flygo.com/flygo,LOWCOST,2005/08/12 12:15,flygo@gmail.com,934567890,manager-02

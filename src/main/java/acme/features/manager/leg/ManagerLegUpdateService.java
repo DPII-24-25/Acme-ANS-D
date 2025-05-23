@@ -30,8 +30,13 @@ public class ManagerLegUpdateService extends AbstractGuiService<Manager, Leg> {
 	@Override
 	public void authorise() {
 		boolean status;
-
 		status = true;
+		if (super.getRequest().getData().containsKey("flightId")) {
+			final int flightId = super.getRequest().getData("flightId", int.class);
+			final Flight flight = this.repository.findFlightById(flightId);
+			if (!flight.isDraft())
+				status = false;
+		}
 
 		if (status) {
 			String method;
