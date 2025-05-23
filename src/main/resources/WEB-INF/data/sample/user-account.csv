@@ -15,11 +15,11 @@ user-account-manager-04,true,"UserIdentity{name: 'Prueba', surname: 'Test', emai
 user-account-customer-01,true,"UserIdentity{name: 'Luis', surname: 'Garcia', email: 'luisgarcia@acme.com'}",customer1,customer1
 user-account-customer-02,true,"UserIdentity{name: 'Pedro', surname: 'Pepicius', email: 'pedrope@acme.com'}",customer2,customer2
 user-account-customer-03,true,"UserIdentity{name: 'Vinicus', surname: 'Junior', email: 'vinijunnior@acme.com'}",customer3,customer3
-user-account-member1,true,"UserIdentity{name:'Αλφα', surname:'One Δεο', email:'alfa@acme.com'}",member1,member1
-user-account-member2,true,"UserIdentity{name:'María', surname:'貸んい Γκαρσία', email:'maria@acme.com'}",member2,member2
-user-account-member3,true,"UserIdentity{name:'王', surname:'三 Пример', email:'wang3@acme.com'}",member3,member3
-user-account-member4,true,"UserIdentity{name:'Léa', surname:'四 Случай', email:'lea4@acme.com'}",member4,member4
-user-account-member,true,"UserIdentity{name:'Mønt', surname:'Без Прикрепления', email:'mont@acme.com'}",member,member
+user-account-member1,true,"UserIdentity{name:'Aλφα', surname:'Mne Δεο', email:'alfa@acme.com'}",member1,member1
+user-account-member2,true,"UserIdentity{name:'María', surname:'C貸んい Γκαρσία', email:'maria@acme.com'}",member2,member2
+user-account-member3,true,"UserIdentity{name:'B王', surname:'A三 Пример', email:'wang3@acme.com'}",member3,member3
+user-account-member4,true,"UserIdentity{name:'Léa', surname:'F四 Случай', email:'lea4@acme.com'}",member4,member4
+user-account-member,true,"UserIdentity{name:'Mønt', surname:'NБез Прикрепления', email:'mont@acme.com'}",member,member
 
 user-account-technician-01,true,"UserIdentity{name: 'Rand', surname: 'AlThor', email: 'rand@mail.com'}",technician1,technician1
 user-account-technician-02,true,"UserIdentity{name: 'Matrim', surname: 'Cauthom', email: 'mat@mail.com' }",technician2,technician2

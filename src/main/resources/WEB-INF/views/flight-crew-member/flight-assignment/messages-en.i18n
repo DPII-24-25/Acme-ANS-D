@@ -19,3 +19,16 @@ flight-crew-member.flight-assignment.form.label.button.delete = Delete
 flight-crew-member.flight-assignment.form.label.button.publish = Publish
 flight-crew-member.flight-assignment.form.label.button.create = Create
 flight-crew-member.flight-assignment.form.label.button.activityLogs = Activity Logs
+
+# FlightAssignment validations
+acme.validation.flightAssignment.memberNotAvailable = The selected crew member is not available.
+acme.validation.flightAssignment.legInPast = You cannot assign a past leg.
+acme.validation.flightAssignment.legNotPublished = The selected leg must be published.
+acme.validation.flightAssignment.overlappingLegs = This member is already assigned to another leg at this time.
+acme.validation.flightAssignment.onlyOnePilot = This leg already has a pilot assigned.
+acme.validation.flightAssignment.onlyOneCoPilot = This leg already has a co-pilot assigned.
+acme.validation.FlightAssignment.memberHasIncompatibleLegs.message = This member has another leg that overlaps with this one.
+acme.validation.FlightAssignment.memberNotAvailable.message = This crew member is not available.
+acme.validation.flightAssignment.mustBeConfirmedToPublish = You must set the status to CONFIRMED before publishing.
+acme.validation.flightAssignment.remarks.length = Remarks must not exceed 255 characters.
+acme.validation.flightAssignment.lastUpdate.past = Last update must be in the past.

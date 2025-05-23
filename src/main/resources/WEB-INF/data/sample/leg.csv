@@ -47,3 +47,11 @@ leg-37,TEX3001,2001/06/01 12:00,2001/06/01 14:00,ONTIME,flight-17,airport-01,air
 # ============ SPECIAL VALID CASES ============
 leg-38,TEX9001,2200/01/01 00:00,2200/01/01 01:00,LANDED,flight-17,airport-01,airport-02,aircraft-09,false
 leg-39,TEX9002,2000/09/01 23:00,2000/09/02 06:00,ONTIME,flight-17,airport-01,airport-02,aircraft-09,true  
+
+# ============ SPECIAL VALID CASES ============
+leg-40,QTR9003,2010/01/01 00:00,2010/01/01 01:00,LANDED,flight-10,airport-01,airport-02,aircraft-09,false
+leg-41,QTR9004,2010/09/01 23:00,2010/09/02 06:00,ONTIME,flight-11,airport-01,airport-02,aircraft-09,false  
+leg-42,QTR9005,2026/01/01 00:00,2026/01/01 01:00,LANDED,flight-10,airport-01,airport-02,aircraft-09,false
+leg-43,QTR9006,2026/09/01 23:00,2026/09/02 06:00,ONTIME,flight-11,airport-01,airport-02,aircraft-09,false
+leg-44,BZX9007,2015/01/01 00:00,2015/01/01 01:00,LANDED,flight-15,airport-01,airport-02,aircraft-09,false
+leg-45,BZX9008,2019/09/01 23:00,2019/09/02 06:00,ONTIME,flight-16,airport-01,airport-02,aircraft-09,false

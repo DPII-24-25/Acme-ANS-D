@@ -20,31 +20,24 @@ public class FlightCrewMemberActivityLogDeleteService extends AbstractGuiService
 
 	@Override
 	public void authorise() {
+		int activityLogId = super.getRequest().getData("id", int.class);
 
-		boolean status;
-		int activityLogId;
-		FlightAssignment flightAssignment;
-		ActivityLog activityLog;
+		ActivityLog activityLog = this.repository.findActivityLogById(activityLogId);
+		FlightAssignment flightAssignment = activityLog != null ? activityLog.getFlightAssignment() : null;
 
-		activityLogId = super.getRequest().getData("id", int.class);
-		activityLog = this.repository.findActivityLogById(activityLogId);
-		flightAssignment = activityLog.getFlightAssignment();
+		boolean userIsCrew = super.getRequest().getPrincipal().hasRealmOfType(FlightCrewMember.class);
+		int currentCrewId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		boolean isOwner = flightAssignment != null && flightAssignment.getFlightCrewMember().getId() == currentCrewId;
 
-		int activeFlightCrewMemberId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		boolean FlightCrewMemberOwnsflightAssignment = flightAssignment.getFlightCrewMember().getId() == activeFlightCrewMemberId;
-		status = super.getRequest().getPrincipal().hasRealmOfType(FlightCrewMember.class);
+		boolean canDelete = activityLog != null && isOwner && !flightAssignment.isDraftMode() && activityLog.isDraftMode();
 
-		super.getResponse().setAuthorised(status && flightAssignment != null && FlightCrewMemberOwnsflightAssignment && !flightAssignment.isDraftMode() && activityLog.isDraftMode());
+		super.getResponse().setAuthorised(userIsCrew && canDelete);
 	}
 
 	@Override
 	public void load() {
-		ActivityLog activityLog;
-		int activityLogId;
-
-		activityLogId = super.getRequest().getData("id", int.class);
-		activityLog = this.repository.findActivityLogById(activityLogId);
-
+		int activityLogId = super.getRequest().getData("id", int.class);
+		ActivityLog activityLog = this.repository.findActivityLogById(activityLogId);
 		super.getBuffer().addData(activityLog);
 	}
 
@@ -54,24 +47,20 @@ public class FlightCrewMemberActivityLogDeleteService extends AbstractGuiService
 	}
 
 	@Override
-	public void perform(final ActivityLog object) {
-		this.repository.delete(object);
+	public void perform(final ActivityLog activityLog) {
+		this.repository.delete(activityLog);
 	}
 
 	@Override
-	public void validate(final ActivityLog object) {
-		assert object != null;
+	public void validate(final ActivityLog activityLog) {
+		assert activityLog != null;
 	}
 
 	@Override
 	public void unbind(final ActivityLog activityLog) {
+		Dataset dataset = super.unbindObject(activityLog, "registrationMoment", "typeOfIncident", "description", "severityLevel", "draftMode");
 
-		Dataset dataset;
-
-		dataset = super.unbindObject(activityLog, "registrationMoment", "typeOfIncident", "description", "severityLevel", "draftMode");
 		dataset.put("masterId", activityLog.getFlightAssignment().getId());
-
 		super.getResponse().addData(dataset);
 	}
-
 }

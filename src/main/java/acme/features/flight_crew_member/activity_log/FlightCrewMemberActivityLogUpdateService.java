@@ -4,6 +4,7 @@ package acme.features.flight_crew_member.activity_log;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.activityLog.ActivityLog;
@@ -69,6 +70,20 @@ public class FlightCrewMemberActivityLogUpdateService extends AbstractGuiService
 	@Override
 	public void validate(final ActivityLog object) {
 		assert object != null;
+
+		final FlightAssignment assignment = object.getFlightAssignment();
+
+		// Validar que el assignment esté confirmado
+		boolean isConfirmed = assignment.getStatus().name().equals("CONFIRMED");
+		super.state(isConfirmed, "*", "acme.validation.activitylog.assignmentNotConfirmed");
+
+		// Validar que el leg esté completado
+		boolean legCompleted = MomentHelper.isPast(assignment.getLeg().getScheduleArrival());
+		super.state(legCompleted, "*", "acme.validation.activitylog.legNotCompleted");
+
+		// Validar que registrationMoment sea >= scheduleArrival
+		boolean registrationAfterArrival = MomentHelper.isAfterOrEqual(object.getRegistrationMoment(), assignment.getLeg().getScheduleArrival());
+		super.state(registrationAfterArrival, "registrationMoment", "acme.validation.activitylog.registrationmoment.tooEarly");
 	}
 
 	@Override

@@ -3,6 +3,7 @@ package acme.features.flight_crew_member.flight_assignment;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -48,6 +49,7 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 		FlightCrewMember flightCrewMember;
 		flightCrewMember = this.repository.findFlightCrewMemberById(super.getRequest().getPrincipal().getActiveRealm().getId());
 		flightAssignment.setDraftMode(true);
+		flightAssignment.setStatus(FlightAssignmentStatus.PENDING);
 		flightAssignment.setFlightCrewMember(flightCrewMember);
 		super.getBuffer().addData(flightAssignment);
 	}
@@ -59,7 +61,7 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 
 		legId = super.getRequest().getData("leg", int.class);
 		leg = this.repository.findLegById(legId);
-		super.bindObject(object, "duty", "status", "remarks");
+		super.bindObject(object, "duty", "remarks");
 		final Date cMoment = MomentHelper.getCurrentMoment();
 		object.setLastUpdate(cMoment);
 		object.setLeg(leg);
@@ -72,43 +74,66 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 
 	@Override
 	public void validate(final FlightAssignment object) {
-		//if (!super.getBuffer().getErrors().hasErrors("")) {
-		//FlightCrewMember flightCrewMember = object.getFlightCrewMember();
-
-		// Validar que no exista otro flightAssignment con el mismo flighCrewMember
-		// Validar que no exista otro flightAssignment con otro pilot, copilot, etc.
-		// Validar que el member no tenga asignado otro leg con las mimas horas.
-		// Verificar que los leg sean solo los que se permiten.
-		// Verificar que el member este en AVAILABLE.
-		//
-
-		FlightCrewAvailability status = object.getFlightCrewMember().getAvailabilityStatus();
-		super.state(status == FlightCrewAvailability.AVAILABLE, "*", "flight-assignment.error.member-not-available");
-
 		assert object != null;
+
+		boolean isAvailable = object.getFlightCrewMember().getAvailabilityStatus() == FlightCrewAvailability.AVAILABLE;
+		super.state(isAvailable, "flightCrewMember", "acme.validation.flightAssignment.memberNotAvailable");
+
+		if (object.getLeg() != null) {
+			boolean isFutureLeg = !MomentHelper.isPast(object.getLeg().getScheduleArrival());
+			super.state(isFutureLeg, "leg", "acme.validation.flightAssignment.legInPast");
+
+			boolean legIsPublished = !object.getLeg().isDraftMode();
+			super.state(legIsPublished, "leg", "acme.validation.flightAssignment.legNotPublished");
+
+			Collection<Leg> allowedLegs = this.repository.findLegsAfterCurrentDateByAirlineId(object.getFlightCrewMember().getAirline().getId(), MomentHelper.getCurrentMoment());
+			super.state(allowedLegs.contains(object.getLeg()), "leg", "acme.validation.flightAssignment.legNotInAirline");
+		}
+
+		if (object.getLeg() != null) {
+			Collection<FlightAssignment> existingAssignments = this.repository.findFlightAssignmentByFlightCrewMemberId(object.getFlightCrewMember().getId());
+			for (FlightAssignment fa : existingAssignments) {
+				if (fa.getId() != object.getId() && !fa.getLeg().isDraftMode()) {
+					boolean overlaps = MomentHelper.isInRange(object.getLeg().getScheduleDeparture(), fa.getLeg().getScheduleDeparture(), fa.getLeg().getScheduleArrival())
+						|| MomentHelper.isInRange(object.getLeg().getScheduleArrival(), fa.getLeg().getScheduleDeparture(), fa.getLeg().getScheduleArrival());
+					super.state(!overlaps, "*", "acme.validation.flightAssignment.overlappingLegs");
+					if (overlaps)
+						break;
+				}
+				if (fa.getLeg().equals(object.getLeg()) && fa.getFlightCrewMember().equals(object.getFlightCrewMember()) && fa.getId() != object.getId()) {
+					super.state(false, "*", "acme.validation.flightAssignment.memberDuplicatedOnLeg");
+					break;
+				}
+			}
+		}
+
+		if (object.getLeg() != null && object.getDuty() != null) {
+			List<FlightAssignment> assignmentsByLeg = this.repository.findFlightAssignmentByLegId(object.getLeg().getId());
+
+			boolean hasPilot = assignmentsByLeg.stream().anyMatch(fa -> fa.getDuty() == FlightCrewDuty.PILOT && fa.getId() != object.getId());
+			boolean hasCoPilot = assignmentsByLeg.stream().anyMatch(fa -> fa.getDuty() == FlightCrewDuty.CO_PILOT && fa.getId() != object.getId());
+
+			super.state(!(hasPilot && object.getDuty() == FlightCrewDuty.PILOT), "duty", "acme.validation.flightAssignment.onlyOnePilot");
+			super.state(!(hasCoPilot && object.getDuty() == FlightCrewDuty.CO_PILOT), "duty", "acme.validation.flightAssignment.onlyOneCoPilot");
+		}
 	}
 
 	@Override
 	public void unbind(final FlightAssignment object) {
-
 		SelectChoices choicesLegs;
 		SelectChoices choicesDuty;
-		SelectChoices choicesStatus;
 		Collection<Leg> legs;
 		Dataset dataset;
 		final Date cMoment = MomentHelper.getCurrentMoment();
 		legs = this.repository.findLegsAfterCurrentDateByAirlineId(object.getFlightCrewMember().getAirline().getId(), cMoment);
 		choicesLegs = SelectChoices.from(legs, "flightNumber", object.getLeg());
 		choicesDuty = SelectChoices.from(FlightCrewDuty.class, object.getDuty());
-		choicesStatus = SelectChoices.from(FlightAssignmentStatus.class, object.getStatus());
 
-		dataset = super.unbindObject(object, "duty", "lastUpdate", "status", "remarks", "draftMode");
+		dataset = super.unbindObject(object, "duty", "lastUpdate", "remarks", "draftMode");
 		dataset.put("leg", choicesLegs.getSelected().getKey());
 		dataset.put("legs", choicesLegs);
 		dataset.put("duties", choicesDuty);
-		dataset.put("statutes", choicesStatus);
 
 		super.getResponse().addData(dataset);
 	}
-
 }

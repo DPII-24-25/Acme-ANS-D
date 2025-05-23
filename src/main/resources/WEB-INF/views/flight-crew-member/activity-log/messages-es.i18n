@@ -17,3 +17,9 @@ flight-crew-member.activity-log.form.label.button.update = Actualizar
 flight-crew-member.activity-log.form.label.button.delete = Eliminar
 flight-crew-member.activity-log.form.label.button.publish = Publicar
 flight-crew-member.activity-log.form.label.button.create = Crear
+
+# ActivityLog validations
+acme.validation.activitylog.registrationmoment.required = El momento de registro es obligatorio.
+acme.validation.activitylog.registrationmoment.tooEarly = El momento de registro debe ser posterior a la llegada del vuelo.
+acme.validation.activitylog.mustBeConfirmedAssignment = Solo puedes registrar logs sobre asignaciones confirmadas.
+acme.validation.activitylog.onlyCompletedAssignments = Solo puedes crear registros sobre asignaciones completadas.
