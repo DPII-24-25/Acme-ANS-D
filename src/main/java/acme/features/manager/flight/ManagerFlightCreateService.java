@@ -31,10 +31,10 @@ public class ManagerFlightCreateService extends AbstractGuiService<Manager, Flig
 			status = super.getRequest().getData("id", int.class) == 0;
 			if (super.getRequest().getData().containsKey("airline")) {
 				final int managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-				final int airlineId = super.getRequest().getData("airline", int.class);
-				final Airline airline = this.repository.findAirlineById(airlineId);
-
-				status = airline != null && airline.getManager().getId() == managerId;
+				final int airlineId = super.getRequest().getData("airline", int.class) == 0 ? 0 : super.getRequest().getData("airline", int.class);
+				final Airline airline = airlineId == 0 ? null : this.repository.findAirlineById(airlineId);
+				if (airline != null)
+					status = status && airline.getManager().getId() == managerId;
 			}
 		}
 

@@ -30,9 +30,10 @@
 			readonly="true" />
 	</jstl:if>
 
+<jstl:if test="${_command != 'create'}">
 	<acme:button code="flight.form.label.button.legs"
 		action="/manager/leg/list?flightId=${id}" />
-
+</jstl:if>
 
 	<jstl:choose>
 		<jstl:when
