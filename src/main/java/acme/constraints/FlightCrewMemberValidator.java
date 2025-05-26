@@ -1,6 +1,8 @@
 
 package acme.constraints;
 
+import java.util.Objects;
+
 import javax.validation.ConstraintValidatorContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,18 +28,27 @@ public class FlightCrewMemberValidator extends AbstractValidator<ValidFlightCrew
 	public boolean isValid(final FlightCrewMember crew, final ConstraintValidatorContext context) {
 		assert context != null;
 
+		boolean result;
+
 		if (crew == null)
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
 		else {
-			// Ejemplo de verificación de unicidad "manual" 
-
+			// Validación 1: unicidad de employeeCode (excluyendo al propio registro en edición)
 			int count = this.repository.countOthersByEmployeeCode(crew.getEmployeeCode(), crew.getId());
-			if (count > 0)
-				super.state(context, false, "employeeCode", "acme.error.crew.duplicate-employeeCode");
+			super.state(context, count == 0, "employeeCode", "acme.validation.crew.duplicate-employeeCode");
 
+			// Validación 2: formato del código — debe empezar con inicial del nombre y apellido
+			if (crew.getEmployeeCode() != null && crew.getEmployeeCode().length() >= 2) {
+				String expectedPrefix = crew.getUserAccount().getIdentity().getName().substring(0, 1) + crew.getUserAccount().getIdentity().getSurname().substring(0, 1);
+				String actualPrefix = crew.getEmployeeCode().substring(0, 2);
+
+				boolean matchingCode = Objects.equals(expectedPrefix, actualPrefix);
+				super.state(context, matchingCode, "employeeCode", "acme.validation.crew.invalid-employeeCode-format");
+			} else
+				super.state(context, false, "employeeCode", "acme.validation.crew.invalid-employeeCode-length");
 		}
 
-		return !super.hasErrors(context);
+		result = !super.hasErrors(context);
+		return result;
 	}
-
 }

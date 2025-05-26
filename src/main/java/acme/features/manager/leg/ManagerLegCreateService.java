@@ -11,6 +11,7 @@ import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
+import acme.entities.aircraft.AircraftStatus;
 import acme.entities.airports.Airport;
 import acme.entities.flight.Flight;
 import acme.entities.flight.Leg;
@@ -30,22 +31,38 @@ public class ManagerLegCreateService extends AbstractGuiService<Manager, Leg> {
 	@Override
 	public void authorise() {
 		boolean status = false;
-		final String method = super.getRequest().getMethod();
+		if (super.getRequest().getData("flightId", int.class) != null) {
+			int flightId = super.getRequest().getData("flightId", int.class);
+			Flight flight = this.repository.findFlightById(flightId);
+			status = flight != null && flight.isDraft() && super.getRequest().getPrincipal().hasRealm(flight.getAirline().getManager());
+		}
 
-		if (method.equals("GET"))
-			status = true;
-		else if (method.equals("POST"))
-			status = super.getRequest().getData("id", int.class) == 0;
-		else if (super.getRequest().getData().containsKey("flightId")) {
-			final int managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-			final int flightId = super.getRequest().getData("flightId", int.class);
-			final Flight flight = this.repository.findFlightById(flightId);
+		if (status) {
+			String method;
 
-			status = flight != null && flight.isDraft() && flight.getAirline().getManager().getId() == managerId;
-		} else
-			status = false;
+			int dAirportId, aAirportId, aircraftId;
+			method = this.getRequest().getMethod();
+
+			if (method.equals("GET"))
+				status = true;
+			else {
+				boolean isNew = false;
+				if (super.getRequest().getData("id", int.class) != null)
+					isNew = super.getRequest().getData("id", int.class) == 0;
+				dAirportId = super.getRequest().getData("departureAirport", int.class);
+				Airport dAirport = this.repository.findAirportById(dAirportId);
+				aAirportId = super.getRequest().getData("arrivalAirport", int.class);
+				Airport aAirport = this.repository.findAirportById(aAirportId);
+				aircraftId = super.getRequest().getData("aircraft", int.class);
+				Aircraft aircraft = this.repository.findAircraftById(aircraftId);
+				status = isNew && (aAirport != null || aAirportId == 0) && (dAirport != null || dAirportId == 0) && (aircraftId == 0 || aircraft != null && aircraft.getStatus() == AircraftStatus.ACTIVE);
+
+			}
+
+		}
 
 		super.getResponse().setAuthorised(status);
+
 	}
 
 	@Override
@@ -62,13 +79,9 @@ public class ManagerLegCreateService extends AbstractGuiService<Manager, Leg> {
 
 	@Override
 	public void bind(final Leg leg) {
+		leg.setStatus(Status.ONTIME);
+		super.bindObject(leg, "flightNumber", "scheduleDeparture", "scheduleArrival", "aircraft", "arrivalAirport", "departureAirport");
 
-		super.bindObject(leg, "status", "flightNumber", "scheduleDeparture", "scheduleArrival", "aircraft", "arrivalAirport", "departureAirport");
-		//		leg.setAircraft(this.repository.findAircraftById(super.getRequest().getData("aircraftSelected", int.class)));
-		//		leg.setArrivalAirport(this.repository.findAirportById(super.getRequest().getData("arrivalAirportSelected", int.class)));
-		//		leg.setDepartureAirport(this.repository.findAirportById(super.getRequest().getData("departureAirportSelected", int.class)));
-		//
-		//		leg.setFlight(this.flightRepository.findFlightId(super.getRequest().getData("flightSelected", int.class)));
 	}
 
 	@Override
@@ -109,7 +122,7 @@ public class ManagerLegCreateService extends AbstractGuiService<Manager, Leg> {
 		airportDepartureChoices = SelectChoices.from(airports, "iataCode", leg.getDepartureAirport());
 		aircraftChoices = SelectChoices.from(aircrafts, "registrationNumber", leg.getAircraft());
 
-		dataset = super.unbindObject(leg, "flightNumber", "scheduleDeparture", "scheduleArrival", "status", "draftMode");
+		dataset = super.unbindObject(leg, "flightNumber", "scheduleDeparture", "scheduleArrival", "draftMode");
 
 		dataset.put("statusOptions", statusChoices);
 		dataset.put("flightOptions", flightsChoices);

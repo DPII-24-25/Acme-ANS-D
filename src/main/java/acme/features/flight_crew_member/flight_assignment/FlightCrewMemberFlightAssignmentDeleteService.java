@@ -15,6 +15,7 @@ import acme.entities.flight.Leg;
 import acme.entities.flightAssignment.FlightAssignment;
 import acme.entities.flightAssignment.FlightAssignmentStatus;
 import acme.entities.flightAssignment.FlightCrewDuty;
+import acme.realms.FlightCrewAvailability;
 import acme.realms.FlightCrewMember;
 
 @GuiService
@@ -64,6 +65,9 @@ public class FlightCrewMemberFlightAssignmentDeleteService extends AbstractGuiSe
 	@Override
 	public void validate(final FlightAssignment object) {
 		assert object != null;
+
+		// Validación 1: Asegurarse de que está en modo borrador
+		super.state(object.isDraftMode(), "*", "acme.validation.flightAssignment.mustBeDraftToDelete");
 	}
 
 	@Override
@@ -77,6 +81,9 @@ public class FlightCrewMemberFlightAssignmentDeleteService extends AbstractGuiSe
 
 		final Date cMoment = MomentHelper.getCurrentMoment();
 		legs = this.repository.findLegsAfterCurrentDateByAirlineId(object.getFlightCrewMember().getAirline().getId(), cMoment);
+		int flightCrewMemberId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		FlightCrewMember member = this.repository.findFlightCrewMemberById(flightCrewMemberId);
+		boolean available = member.getAvailabilityStatus() == FlightCrewAvailability.AVAILABLE;
 
 		choicesLegs = SelectChoices.from(legs, "flightNumber", object.getLeg());
 		choicesDuty = SelectChoices.from(FlightCrewDuty.class, object.getDuty());
@@ -86,7 +93,8 @@ public class FlightCrewMemberFlightAssignmentDeleteService extends AbstractGuiSe
 		dataset.put("leg", choicesLegs.getSelected().getKey());
 		dataset.put("legs", choicesLegs);
 		dataset.put("duties", choicesDuty);
-		dataset.put("statutes", choicesStatus);
+		dataset.put("statuts", choicesStatus);
+		dataset.put("estado", available);
 
 		super.getResponse().addData(dataset);
 	}
