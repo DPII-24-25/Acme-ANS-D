@@ -6,7 +6,9 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.Index;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -24,6 +26,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
+@Table(indexes = {
+	// Muy usados en filtros y relaciones
+	@Index(columnList = "flight_crew_member_id"), @Index(columnList = "leg_id"),
+	// Para evitar escaneos completos al validar/publish
+	@Index(columnList = "flight_crew_member_id, leg_id"), @Index(columnList = "flight_crew_member_id, draftMode"), @Index(columnList = "leg_id, draftMode"), @Index(columnList = "leg_id,status"),
+})
 @Getter
 @Setter
 @ValidFlightAssignment
