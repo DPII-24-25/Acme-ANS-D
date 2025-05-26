@@ -38,3 +38,4 @@ technician.maintenance-record.form.error.not-enough-tasks = To publish this reco
 acme.validation.maintenance-record.inspectDueDate-is-before-moment.message = The next inspection can't be before the moment 
 acme.validation.maintenance-record.moment-is-null-dueDate-is-not.message = Before you can fill out the next inspection you first have to introduce a moment
 acme.validation.maintenance-record.currency= The currency must be EUR, USD o GBP
+technician.maintenance-record.form.error.to-delete-must-not-have-task-associations= Before deleting you must delete all task associations related to this record

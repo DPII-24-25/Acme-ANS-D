@@ -38,3 +38,4 @@ technician.maintenance-record.form.error.not-enough-tasks = Para que se pueda p�
 acme.validation.maintenance-record.inspectDueDate-is-before-moment.message = La próxima inspección no puede ser antes que el momento
 acme.validation.maintenance-record.moment-is-null-dueDate-is-not.message = antes de introducir la próxima inspección debe rellenar el momento
 acme.validation.maintenance-record.currency= La moneda debe ser EUR, USD o GBP
+technician.maintenance-record.form.error.to-delete-must-not-have-task-associations= Para poder borrar hay que primero borrar todos las asociaciones de tareas relacionadas con este registro
