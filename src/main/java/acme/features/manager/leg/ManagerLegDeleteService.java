@@ -28,30 +28,15 @@ public class ManagerLegDeleteService extends AbstractGuiService<Manager, Leg> {
 
 	@Override
 	public void authorise() {
-		boolean status;
-
-		status = true;
-
-		if (status) {
-			String method;
-			int masterId;
-			Leg leg;
-			int managerId;
-
-			method = super.getRequest().getMethod();
-
-			if (method.equals("GET"))
-				status = true;
-			else {
-				masterId = super.getRequest().getData("id", int.class);
-				leg = this.repository.findLegId(masterId);
-				managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-
-				status = leg.isDraftMode() && leg.getFlight().getAirline().getManager().getId() == managerId;
-			}
+		boolean status = false;
+		if (super.getRequest().getData("id", int.class) != null) {
+			int legId = super.getRequest().getData("id", int.class);
+			Leg leg = this.repository.findLegId(legId);
+			status = leg != null && leg.isDraftMode() && leg.getFlight().isDraft() && super.getRequest().getPrincipal().hasRealm(leg.getFlight().getAirline().getManager());
 		}
 
 		super.getResponse().setAuthorised(status);
+
 	}
 
 	@Override
