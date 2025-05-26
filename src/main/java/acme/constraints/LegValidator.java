@@ -30,7 +30,7 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 			FlightRepository flightRepository = SpringHelper.getBean(FlightRepository.class);
 			String airlineCode = flightRepository.getIataCodeFromFlightId(leg.getFlight().getId());
 
-			if (!leg.getFlightNumber().isBlank() && leg.getFlight() != null) {
+			if (!leg.getFlightNumber().isBlank() && leg.getFlightNumber().length() > 3 && leg.getFlight() != null) {
 				String legCode = leg.getFlightNumber().substring(0, 3);
 				if (airlineCode != null && !airlineCode.equals(legCode))
 					super.state(context, false, "flightNumber", "acme.validation.leg.flightNumber.message");
@@ -39,9 +39,13 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 				super.state(context, isFlightNumberUnique, "flightNumber", "acme.validation.leg.flightNumber.unique.message");
 			}
 
-			if (leg.getScheduleArrival() != null && leg.getScheduleDeparture() != null)
+			if (leg.getScheduleArrival() != null && leg.getScheduleDeparture() != null) {
 				if (leg.getScheduleArrival().before(leg.getScheduleDeparture()))
 					super.state(context, false, "scheduleArrival", "acme.validation.leg.arrivalDeparture.message");
+				if (leg.getFlight().getAirline().getFoundationMoment() != null)
+					if (leg.getScheduleDeparture().before(leg.getFlight().getAirline().getFoundationMoment()))
+						super.state(context, false, "scheduleDeparture", "acme.validation.leg.date.foundation.message");
+			}
 
 			if (leg.getArrivalAirport() != null && leg.getDepartureAirport() != null)
 				if (leg.getArrivalAirport().equals(leg.getDepartureAirport()))
