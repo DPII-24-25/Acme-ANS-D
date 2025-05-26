@@ -82,6 +82,9 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 		System.out.println(allPassenger);
 		if (allPassenger.isEmpty())
 			super.state(false, "*", "customer.booking.form.error.noPassengers");
+		if (!super.getBuffer().getErrors().hasErrors("flight"))
+			super.state(booking.getFlight() != null, "flight", "javax.validation.constraints.NotNull.message");
+
 	}
 	@Override
 	public void unbind(final Booking booking) {

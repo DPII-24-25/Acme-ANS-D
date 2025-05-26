@@ -91,11 +91,13 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 		}
 		if (!super.getBuffer().getErrors().hasErrors("locatorCode")) {
 			String locatorCode = booking.getLocatorCode();
+			Booking existingBooking = this.repository.findByLocatorCode(locatorCode);
 
-			boolean exists = this.repository.existsByLocatorCode(locatorCode);
+			boolean duplicate = existingBooking != null && existingBooking.getId() != booking.getId();
 
-			super.state(!exists, "locatorCode", "customer.booking.form.error.duplicateLocator");
+			super.state(!duplicate, "locatorCode", "customer.booking.form.error.duplicateLocator");
 		}
+
 	}
 
 	@Override
