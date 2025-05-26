@@ -8,6 +8,7 @@ manager.flight.list.label.scheduleDeparture = Fecha de Salida
 manager.flight.list.label.arrivalCity = Ciudad de Llegada
 manager.flight.list.label.departureCity = Ciudad de Salida
 manager.flight.list.label.draftMode = Estado
+manager.leg.list.label.label = Identificador
 
 # Flight Form
 manager.flight.form.title = Detalles del Vuelo

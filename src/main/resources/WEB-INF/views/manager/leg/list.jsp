@@ -16,14 +16,21 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:list>
-	<acme:list-column code="manager.leg.list.label.flightNumber" path="flightNumber" width="10%" sortable="false"/>
-	<acme:list-column code="manager.leg.list.label.scheduleDeparture" path="scheduleDeparture" width="20%" sortable="true"/>
-	<acme:list-column code="manager.leg.list.label.scheduleArrival" path="scheduleArrival" width="10%" sortable="true"/>
-	<acme:list-column code="manager.leg.list.label.status" path="status" width="20%" sortable="false"/>
-	
-	<acme:list-payload path="payload"/>
-	
+	<acme:list-column code="manager.leg.list.label.flightNumber"
+		path="flightNumber" width="10%" sortable="false" />
+	<acme:list-column code="manager.leg.list.label.scheduleDeparture"
+		path="scheduleDeparture" width="20%" sortable="true" />
+	<acme:list-column code="manager.leg.list.label.scheduleArrival"
+		path="scheduleArrival" width="10%" sortable="true" />
+	<acme:list-column code="manager.leg.list.label.status" path="status"
+		width="20%" sortable="false" />
+
+	<acme:list-payload path="payload" />
+
 </acme:list>
 
-<acme:button code="flight.form.label.button.create"
-				action="/manager/leg/create?flightId=${flightId}" />
+<jstl:if test="${updateble == true}">
+	<acme:button code="flight.form.label.button.create"
+		action="/manager/leg/create?flightId=${flightId}" />
+</jstl:if>
+

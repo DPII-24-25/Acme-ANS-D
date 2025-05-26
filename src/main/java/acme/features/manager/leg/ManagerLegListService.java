@@ -47,11 +47,14 @@ public class ManagerLegListService extends AbstractGuiService<Manager, Leg> {
 	public void load() {
 		Collection<Leg> legs;
 		int flightId;
+		boolean updateable;
 
 		flightId = super.getRequest().getData("flightId", int.class);
 
 		legs = this.repository.findAllLegsByFlightId(flightId);
+		updateable = this.repository.findFlightById(flightId).isDraft();
 
+		super.getRequest().addData("updateable", updateable);
 		super.getBuffer().addData(legs);
 
 	}
@@ -59,7 +62,6 @@ public class ManagerLegListService extends AbstractGuiService<Manager, Leg> {
 	@Override
 	public void unbind(final Leg leg) {
 		Dataset dataset;
-
 		dataset = super.unbindObject(leg, "flightNumber", "scheduleDeparture", "scheduleArrival", "status", "departureAirport", "arrivalAirport", "aircraft", "flight", "draftMode");
 
 		super.getResponse().addData(dataset);
@@ -70,7 +72,6 @@ public class ManagerLegListService extends AbstractGuiService<Manager, Leg> {
 	public void unbind(final Collection<Leg> legs) {
 		int flightId;
 		flightId = super.getRequest().getData("flightId", int.class);
-
 		super.getResponse().addGlobal("flightId", flightId);
 	}
 
