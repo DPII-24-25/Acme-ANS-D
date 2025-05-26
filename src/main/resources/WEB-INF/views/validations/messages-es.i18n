@@ -30,3 +30,22 @@ acme.validation.claim.leg = El tramo asociada debe publicarse
 acme.validation.assignment.leg = El tramo asociada debe publicarse
 
 
+# FlightAssignment
+acme.validation.flightAssignment.memberNotAvailable = Este miembro no está disponible; no se puede crear la asignación.
+acme.validation.flightAssignment.legInPast = El tramo seleccionado ya ha ocurrido.
+acme.validation.flightAssignment.legNotPublished = El tramo seleccionado no está publicado.
+acme.validation.flightAssignment.legNotInAirline = El tramo seleccionado no pertenece a su aerolínea.
+acme.validation.flightAssignment.overlappingLegs = Ya tienes una asignación que se solapa con este tramo.
+acme.validation.flightAssignment.memberDuplicatedOnLeg = Este miembro ya está asignado a este tramo.
+acme.validation.flightAssignment.onlyOnePilot = Este tramo ya tiene un piloto asignado.
+acme.validation.flightAssignment.onlyOneCoPilot = Este tramo ya tiene un copiloto asignado.
+acme.validation.flightAssignment.mustBeConfirmed = La asignación debe estar confirmada para poder publicarse.
+acme.validation.flightAssignment.lastUpdate.past = La última actualización debe estar en el pasado o ahora.
+acme.validation.flightAssignment.mustBeDraftToDelete = Solo se pueden eliminar asignaciones en modo borrador.
+
+# ActivityLog
+
+acme.validation.activitylog.assignmentNotConfirmed = La asignación asociada debe estar confirmada.
+acme.validation.activitylog.legNotCompleted = El tramo asociado debe haber finalizado.
+acme.validation.activitylog.registrationmoment.tooEarly = El momento de registro debe ser posterior a la llegada del tramo.
+acme.validation.activitylog.registrationmoment.required = El momento de registro es obligatorio.
