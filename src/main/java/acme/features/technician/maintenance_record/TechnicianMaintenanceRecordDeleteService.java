@@ -76,6 +76,9 @@ public class TechnicianMaintenanceRecordDeleteService extends AbstractGuiService
 
 	@Override
 	public void validate(final MaintenanceRecord object) {
+
+		super.state(this.repository.findTasksByMaintenanceRecordId(object.getId()).isEmpty(), "*", "technician.maintenance-record.form.error.to-delete-must-not-have-task-associations");
+
 		;
 	}
 

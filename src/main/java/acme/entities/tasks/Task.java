@@ -6,7 +6,9 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.Index;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -24,7 +26,9 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-
+@Table(indexes = {
+	@Index(columnList = "technician_id"), @Index(columnList = "draftMode")
+})
 public class Task extends AbstractEntity {
 
 	// Serialisation version --------------------------------------------------
