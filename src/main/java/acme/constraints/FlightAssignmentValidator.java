@@ -2,7 +2,6 @@
 package acme.constraints;
 
 import java.util.Collection;
-import java.util.List;
 
 import javax.validation.ConstraintValidatorContext;
 
@@ -14,7 +13,6 @@ import acme.client.helpers.MomentHelper;
 import acme.entities.flight.Leg;
 import acme.entities.flightAssignment.FlightAssignment;
 import acme.entities.flightAssignment.FlightAssignmentRepository;
-import acme.entities.flightAssignment.FlightCrewDuty;
 
 @Validator
 public class FlightAssignmentValidator extends AbstractValidator<ValidFlightAssignment, FlightAssignment> {
@@ -34,12 +32,7 @@ public class FlightAssignmentValidator extends AbstractValidator<ValidFlightAssi
 
 		if (flightAssignment == null)
 			return false;
-		/*
-		 * if (flightAssignment.getFlightCrewMember() != null) {
-		 * boolean memberAvailable = flightAssignment.getFlightCrewMember().getAvailabilityStatus().equals(FlightCrewAvailability.AVAILABLE);
-		 * super.state(context, memberAvailable, "member", "{acme.validation.FlightAssignment.memberNotAvailable.message}");
-		 * }
-		 */
+
 		if (flightAssignment.getLeg() != null && flightAssignment.getFlightCrewMember() != null) {
 
 			Collection<FlightAssignment> flightAssignmentByMember;
@@ -51,22 +44,6 @@ public class FlightAssignmentValidator extends AbstractValidator<ValidFlightAssi
 						super.state(context, false, "flightCrewMember", "acme.validation.FlightAssignment.memberHasIncompatibleLegs.message");
 						break;
 					}
-			if (flightAssignment.getDuty() != null && flightAssignment.getLeg() != null && !flightAssignment.getLeg().isDraftMode()) {
-
-				List<FlightAssignment> flightAssignmentsByLeg;
-				flightAssignmentsByLeg = this.repository.findFlightAssignmentByLegId(flightAssignment.getLeg().getId());
-				boolean hasPilot = false;
-				boolean hasCopilot = false;
-				for (FlightAssignment fa : flightAssignmentsByLeg) {
-					if (fa.getDuty().equals(FlightCrewDuty.PILOT) && flightAssignment.getId() != fa.getId())
-						hasPilot = true;
-					if (fa.getDuty().equals(FlightCrewDuty.CO_PILOT) && flightAssignment.getId() != fa.getId())
-						hasCopilot = true;
-				}
-
-				super.state(context, !(flightAssignment.getDuty().equals(FlightCrewDuty.PILOT) && hasPilot), "duty", "{acme.validation.FlightAssignment.hasPilot.message}");
-				super.state(context, !(flightAssignment.getDuty().equals(FlightCrewDuty.CO_PILOT) && hasCopilot), "duty", "{acme.validation.FlightAssignment.hasCopilot.message}");
-			}
 		}
 		return !super.hasErrors(context);
 	}
