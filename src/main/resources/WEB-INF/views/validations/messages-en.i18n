@@ -31,3 +31,22 @@ acme.validation.claim.leg = The leg associated should be published
 acme.validation.assignment.leg = The leg associated should be published
 acme.validation.leg.date.foundation.message = The Airline foundation should be before. 
 
+# FlightAssignment
+acme.validation.flightAssignment.memberNotAvailable = This member is not available; the assignment cannot be created.
+acme.validation.flightAssignment.legInPast = The selected leg has already occurred.
+acme.validation.flightAssignment.legNotPublished = The selected leg is not published.
+acme.validation.flightAssignment.legNotInAirline = The selected leg is not assigned to your airline.
+acme.validation.flightAssignment.overlappingLegs = You already have an assignment overlapping this leg.
+acme.validation.flightAssignment.memberDuplicatedOnLeg = This member is already assigned to this leg.
+acme.validation.flightAssignment.onlyOnePilot = This leg already has a pilot assigned.
+acme.validation.flightAssignment.onlyOneCoPilot = This leg already has a co-pilot assigned.
+acme.validation.flightAssignment.mustBeConfirmed = The assignment must be confirmed to publish it.
+acme.validation.flightAssignment.lastUpdate.past = The last update must be in the past or now.
+acme.validation.flightAssignment.mustBeDraftToDelete = Only draft assignments can be deleted.
+
+# ActivityLog
+acme.validation.activitylog.assignmentNotConfirmed = The associated assignment must be confirmed.
+acme.validation.activitylog.legNotCompleted = The associated leg must have already occurred.
+acme.validation.activitylog.registrationmoment.tooEarly = The registration moment must be after the leg's arrival.
+acme.validation.activitylog.registrationmoment.required = The registration moment is required.
+
