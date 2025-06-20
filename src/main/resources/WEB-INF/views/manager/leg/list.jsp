@@ -29,8 +29,8 @@
 
 </acme:list>
 
-<jstl:if test="${updateble == true}">
-	<acme:button code="flight.form.label.button.create"
+<jstl:if test="${updateable == true}">
+		<acme:button code="flight.form.label.button.create"
 		action="/manager/leg/create?flightId=${flightId}" />
 </jstl:if>
 
