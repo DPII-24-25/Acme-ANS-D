@@ -69,6 +69,7 @@ public class ManagerLegListService extends AbstractGuiService<Manager, Leg> {
 	public void unbind(final Collection<Leg> legs) {
 		int flightId;
 		flightId = super.getRequest().getData("flightId", int.class);
+
 		boolean updateable = this.repository.findFlightById(flightId).isDraft();
 
 		super.getResponse().addGlobal("updateable", updateable);
