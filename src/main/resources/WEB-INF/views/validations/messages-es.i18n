@@ -49,3 +49,4 @@ acme.validation.activitylog.assignmentNotConfirmed = La asignación asociada deb
 acme.validation.activitylog.legNotCompleted = El tramo asociado debe haber finalizado.
 acme.validation.activitylog.registrationmoment.tooEarly = El momento de registro debe ser posterior a la llegada del tramo.
 acme.validation.activitylog.registrationmoment.required = El momento de registro es obligatorio.
+

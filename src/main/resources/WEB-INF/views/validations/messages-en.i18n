@@ -49,3 +49,4 @@ acme.validation.activitylog.assignmentNotConfirmed = The associated assignment m
 acme.validation.activitylog.legNotCompleted = The associated leg must have already occurred.
 acme.validation.activitylog.registrationmoment.tooEarly = The registration moment must be after the leg's arrival.
 acme.validation.activitylog.registrationmoment.required = The registration moment is required.
+

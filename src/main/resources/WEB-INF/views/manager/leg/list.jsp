@@ -23,14 +23,14 @@
 	<acme:list-column code="manager.leg.list.label.scheduleArrival"
 		path="scheduleArrival" width="10%" sortable="true" />
 	<acme:list-column code="manager.leg.list.label.status" path="status"
-		width="20%" sortable="false" />
+		width="20%" sortable="false" /> 
 
 	<acme:list-payload path="payload" />
 
 </acme:list>
 
-<jstl:if test="${updateble == true}">
-	<acme:button code="flight.form.label.button.create"
-		action="/manager/leg/create?flightId=${flightId}" />
-</jstl:if>
 
+	<jstl:if test="${updateable == true}">
+		<acme:button code="flight.form.label.button.create"
+		action="/manager/leg/create?flightId=${flightId}" />
+	</jstl:if>
