@@ -60,10 +60,11 @@ public class CustomerPassengerPublishService extends AbstractGuiService<Customer
 	}
 	@Override
 	public void unbind(final Passenger passenger) {
+
 		Dataset dataset;
-		dataset = super.unbindObject(passenger, "booking", "fullName", "email", "passportNumber", "dateBirth", "specialNeeds", "draftMode");
-		Integer masterId = super.getRequest().getData("masterId", Integer.class);
-		dataset.put("masterId", masterId);
+
+		dataset = super.unbindObject(passenger, "fullName", "dateBirth", "specialNeeds", "passportNumber", "email", "draftMode", "booking");
+		dataset.put("booking", passenger.getBooking().getLocatorCode());
 		super.getResponse().addData(dataset);
 	}
 
