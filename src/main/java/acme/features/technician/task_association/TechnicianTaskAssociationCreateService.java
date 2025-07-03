@@ -38,16 +38,32 @@ public class TechnicianTaskAssociationCreateService extends AbstractGuiService<T
 
 	@Override
 	public void authorise() {
-		boolean status;
+		boolean status = false;
 		int masterId;
 		MaintenanceRecord maintenanceRecord;
 		Technician technician;
+		if (super.getRequest().getData("masterId", int.class) != null) {
+			masterId = super.getRequest().getData("masterId", int.class);
+			maintenanceRecord = this.repository.findMaintenanceRecordById(masterId);
+			technician = maintenanceRecord == null ? null : maintenanceRecord.getTechnician();
+			status = maintenanceRecord != null && maintenanceRecord.isDraftMode() && super.getRequest().getPrincipal().hasRealm(technician);
+		}
 
-		masterId = super.getRequest().getData("masterId", int.class);
-		maintenanceRecord = this.repository.findMaintenanceRecordById(masterId);
-		technician = maintenanceRecord == null ? null : maintenanceRecord.getTechnician();
-		status = maintenanceRecord != null && maintenanceRecord.isDraftMode() && super.getRequest().getPrincipal().hasRealm(technician);
+		if (status) {
+			String method;
+			method = this.getRequest().getMethod();
 
+			if (method.equals("GET"))
+				status = true;
+			else {
+				boolean isNew = false;
+				if (super.getRequest().getData("id", int.class) != null)
+					isNew = super.getRequest().getData("id", int.class) == 0;
+
+				status = isNew;
+
+			}
+		}
 		super.getResponse().setAuthorised(status);
 	}
 
