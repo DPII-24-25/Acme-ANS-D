@@ -43,9 +43,11 @@ public class TechnicianTaskAssociationCreateService extends AbstractGuiService<T
 		MaintenanceRecord maintenanceRecord;
 		Technician technician;
 		if (super.getRequest().getData("masterId", int.class) != null) {
+
 			masterId = super.getRequest().getData("masterId", int.class);
 			maintenanceRecord = this.repository.findMaintenanceRecordById(masterId);
 			technician = maintenanceRecord == null ? null : maintenanceRecord.getTechnician();
+
 			status = maintenanceRecord != null && maintenanceRecord.isDraftMode() && super.getRequest().getPrincipal().hasRealm(technician);
 		}
 
@@ -57,9 +59,9 @@ public class TechnicianTaskAssociationCreateService extends AbstractGuiService<T
 				status = true;
 			else {
 				boolean isNew = false;
+
 				if (super.getRequest().getData("id", int.class) != null)
 					isNew = super.getRequest().getData("id", int.class) == 0;
-
 				status = isNew;
 
 			}
