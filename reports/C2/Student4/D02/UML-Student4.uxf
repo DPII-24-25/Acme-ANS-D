@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>64</x>
+      <y>200</y>
+      <w>504</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+Assistance Agents
+--
++ employeeCode: String {Mandatory,  ValidString(pattern(^[A-Z]{2-3}\d{6}$)), Column(unique=true)}
++ spokenLanguages: String {Mandatory, ValidString(max=255), Automapped}
++ airline: Airline {Mandatory, ValidAirline, Automapped}
++ moment: Date {Mandatory, ValidMoment(past=true), Automapped}
++ briefBio: String {Optional, ValidString(max=255), Automapped}
++ salary: Money (Mandatory , ValidMoney, Automapped)
++ linkPhoto: String {Mandatory, ValidURL, Automapped}</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>64</x>
+      <y>48</y>
+      <w>496</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+Service{ValidService}
+--
++ name: String {Mandatory, ValidString(max:50), Automapped}
++ picture: String {Mandatory, ValidURL, Automapped}
++ averageDwellTime: Long{Mandatory, ValidNumber(min=1), Automapped}
++ promotionCode: String {Optional, ValidString(pattern(^[A-Z]{4}-[0-9]{2}$)), Column(unique=true)}
++ money: Money {Optional, ValidMoney, Automapped}</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>112</x>
+      <y>440</y>
+      <w>392</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+Claim
+--
++ registrationMoment: Date {Mandatory, ValidMoment(past), Automapped}
++ passengerEmail: String {Mandatory, ValidEmail(), Automapped}
++ description: String {Mandatory, ValidString(max=255), Automapped}
++ type: IssuesType {Mandatory, ValidIssuesType)
++ indicator: Boolen {Mandatory, Valid, Automapped}</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>112</x>
+      <y>608</y>
+      <w>392</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+Tracking Logs
+--
++ lastUpdateMoment: Date {Mandatory, ValidMoment(past), Automapped}
++ step: String {Mandatory, ValidString(max:50), Automapped}
++ resolutionPercentage: Long {Mandatory, ValidNumber(min=1), Automapped}
++ indicator: Boolen {Mandatory, Valid, Automapped}
++ resolution: String {Mandatory, ValidString(max=255), Automapped}</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>296</x>
+      <y>320</y>
+      <w>64</w>
+      <h>136</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+m2=*
+
+Registra  
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;150.0</additional_attributes>
+  </element>
+</diagram>
