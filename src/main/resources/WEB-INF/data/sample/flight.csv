@@ -49,4 +49,4 @@ flight-30,SelfTag,true,EUR500.00,Standard description,airline-04,1
 flight-31,SelfTag,false,EUR500.00,Standard description,airline-04,1
 # ============ DRAFT STATUS TESTING ============
 flight-32,DraftTag,true,EUR500.00,Standard description,airline-04,1
-flight-33,DraftTag,true,EUR500.00,Standard description,airline-04,0
+flight-33,DraftTag,true,EUR500.00,Standard description,airline-15,0
