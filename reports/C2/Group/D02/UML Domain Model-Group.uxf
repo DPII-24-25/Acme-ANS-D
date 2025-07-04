@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>7</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>763</x>
+      <y>238</y>
+      <w>490</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+bg=green
+_Airport_
+--
++ name:String {Mandatory,ValidString(max=50),Automapped}
++ IATA code:String {Mandatory,Column(unique=true),ValidString(pattern="^[A-Z]{3}$"),Automapped)
++ operational code:Type {Mandatory,Valid,Automapped}
++ city:String {Mandatory,ValidString(max=50),Automapped}
++ country:String {Mandatory,ValidString(max=50),Automapped}
++ website:String {Optional,ValidUrl,Automapped}
++ email address:String {Optional,ValidEmail,Automapped}
++ Contact phone number:String {Optional,ValidString(pattern="^\+?\d{6,15}$"),Automapped}
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>672</x>
+      <y>182</y>
+      <w>84</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Enumerator&gt;&gt;
+bg=yellow
+_Type_
+--
++LUXURY
++STANDARD
++LOW-COST
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>763</x>
+      <y>77</y>
+      <w>490</w>
+      <h>119</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+_Airline_
+bg=green
+--
++ name:String {Mandatory,ValidString(max=50),Automapped}
++ IATA code:String {Mandatory,Column(unique=true),ValidString(pattern="^[A-Z]{3}$"),Automapped)
++ website:String {Mandatory,ValidUrl,Automapped}
++ type:Type {Mandatory,Valid,Automapped}
++ foundation moment:Date {Mandatory, ValidMoment(past),Temporal(TIMESTAMP)}
++ email address:String {Optional,ValidEmail,Automapped}
++ Contact phone number:String {Optional,ValidString(pattern="^\+?\d{6,15}$"),Automapped}</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>168</x>
+      <y>77</y>
+      <w>490</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+_Aircraft_
+bg=green
+--
++ model:String {Mandatory,ValidString(max=50),Automapped}
++ registration number:String {Mandatory,Column(unique=true),ValidString(max=50),Automapped)
++ capacity:Integer {Mandatory,ValidNumber(min=0),Automapped}
++ cargo weight:Integer {Mandatory,ValidNumber(min=2000, max=50000),Automapped}
++ status:Boolean {Mandatory,Valid,Automapped}
++ details:String {Optional,ValidString(max=255),Automapped}</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>7</x>
+      <y>133</y>
+      <w>147</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>Status will be
+true when in active service
+and false when it's not</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>147</x>
+      <y>140</y>
+      <w>35</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;30.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>161</x>
+      <y>252</y>
+      <w>490</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+_Service_
+bg=green
+--
++ name:String {Mandatory,ValidString(max=50),Automapped}
++ picture:String {Mandatory,ValidUrl,Automapped}
++ average dwell time:Integer {Mandatory,ValidNumber(min=0),Automapped)
++ promotion code:String {Optional,Column(unique=true),ValidString(pattern="^[A-Z]{4}-[0-9]{2}$"),Automapped)
++ money:Money {Optional,ValidMoney,Automapped}
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>273</y>
+      <w>147</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>The Average Dwell Time will 
+be measured in hours</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>140</x>
+      <y>280</y>
+      <w>35</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;30.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>315</y>
+      <w>147</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>The last 2 digits in Promotion
+Code corresponds to the 
+current year</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>140</x>
+      <y>315</y>
+      <w>35</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;20.0;30.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>763</x>
+      <y>420</y>
+      <w>490</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+_Review_
+bg=green
+--
++ name:String {Mandatory,ValidString(max=50),Automapped}
++ moment:Date {Mandatory, ValidMoment(past),Temporal(TIMESTAMP)}
++ subject:String {Mandatory,ValidString(max=50),Automapped}
++ text:String {Mandatory,ValidString(max=255),Automapped}
++ score:Double {Optional,ValidNumber(min=0,max=10,fraction=1),Automapped}
++ recommended:Boolean {Optional,Valid,Automapped}
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>651</x>
+      <y>126</y>
+      <w>126</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=x-&gt;
+m1= *
+m2=1
+belongs to &gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;160.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>644</x>
+      <y>280</y>
+      <w>133</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=x-&gt;
+m1= *
+m2=1
+Offered by &gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;170.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>994</x>
+      <y>357</y>
+      <w>63</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>lt=x-&gt;
+m1= *
+m2=1
+is about ^</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+</diagram>
