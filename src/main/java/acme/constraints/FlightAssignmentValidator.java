@@ -44,7 +44,6 @@ public class FlightAssignmentValidator extends AbstractValidator<ValidFlightAssi
 						super.state(context, false, "flightCrewMember", "acme.validation.FlightAssignment.memberHasIncompatibleLegs.message");
 						break;
 					}
-
 		}
 		return !super.hasErrors(context);
 	}
