@@ -5,7 +5,7 @@
 
 <acme:form>
 	<acme:input-textbox code="leg.form.label.flightNumber"
-		path="flightNumber" />
+		path="flightNumber" placeholder="${iataCode}"/>
 	<acme:input-moment code="leg.form.label.scheduleDeparture"
 		path="scheduleDeparture" />
 	<acme:input-moment code="leg.form.label.scheduleArrival"

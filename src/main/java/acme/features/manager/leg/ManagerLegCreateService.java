@@ -68,12 +68,15 @@ public class ManagerLegCreateService extends AbstractGuiService<Manager, Leg> {
 	@Override
 	public void load() {
 		Leg leg;
+		Flight flight;
 		int flightId = this.getRequest().getData("flightId", int.class);
 
 		leg = new Leg();
 		leg.setDraftMode(true);
-		leg.setFlight(this.repository.findFlightById(flightId));
-
+		flight = this.repository.findFlightById(flightId);
+		leg.setFlight(flight);
+		String prefix = flight.getAirline().getIataCode();
+		leg.setFlightNumber(prefix);
 		super.getBuffer().addData(leg);
 	}
 
@@ -124,6 +127,7 @@ public class ManagerLegCreateService extends AbstractGuiService<Manager, Leg> {
 
 		dataset = super.unbindObject(leg, "flightNumber", "scheduleDeparture", "scheduleArrival", "draftMode");
 
+		dataset.put("iataCode", leg.getFlight().getAirline().getIataCode());
 		dataset.put("statusOptions", statusChoices);
 		dataset.put("flightOptions", flightsChoices);
 		dataset.put("flightSelected", flightsChoices.getSelected().getKey());
