@@ -78,6 +78,14 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 			String card = booking.getCreditCard();
 			super.state(!card.isBlank(), "creditCard", "javax.validation.constraints.NotNull.message");
 		}
+		if (!super.getBuffer().getErrors().hasErrors("locatorCode")) {
+			String locatorCode = booking.getLocatorCode();
+			Booking existingBooking = this.repository.findByLocatorCode(locatorCode);
+
+			boolean duplicate = existingBooking != null && existingBooking.getId() != booking.getId();
+
+			super.state(!duplicate, "locatorCode", "customer.booking.form.error.duplicateLocator");
+		}
 		Collection<Passenger> allPassenger = this.passengerRepo.findPassengersByBookingId(booking.getId());
 		System.out.println(allPassenger);
 		if (allPassenger.isEmpty())
