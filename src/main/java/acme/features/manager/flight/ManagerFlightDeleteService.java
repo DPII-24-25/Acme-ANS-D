@@ -29,29 +29,44 @@ public class ManagerFlightDeleteService extends AbstractGuiService<Manager, Flig
 	@Override
 	public void authorise() {
 		boolean status;
-		int flightId;
+		int masterId;
 		Flight flight;
 
-		flightId = super.getRequest().getData("id", int.class);
-		flight = this.legRepository.findFlightById(flightId);
+		masterId = super.getRequest().getData("id", int.class);
+		flight = this.flightRepository.findFlightId(masterId);
 		status = flight != null && flight.isDraft();
 
 		if (status) {
 			Airline airline = flight.getAirline();
 			Manager manager = airline != null ? airline.getManager() : null;
-
 			status = manager != null && super.getRequest().getPrincipal().getActiveRealm().getId() == manager.getId();
 
-			if (status && super.getRequest().getData().containsKey("airline")) {
-				int airlineId = super.getRequest().getData("airline", int.class);
-				Airline requestedAirline = this.flightRepository.findAirlineById(airlineId);
+			if (status) {
+				String method;
+				int airlineId;
+				Airline requestedAirline;
 
-				status = requestedAirline != null && requestedAirline.getManager().getId() == manager.getId();
+				method = super.getRequest().getMethod();
+
+				if ("GET".equals(method))
+					status = true;
+				else if (super.getRequest().getData().containsKey("airline")) {
+					airlineId = super.getRequest().getData("airline", int.class);
+					requestedAirline = this.flightRepository.findAirlineById(airlineId);
+
+					if (requestedAirline == null && airlineId != 0)
+						status = false;
+					else if (airlineId == 0)
+						status = true;
+					else
+						status = requestedAirline.getManager().getId() == manager.getId();
+				}
 			}
 		}
 
 		super.getResponse().setAuthorised(status);
 	}
+
 	@Override
 	public void load() {
 		Flight flight;
