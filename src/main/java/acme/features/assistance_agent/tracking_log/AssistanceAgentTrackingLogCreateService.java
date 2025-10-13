@@ -71,22 +71,34 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 
 	@Override
 	public void validate(final TrackingLog trackingLog) {
+		super.state(false, "*", "prueba");
 		assert trackingLog != null;
 		Collection<TrackingLog> lsTL = this.repository.findTrackingLogsByClaimId(trackingLog.getClaim().getId());
 		List<TrackingLog> lsTL100 = lsTL.stream().filter(x -> x.getResolutionPorcentage() == 100).toList();
 
 		/*
-		 * VALIDACION DE SI SE PERMITE CREAR O NO UN TRACKING LOG, EN CASO NO EXISTA EL DE 100 O PARA EL 100 EXTRA
+		 * VALIDACIÓN DE SI SE PERMITE CREAR O NO UN TRACKING LOG
+		 * - Si no hay ninguno con 100% → permitido.
+		 * - Si hay uno con 100% sin publicar → NO permitido.
+		 * - Si hay uno con 100% publicado → permitido (caso excepcional).
+		 * - Si hay dos o más con 100% → NO permitido.
 		 */
-
 		boolean availableToCreate = false;
-		if (lsTL100.size() == 1)
-			availableToCreate = !lsTL100.get(0).isDraftMode();  // Si existe uno de 100 y es editable no se debería poder crear más, solo se creará el extra una vez el de 100 se halla publciado.
-		else if (lsTL100.isEmpty())
-			availableToCreate = true; // Si no hay ninguno de 100 se debe permitir seguir creando
+		String message = null;
 
-		if (!availableToCreate)
-			throw new IllegalStateException("It is not possible to create more trackinglog for this claim.");
+		if (lsTL100.isEmpty())
+			availableToCreate = true; // Puede crear libremente
+		else if (lsTL100.size() == 1) {
+			if (lsTL100.get(0).isDraftMode()) {
+				availableToCreate = false;
+				message = "You cannot create a new tracking log until the current one with 100% resolution is published.";
+			} else
+				availableToCreate = true; // Caso excepcional permitido
+		} else {
+			availableToCreate = false;
+			message = "It is not possible to create more tracking logs with 100% resolution for this claim.";
+		}
+		System.out.println(availableToCreate + message);
 
 		/*
 		 * VALIDAR LA OBLIGACION DE LA RESOLUCION SI EL ESTADO ES DIFERENTE DE PENDING

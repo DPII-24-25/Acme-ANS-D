@@ -70,13 +70,10 @@ public class AssistanceAgentTrackingLogListService extends AbstractGuiService<As
 	public void unbind(final Collection<TrackingLog> trackingLog) {
 		List<TrackingLog> lsTL = trackingLog.stream().filter(x -> x.getResolutionPorcentage() == 100).toList();
 		// Si existe uno de 100 y es editable no se debería poder crear más, solo se creará el extra una vez el de 100 se halla publciado.
-		boolean available = lsTL.size() == 1 && !lsTL.get(0).isDraftMode();  // Si existe uno de 100 solo se permitirá crear en caso se halla publicado
-		boolean available2 = lsTL.isEmpty(); // Si no hay ninguno de 100 se debe permitir seguir creando
 
 		int masterId;
 		masterId = super.getRequest().getData("masterId", int.class);
 		super.getResponse().addGlobal("masterId", masterId);
-		super.getResponse().addGlobal("showCreate", available || available2);
 	}
 
 }
