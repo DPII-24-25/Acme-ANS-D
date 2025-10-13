@@ -1,6 +1,6 @@
 key,key:userAccount,employeeCode,phoneNumber,languageSkills,availabilityStatus,key:airline,salary,yearsOfExperience
-crew-01,user-account-member1,AM123456,+34123456789,"English;Español;Русский",AVAILABLE,airline-01,1800EUR,3
-crew-02,user-account-member2,MC123456,612345678,"Français;العربية;Ελληνικά",ON_VACATION,airline-02,2100EUR,5
-crew-03,user-account-member3,BA234567,+44222333444,"中文;日本語",ON_LEAVE,airline-02,2500EUR,2
-crew-04,user-account-member4,LF512345,+9999999999999,"Italiano;Norsk;한국어",AVAILABLE,airline-01,3000USD,10
-crew-05,user-account-member,MN000000,700000000,"Português;Polski;Türkçe",AVAILABLE,airline-03,1500EUR,null
+crew-01,user-account-member1,AM123456,+34123456789,"A",AVAILABLE,airline-01,0.00EUR,0
+crew-02,user-account-member2,MC123456,123456,"Français;العربية;Ελληνικά",ON_VACATION,airline-02,0.01EUR,50
+crew-03,user-account-member3,BA234567,+44222333444,"中文;日本語",ON_LEAVE,airline-02,999999.9EUR,49
+crew-04,user-account-member4,LF512345,+9999999999999,"A;B;C;D;E;F;G;H;I;J;K;L;M;N;O;P;Q;R;S;T;U;V;W;X;Y;Z;Α;Б;中;あ;أ;ñ;é;ø;ç;Ω;я;日本語;العربية;русский;français;português;ελληνικά;한국어;中文;العربية;ภาษาไทย;ქართული",AVAILABLE,airline-01,3000USD,10
+crew-05,user-account-member,MN000000,+123456789012345,"Português;Polski;Türkçe",AVAILABLE,airline-03,1000000EUR,null

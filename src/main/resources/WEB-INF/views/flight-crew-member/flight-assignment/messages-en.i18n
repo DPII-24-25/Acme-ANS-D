@@ -29,6 +29,6 @@ acme.validation.flightAssignment.onlyOnePilot = This leg already has a pilot ass
 acme.validation.flightAssignment.onlyOneCoPilot = This leg already has a co-pilot assigned.
 acme.validation.FlightAssignment.memberHasIncompatibleLegs.message = This member has another leg that overlaps with this one.
 acme.validation.FlightAssignment.memberNotAvailable.message = This crew member is not available.
-acme.validation.flightAssignment.mustBeConfirmedToPublish = You must set the status to CONFIRMED before publishing.
+acme.validation.flightAssignment.mustNotBePending = You must set the status to CONFIRMED OR CANCELED before publishing.
 acme.validation.flightAssignment.remarks.length = Remarks must not exceed 255 characters.
 acme.validation.flightAssignment.lastUpdate.past = Last update must be in the past.
