@@ -52,8 +52,14 @@ public class CustomerPassengerUpdateService extends AbstractGuiService<Customer,
 	}
 	@Override
 	public void validate(final Passenger passenger) {
-		;
+		assert passenger != null;
+
+		Passenger existing = this.repository.findPassengerByBookingIdAndPassportNumber(passenger.getBooking().getId(), passenger.getPassportNumber());
+
+		if (existing != null)
+			super.state(false, "passportNumber", "customer.passenger.form.error.existingPassenger");
 	}
+
 	@Override
 	public void unbind(final Passenger passenger) {
 		Dataset dataset;

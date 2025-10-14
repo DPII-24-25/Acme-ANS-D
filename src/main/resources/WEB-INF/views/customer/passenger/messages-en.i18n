@@ -11,3 +11,4 @@ customer.passenger.form.button.update = Update
 customer.passenger.form.button.publish = Publish
 customer.passenger.form.button.create = Create
 customer.passenger.form.button.delete = Delete
+customer.passenger.form.error.existingPassenger = It already exists a passenger with the same passportNumber for this booking
