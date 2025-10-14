@@ -8,3 +8,4 @@ customer.passenger.form.label.booking= Codigo de la Reserva
 customer.passsenger.form.label.draftMode = esBorrador
 customer.passenger.form.button.create = Crear
 customer.passenger.form.button.delete = Borrar
+customer.passenger.form.error.existingPassenger = Ya existe un pasajero con este numero de pasaporte para esta reserva
