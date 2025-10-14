@@ -36,7 +36,7 @@ public class ServiceValidator extends AbstractValidator<ValidService, Service> {
 			Date fechaActual = new Date();
 			SimpleDateFormat formato = new SimpleDateFormat("yy");
 			String ultimosDosNumerosDelAnyo = formato.format(fechaActual);
-			String ultimosDosDigitosDePromotionCode = service.getPromotionCode().substring(service.getPromotionCode().length() - 2);
+			String ultimosDosDigitosDePromotionCode = service.getPromoCode().substring(service.getPromoCode().length() - 2);
 			super.state(context, ultimosDosDigitosDePromotionCode.equals(ultimosDosNumerosDelAnyo), "promotionalCode", "acme.validation.service.promotionalCode.message");
 		}
 
