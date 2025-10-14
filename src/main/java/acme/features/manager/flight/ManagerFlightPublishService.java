@@ -43,23 +43,23 @@ public class ManagerFlightPublishService extends AbstractGuiService<Manager, Fli
 
 				method = super.getRequest().getMethod();
 
-				if (method.equals("GET"))
+				if ("GET".equals(method))
 					status = true;
 				else if (super.getRequest().getData().containsKey("airline")) {
 					airlineId = super.getRequest().getData("airline", int.class);
 					requestedAirline = this.repository.findAirlineById(airlineId);
 
-					if (requestedAirline == null)
+					if (requestedAirline == null && airlineId != 0)
 						status = false;
+					else if (airlineId == 0)
+						status = true;
 					else
 						status = requestedAirline.getManager().getId() == manager.getId();
-
 				}
 			}
 		}
 
 		super.getResponse().setAuthorised(status);
-
 	}
 
 	@Override
