@@ -31,11 +31,6 @@ public class CustomerPassengerCreateService extends AbstractGuiService<Customer,
 	public void load() {
 		final Integer masterId = super.getRequest().getData("masterId", Integer.class);
 
-		if (masterId == null) {
-			super.getResponse().setAuthorised(false);
-			return;
-		}
-
 		Passenger obj = new Passenger();
 		Booking booking = this.repository.findBookingById(masterId.intValue());
 

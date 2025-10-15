@@ -56,8 +56,10 @@ public class CustomerPassengerUpdateService extends AbstractGuiService<Customer,
 
 		Passenger existing = this.repository.findPassengerByBookingIdAndPassportNumber(passenger.getBooking().getId(), passenger.getPassportNumber());
 
-		if (existing != null)
-			super.state(false, "passportNumber", "customer.passenger.form.error.existingPassenger");
+		if (!super.getBuffer().getErrors().hasErrors("passportNumber")) {
+			boolean duplicate = existing != null && existing.getId() != passenger.getId();
+			super.state(!duplicate, "passportNumber", "customer.passenger.form.error.existingPassenger");
+		}
 	}
 
 	@Override
