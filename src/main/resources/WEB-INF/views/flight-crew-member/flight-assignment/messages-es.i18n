@@ -29,6 +29,6 @@ acme.validation.flightAssignment.onlyOnePilot = Este tramo ya tiene un piloto as
 acme.validation.flightAssignment.onlyOneCoPilot = Este tramo ya tiene un copiloto asignado.
 acme.validation.FlightAssignment.memberHasIncompatibleLegs.message = Este tripulante ya tiene un tramo asignado que se solapa.
 acme.validation.FlightAssignment.memberNotAvailable.message = Este tripulante no está disponible.
-acme.validation.flightAssignment.mustBeConfirmedToPublish = Debes establecer el estado como CONFIRMADO antes de publicar.
+acme.validation.flightAssignment.mustNotBePending = Debes establecer el estado como CONFIRMADO O CANCELADO antes de publicar.
 acme.validation.flightAssignment.remarks.length = Las observaciones no deben superar los 255 caracteres.
 acme.validation.flightAssignment.lastUpdate.past = La última actualización debe estar en el pasado.

@@ -68,8 +68,8 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 		assert object != null;
 
 		// 1. Estado debe ser CONFIRMED
-		boolean isConfirmed = object.getStatus() == FlightAssignmentStatus.CONFIRMED;
-		super.state(isConfirmed, "status", "acme.validation.flightAssignment.mustBeConfirmed");
+		boolean isPending = object.getStatus() == FlightAssignmentStatus.PENDING;
+		super.state(!isPending, "status", "acme.validation.flightAssignment.mustNotBePending");
 
 		// 2. Miembro debe estar disponible
 		boolean isAvailable = object.getFlightCrewMember().getAvailabilityStatus().equals(FlightCrewAvailability.AVAILABLE);
