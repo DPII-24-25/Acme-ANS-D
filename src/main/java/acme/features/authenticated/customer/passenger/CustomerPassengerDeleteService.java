@@ -47,7 +47,6 @@ public class CustomerPassengerDeleteService extends AbstractGuiService<Customer,
 	}
 	@Override
 	public void perform(final Passenger object) {
-		assert object != null;
 
 		this.repository.delete(object);
 	}
